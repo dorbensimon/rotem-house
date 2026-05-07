@@ -3,24 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Greenville Escapes — Luxury Stays in South Carolina</title>
+<title>Rotem Houses — Luxury Stays in South Carolina</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #F5F0E8;
-    --dark: #0E0C09;
-    --dark-2: #16130E;
-    --dark-3: #1E1A13;
+    --cream: #F2EDE0;
+    --dark: #0A110C;
+    --dark-2: #0F1A12;
+    --dark-3: #142018;
     --gold: #C9A84C;
-    --gold-light: #E8C97A;
+    --gold-light: #E2C06A;
     --gold-dim: rgba(201,168,76,0.15);
-    --rust: #8B3A2A;
-    --sage: #5C6B50;
-    --warm-white: #FDFAF4;
-    --text-muted: rgba(245,240,232,0.45);
-    --text-mid: rgba(245,240,232,0.65);
-    --border: rgba(201,168,76,0.12);
-    --border-hover: rgba(201,168,76,0.35);
+    --forest: #1A3A22;
+    --forest-mid: #2E5C38;
+    --moss: #4A7C59;
+    --sage: #7AAE8A;
+    --warm-white: #F8F4EA;
+    --text-muted: rgba(242,237,224,0.45);
+    --text-mid: rgba(242,237,224,0.70);
+    --border: rgba(74,124,89,0.18);
+    --border-hover: rgba(201,168,76,0.40);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -76,7 +78,7 @@
   }
   nav.scrolled {
     padding: 16px 52px;
-    background: rgba(14,12,9,0.9);
+    background: rgba(10,17,12,0.92);
     backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--border);
   }
@@ -109,24 +111,72 @@
     overflow: hidden;
   }
 
-  .hero-bg {
+  /* Shader canvas sits as absolute background */
+  #hero-shader {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+
+  /* Slideshow on top of shader, below content */
+  .hero-slides {
+    position: absolute; inset: 0; z-index: 1;
+  }
+  .hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 1.6s cubic-bezier(0.4,0,0.2,1);
+  }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.38) saturate(0.7);
+    transform: scale(1.06);
+    transition: transform 8s ease-out;
+  }
+  .hero-slide.active img { transform: scale(1.0); }
+
+  /* Green vignette overlay */
+  .hero-slide::after {
+    content: '';
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 100% 70% at 15% 60%, rgba(201,168,76,0.09) 0%, transparent 55%),
-      radial-gradient(ellipse 70% 80% at 85% 15%, rgba(139,58,42,0.12) 0%, transparent 50%),
-      radial-gradient(ellipse 50% 50% at 50% 100%, rgba(201,168,76,0.04) 0%, transparent 60%),
-      linear-gradient(175deg, #080603 0%, #0E0C09 45%, #060402 100%);
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(10,17,12,0.7) 0%, transparent 70%),
+      linear-gradient(180deg, rgba(10,17,12,0.35) 0%, transparent 40%, rgba(10,17,12,0.55) 100%);
+  }
+
+  /* Slideshow dots */
+  .hero-dots {
+    position: absolute; bottom: 100px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 3;
+  }
+  .hero-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(242,237,224,0.3);
+    border: none; cursor: pointer; padding: 0;
+    transition: all 0.4s;
+  }
+  .hero-dot.active {
+    width: 24px; border-radius: 3px;
+    background: var(--gold);
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: var(--dark);
   }
 
   /* Animated gold orb */
   .hero-orb {
-    position: absolute;
+    position: absolute; z-index: 2;
     width: 600px; height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(74,124,89,0.08) 0%, transparent 70%);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     animation: orbPulse 6s ease-in-out infinite;
+    pointer-events: none;
   }
 
   @keyframes orbPulse {
@@ -135,23 +185,25 @@
   }
 
   .hero-grid {
-    position: absolute; inset: 0;
+    position: absolute; inset: 0; z-index: 2;
     background-image:
-      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(74,124,89,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,124,89,0.06) 1px, transparent 1px);
     background-size: 72px 72px;
     mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, black 10%, transparent 100%);
+    pointer-events: none;
   }
 
   /* Floating photos */
   .hero-float {
     position: absolute; border-radius: 2px;
     overflow: hidden; pointer-events: none;
+    z-index: 3;
   }
   .hero-float img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .hero-float::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, transparent 60%, rgba(201,168,76,0.15));
+    background: linear-gradient(135deg, transparent 60%, rgba(74,124,89,0.15));
   }
 
   .float-1 {
@@ -160,7 +212,7 @@
     transform: rotate(-4deg);
     animation: floatA 7s ease-in-out infinite;
     box-shadow: 0 24px 48px rgba(0,0,0,0.6);
-    border: 1px solid rgba(201,168,76,0.1);
+    border: 1px solid rgba(74,124,89,0.2);
   }
   .float-2 {
     width: 170px; height: 226px;
@@ -168,7 +220,7 @@
     transform: rotate(3.5deg);
     animation: floatB 8s ease-in-out infinite;
     box-shadow: 0 24px 48px rgba(0,0,0,0.6);
-    border: 1px solid rgba(201,168,76,0.1);
+    border: 1px solid rgba(74,124,89,0.2);
   }
   .float-3 {
     width: 130px; height: 175px;
@@ -191,7 +243,7 @@
   @media (max-width: 900px) { .hero-float { display: none; } }
 
   .hero-content {
-    position: relative; z-index: 2;
+    position: relative; z-index: 4;
     text-align: center; padding: 0 24px;
     max-width: 820px;
   }
@@ -787,11 +839,63 @@
   [data-reveal-delay="2"] { transition-delay: 0.2s; }
   [data-reveal-delay="3"] { transition-delay: 0.3s; }
 
-  /* Airbnb color on hover */
-  .airbnb-btn {
-    display: inline-flex; align-items: center; gap: 8px;
+  /* ── FAQ ── */
+  .faq-item {
+    border-bottom: 1px solid var(--border);
   }
-  .airbnb-icon { font-size: 14px; }
+  .faq-item:first-child { border-top: 1px solid var(--border); }
+  .faq-q {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 0; gap: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300; color: var(--cream);
+    text-align: left;
+    transition: color 0.3s;
+  }
+  .faq-q:hover { color: var(--gold); }
+  .faq-arrow {
+    font-size: 24px; font-weight: 200; color: var(--gold);
+    flex-shrink: 0; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    line-height: 1;
+  }
+  .faq-q.open .faq-arrow { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    font-size: 14px; font-weight: 300; color: var(--text-muted);
+    line-height: 1.9;
+    transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1), padding 0.3s;
+    padding: 0;
+  }
+  .faq-a.open { max-height: 200px; padding-bottom: 24px; }
+
+  /* ── WHATSAPP FLOAT ── */
+  .whatsapp-float {
+    position: fixed; bottom: 32px; right: 32px;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    box-shadow: 0 4px 24px rgba(37,211,102,0.35);
+    z-index: 900;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+    text-decoration: none;
+  }
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+  }
+
+  /* ── AREA GRID responsive ── */
+  @media (max-width: 768px) {
+    #area > div > div[style*="grid-template-columns:repeat(3"] {
+      grid-template-columns: 1fr !important;
+    }
+    #about > div[style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -802,19 +906,38 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Greenville Escapes</a>
+  <a href="#" class="nav-logo">Rotem Houses</a>
   <div class="nav-links">
     <a href="#properties">Properties</a>
     <a href="#experience">Experience</a>
     <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
     <a href="#contact">Contact</a>
-    <a href="#contact" class="nav-book">Book Now</a>
+    <a href="#contact" class="nav-book">Book Direct</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
+  <canvas id="hero-shader"></canvas>
+
+  <!-- Slideshow -->
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=85" alt="Forest">
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=85" alt="House One">
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85" alt="Nature">
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85" alt="House Two">
+    </div>
+  </div>
+
   <div class="hero-orb"></div>
   <div class="hero-grid"></div>
 
@@ -825,7 +948,7 @@
     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=85" alt="Interior">
   </div>
   <div class="hero-float float-3">
-    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" alt="Kitchen">
+    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80" alt="Forest">
   </div>
 
   <div class="hero-content">
@@ -835,13 +958,13 @@
       <span class="eyebrow-line"></span>
     </p>
     <h1 class="hero-title">
-      Where Every Stay<br>
-      <em>Feels Like Home</em>
+      Escape Into<br>
+      <em>Luxury Nature</em>
     </h1>
-    <p class="hero-sub">Three exceptional properties in the heart of Greenville — curated for travelers who expect more than ordinary.</p>
+    <p class="hero-sub">Two exceptional retreats nestled in the heart of South Carolina — where privacy, nature, and modern luxury meet.</p>
     <div class="hero-cta-row">
-      <a href="#properties" class="btn-primary"><span>Explore Properties</span></a>
-      <a href="#contact" class="btn-ghost">Contact Host</a>
+      <a href="#properties" class="btn-primary"><span>Explore Retreats</span></a>
+      <a href="#contact" class="btn-ghost">Book Direct</a>
     </div>
   </div>
 
@@ -849,40 +972,48 @@
     <div class="scroll-mouse"></div>
     <span class="scroll-label">Scroll</span>
   </div>
+
+  <!-- Slideshow dots -->
+  <div class="hero-dots">
+    <button class="hero-dot active" onclick="goSlide(0)"></button>
+    <button class="hero-dot" onclick="goSlide(1)"></button>
+    <button class="hero-dot" onclick="goSlide(2)"></button>
+    <button class="hero-dot" onclick="goSlide(3)"></button>
+  </div>
 </section>
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span class="marquee-item">Greenville's Finest Stays</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">5-Star Airbnb Host</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Instant Book Available</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Superhost Status</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Downtown Location</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Greenville's Finest Stays</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">5-Star Airbnb Host</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Instant Book Available</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Superhost Status</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Downtown Location</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Luxury Nature Escape</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">5-Star Rated Host</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Book Direct &amp; Save</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Private Retreats</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">South Carolina Nature</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Luxury Nature Escape</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">5-Star Rated Host</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Book Direct &amp; Save</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Private Retreats</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">South Carolina Nature</span><span class="marquee-sep">◆</span>
   </div>
 </div>
 
 <!-- STATS -->
 <div class="stats-row">
   <div class="stat-cell">
-    <div class="stat-num" data-target="3">0</div>
-    <div class="stat-label">Luxury Properties</div>
+    <div class="stat-num" data-target="2">0</div>
+    <div class="stat-label">Luxury Retreats</div>
   </div>
   <div class="stat-cell">
-    <div class="stat-num" data-target="150">0</div>
+    <div class="stat-num" data-target="200">0</div>
     <div class="stat-label">Happy Guests</div>
   </div>
   <div class="stat-cell">
-    <div class="stat-num" data-target="98">0</div>
-    <div class="stat-label"><span class="stat-unit"></span>% Five-Star Reviews</div>
+    <div class="stat-num" data-target="100">0</div>
+    <div class="stat-label">% Five-Star Reviews</div>
   </div>
   <div class="stat-cell">
-    <div class="stat-num" data-target="4">0</div>
+    <div class="stat-num" data-target="5">0</div>
     <div class="stat-label">Years Hosting</div>
   </div>
 </div>
@@ -892,38 +1023,33 @@
   <div class="section-header" data-reveal>
     <div>
       <p class="section-eyebrow">Our Collection</p>
-      <h2 class="section-title">Three Homes,<br><em>Infinite Memories</em></h2>
+      <h2 class="section-title">Two Retreats,<br><em>Infinite Memories</em></h2>
     </div>
-    <p class="section-desc">Each property is hand-picked and meticulously maintained to offer you the most comfortable and memorable stay in Greenville.</p>
+    <p class="section-desc">Each retreat is meticulously maintained to offer privacy, nature, and an exceptional luxury experience in South Carolina.</p>
   </div>
 
   <!-- PROPERTY 1 -->
   <div class="property-card" data-reveal>
     <div class="card-image">
-      <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=900&q=85" alt="The Magnolia House">
+      <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=900&q=85" alt="Rotem House One">
       <div class="card-badge">⭐ Superhost Pick</div>
-      <div class="card-price">
-        <div class="price-from">From</div>
-        <div class="price-num">$149</div>
-        <div class="price-night">per night</div>
-      </div>
     </div>
     <div class="card-content">
       <div class="card-bg-num">01</div>
-      <p class="card-location">📍 Downtown Greenville, SC</p>
-      <h3 class="card-title">The Magnolia<br>House</h3>
+      <p class="card-location">📍 Greenville, South Carolina</p>
+      <h3 class="card-title">Rotem House<br>One</h3>
       <div class="stars">★★★★★</div>
       <div class="card-divider"></div>
-      <p class="card-desc">A stunning 4-bedroom craftsman home just two blocks from Falls Park. Featuring original hardwood floors, a chef's kitchen, and a wraparound porch perfect for Greenville's warm evenings.</p>
+      <p class="card-desc">A stunning luxury retreat nestled in nature, featuring spacious rooms, a chef's kitchen, and a wraparound porch overlooking lush greenery. The perfect escape for families and groups seeking privacy and tranquility.</p>
       <div class="card-features">
         <div class="feature"><span class="feature-icon">🛏</span> 4 Bedrooms</div>
-        <div class="feature"><span class="feature-icon">👥</span> Up to 8 guests</div>
+        <div class="feature"><span class="feature-icon">👥</span> Up to 8 Guests</div>
         <div class="feature"><span class="feature-icon">🍳</span> Chef's Kitchen</div>
         <div class="feature"><span class="feature-icon">🌿</span> Private Garden</div>
       </div>
       <div class="card-actions">
-        <a href="https://www.airbnb.com/rooms/1440955329892654568" target="_blank" class="btn-primary airbnb-btn"><span>Book on Airbnb</span></a>
-        <a href="#contact" class="btn-ghost">Inquire</a>
+        <a href="https://www.airbnb.com/rooms/1440955329892654568" target="_blank" class="btn-primary"><span>View on Airbnb</span></a>
+        <a href="#contact" class="btn-ghost">Book Direct</a>
       </div>
     </div>
   </div>
@@ -931,61 +1057,25 @@
   <!-- PROPERTY 2 -->
   <div class="property-card" data-reveal>
     <div class="card-image">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=85" alt="The Augusta Loft">
-      <div class="card-badge">🔥 Most Popular</div>
-      <div class="card-price">
-        <div class="price-from">From</div>
-        <div class="price-num">$119</div>
-        <div class="price-night">per night</div>
-      </div>
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=85" alt="Rotem House Two">
+      <div class="card-badge">🌿 Nature Escape</div>
     </div>
     <div class="card-content">
       <div class="card-bg-num">02</div>
-      <p class="card-location">📍 West End Arts District, SC</p>
-      <h3 class="card-title">The Augusta<br>Loft</h3>
+      <p class="card-location">📍 Greenville, South Carolina</p>
+      <h3 class="card-title">Rotem House<br>Two</h3>
       <div class="stars">★★★★★</div>
       <div class="card-divider"></div>
-      <p class="card-desc">A sleek industrial-chic loft in Greenville's vibrant West End. Exposed brick walls, 14-foot ceilings, and floor-to-ceiling windows with city skyline views — an urban retreat like no other.</p>
+      <p class="card-desc">A serene modern retreat surrounded by mature trees and natural scenery. Featuring floor-to-ceiling windows, premium furnishings, and direct access to scenic walking trails — a true connection with nature.</p>
       <div class="card-features">
-        <div class="feature"><span class="feature-icon">🛏</span> 2 Bedrooms</div>
-        <div class="feature"><span class="feature-icon">👥</span> Up to 4 guests</div>
-        <div class="feature"><span class="feature-icon">🏙</span> City Views</div>
-        <div class="feature"><span class="feature-icon">🎨</span> Art District</div>
+        <div class="feature"><span class="feature-icon">🛏</span> 3 Bedrooms</div>
+        <div class="feature"><span class="feature-icon">👥</span> Up to 6 Guests</div>
+        <div class="feature"><span class="feature-icon">🌲</span> Forest Views</div>
+        <div class="feature"><span class="feature-icon">🚶</span> Nature Trails</div>
       </div>
       <div class="card-actions">
-        <a href="https://www.airbnb.com/rooms/1611252745011009724" target="_blank" class="btn-primary"><span>Book on Airbnb</span></a>
-        <a href="#contact" class="btn-ghost">Inquire</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROPERTY 3 -->
-  <div class="property-card" data-reveal>
-    <div class="card-image">
-      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=85" alt="The Reedy River Retreat">
-      <div class="card-badge">💎 Premium Stay</div>
-      <div class="card-price">
-        <div class="price-from">From</div>
-        <div class="price-num">$189</div>
-        <div class="price-night">per night</div>
-      </div>
-    </div>
-    <div class="card-content">
-      <div class="card-bg-num">03</div>
-      <p class="card-location">📍 North Main, Greenville SC</p>
-      <h3 class="card-title">The Reedy River<br>Retreat</h3>
-      <div class="stars">★★★★★</div>
-      <div class="card-divider"></div>
-      <p class="card-desc">A fully renovated 5-bedroom luxury home with a private pool, hot tub, and outdoor kitchen. Perfect for families or groups looking for an upscale Greenville experience with all the comforts of home.</p>
-      <div class="card-features">
-        <div class="feature"><span class="feature-icon">🛏</span> 5 Bedrooms</div>
-        <div class="feature"><span class="feature-icon">👥</span> Up to 10 guests</div>
-        <div class="feature"><span class="feature-icon">🏊</span> Private Pool</div>
-        <div class="feature"><span class="feature-icon">🔥</span> Hot Tub</div>
-      </div>
-      <div class="card-actions">
-        <a href="https://www.airbnb.com" target="_blank" class="btn-primary"><span>Book on Airbnb</span></a>
-        <a href="#contact" class="btn-ghost">Inquire</a>
+        <a href="https://www.airbnb.com/rooms/1611252745011009724" target="_blank" class="btn-primary"><span>View on Airbnb</span></a>
+        <a href="#contact" class="btn-ghost">Book Direct</a>
       </div>
     </div>
   </div>
@@ -995,38 +1085,38 @@
 <section class="experience-section" id="experience">
   <div class="exp-inner">
     <div data-reveal>
-      <p class="section-eyebrow">The Greenville Escapes Difference</p>
-      <h2 class="exp-title">More Than Just<br><em>a Place to Sleep</em></h2>
-      <p class="exp-text">We go beyond the ordinary to ensure every aspect of your stay is thoughtfully considered. From the moment you book to the morning you check out, we're dedicated to your experience.</p>
-      <a href="#contact" class="btn-primary"><span>Plan Your Stay</span></a>
+      <p class="section-eyebrow">The Rotem Houses Difference</p>
+      <h2 class="exp-title">More Than Just<br><em>a Place to Stay</em></h2>
+      <p class="exp-text">Every detail is thoughtfully curated to create a seamless luxury experience — from the moment you inquire to the morning you check out. Nature, privacy, and genuine hospitality.</p>
+      <a href="#contact" class="btn-primary"><span>Plan Your Escape</span></a>
     </div>
     <div class="exp-list" data-reveal data-reveal-delay="2">
       <div class="exp-item">
-        <div class="exp-icon">🎯</div>
+        <div class="exp-icon">🌿</div>
         <div>
-          <div class="exp-item-title">Curated Guidebooks</div>
-          <div class="exp-item-desc">Every property includes a custom Greenville guide with our local restaurant picks, hidden gems, and walking routes.</div>
+          <div class="exp-item-title">Immersed in Nature</div>
+          <div class="exp-item-desc">Both retreats are surrounded by lush greenery, mature trees, and peaceful natural scenery — your private sanctuary.</div>
         </div>
       </div>
       <div class="exp-item">
         <div class="exp-icon">🛎</div>
         <div>
           <div class="exp-item-title">Hotel-Level Amenities</div>
-          <div class="exp-item-desc">Premium linens, specialty coffee, complimentary toiletries, and everything you'd expect from a 5-star stay.</div>
+          <div class="exp-item-desc">Premium linens, specialty coffee, complimentary toiletries, and everything you'd expect from a 5-star experience.</div>
         </div>
       </div>
       <div class="exp-item">
         <div class="exp-icon">⚡</div>
         <div>
-          <div class="exp-item-title">24/7 Rapid Response</div>
-          <div class="exp-item-desc">Any question, any time. We pride ourselves on responding within minutes, not hours.</div>
+          <div class="exp-item-title">Direct & Personal Service</div>
+          <div class="exp-item-desc">Book directly with your host for a personal, responsive experience. We reply within the hour, any time.</div>
         </div>
       </div>
       <div class="exp-item">
-        <div class="exp-icon">✨</div>
+        <div class="exp-icon">🔒</div>
         <div>
-          <div class="exp-item-title">Professional Cleaning</div>
-          <div class="exp-item-desc">Every property is cleaned and inspected by our dedicated team before each and every guest arrives.</div>
+          <div class="exp-item-title">Privacy & Tranquility</div>
+          <div class="exp-item-desc">Each retreat offers complete seclusion — no shared walls, no crowded lobbies. Just you, your loved ones, and nature.</div>
         </div>
       </div>
     </div>
@@ -1037,36 +1127,36 @@
 <section class="gallery-section" id="gallery">
   <div class="gallery-header">
     <div data-reveal>
-      <p class="section-eyebrow">Inside Our Homes</p>
+      <p class="section-eyebrow">Inside Our Retreats</p>
       <h2 class="section-title">A Glimpse of<br><em>What Awaits</em></h2>
     </div>
-    <p class="section-desc" data-reveal data-reveal-delay="2" style="max-width:280px;">Hover to explore the spaces that make our properties truly exceptional.</p>
+    <p class="section-desc" data-reveal data-reveal-delay="2" style="max-width:280px;">Hover to explore the spaces that make our retreats truly exceptional.</p>
   </div>
   <div class="gallery-strip">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Nature Views">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Nature Views</div>
+    </div>
     <div class="gallery-item">
       <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=80" alt="Living Spaces">
       <div class="gallery-overlay"></div>
       <div class="gallery-label">Living Spaces</div>
     </div>
     <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Kitchens">
-      <div class="gallery-overlay"></div>
-      <div class="gallery-label">Gourmet Kitchens</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Bedrooms">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Luxury Bedrooms">
       <div class="gallery-overlay"></div>
       <div class="gallery-label">Luxury Bedrooms</div>
     </div>
     <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600&q=80" alt="Outdoor">
+      <img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600&q=80" alt="Outdoor Areas">
       <div class="gallery-overlay"></div>
       <div class="gallery-label">Outdoor Areas</div>
     </div>
     <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Views">
+      <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80" alt="Forest Surroundings">
       <div class="gallery-overlay"></div>
-      <div class="gallery-label">Greenville Views</div>
+      <div class="gallery-label">Forest Surroundings</div>
     </div>
   </div>
 </section>
@@ -1078,31 +1168,31 @@
       <p class="section-eyebrow">Guest Reviews</p>
       <h2 class="section-title">Heard from<br><em>Our Guests</em></h2>
     </div>
-    <p class="section-desc" style="max-width:280px;">Real words from real guests who've made memories in our homes.</p>
+    <p class="section-desc" style="max-width:280px;">Real words from real guests who've found their perfect escape.</p>
   </div>
   <div class="testimonials-grid">
     <div class="testimonial-card">
       <div class="t-stars">★★★★★</div>
-      <p class="t-quote">"Hands down the best Airbnb experience I've ever had. The house was immaculate, the host was incredibly responsive, and the location was perfect for exploring Greenville."</p>
+      <p class="t-quote">"The most peaceful stay I've ever had. Waking up surrounded by nature, with every luxury at hand — this is exactly what we needed. The host was incredibly attentive and warm."</p>
       <div class="t-meta">
         <div class="t-name">Sarah M.</div>
-        <div class="t-info">The Magnolia House · April 2025</div>
+        <div class="t-info">Rotem House One · April 2025</div>
       </div>
     </div>
     <div class="testimonial-card">
       <div class="t-stars">★★★★★</div>
-      <p class="t-quote">"The Augusta Loft exceeded every expectation. The city views, the design, the amenities — every detail was perfect. We're already planning our return trip."</p>
+      <p class="t-quote">"We came for a weekend and stayed an extra two nights. The house is stunning, the surroundings are magical, and the host went above and beyond. Absolute perfection."</p>
       <div class="t-meta">
         <div class="t-name">James & Rachel T.</div>
-        <div class="t-info">The Augusta Loft · February 2025</div>
+        <div class="t-info">Rotem House Two · February 2025</div>
       </div>
     </div>
     <div class="testimonial-card">
       <div class="t-stars">★★★★★</div>
-      <p class="t-quote">"We rented the Reedy River Retreat for a family reunion and it was absolutely stunning. The pool, the space, the comfort — worth every penny. Would book again in a heartbeat."</p>
+      <p class="t-quote">"Our family reunion at Rotem Houses was unforgettable. Private, luxurious, immersed in nature — everything was perfect. We're already booked for next summer."</p>
       <div class="t-meta">
         <div class="t-name">The Johnson Family</div>
-        <div class="t-info">Reedy River Retreat · January 2025</div>
+        <div class="t-info">Rotem House One · January 2025</div>
       </div>
     </div>
   </div>
@@ -1113,20 +1203,24 @@
   <div class="contact-inner">
     <div data-reveal>
       <p class="section-eyebrow">Get In Touch</p>
-      <h2 class="contact-tagline">Ready for Your<br><em>Perfect Stay?</em></h2>
-      <p class="contact-text">Leave your details and we'll respond within a few hours. Or book directly on Airbnb for instant confirmation.</p>
+      <h2 class="contact-tagline">Ready for Your<br><em>Perfect Escape?</em></h2>
+      <p class="contact-text">Book directly with us for the best rates and a personal experience. We respond within the hour. Or send us a WhatsApp message for instant connection.</p>
       <div class="contact-info">
         <div class="info-item">
           <div class="info-icon">📍</div>
           <span>Greenville, South Carolina</span>
         </div>
         <div class="info-item">
-          <div class="info-icon">⭐</div>
-          <span>Airbnb Superhost · 5-Star Rated</span>
+          <div class="info-icon">📧</div>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="63212b020d07200c4d0a0d150610170e060d171023040e020a0f4d000c0e">[email&#160;protected]</a></span>
         </div>
         <div class="info-item">
-          <div class="info-icon">⚡</div>
-          <span>Typically responds within 1 hour</span>
+          <div class="info-icon">📞</div>
+          <span>+1 (917) 547-1580</span>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">⭐</div>
+          <span>Airbnb Superhost · 5-Star Rated</span>
         </div>
       </div>
     </div>
@@ -1145,16 +1239,15 @@
         <input class="form-input" type="email" placeholder="your@email.com">
       </div>
       <div class="form-group">
-        <label class="form-label">Phone</label>
+        <label class="form-label">Phone / WhatsApp</label>
         <input class="form-input" type="tel" placeholder="+1 (000) 000-0000">
       </div>
       <div class="form-group">
-        <label class="form-label">Which Property?</label>
+        <label class="form-label">Which Retreat?</label>
         <select class="form-select">
-          <option value="">Select a property...</option>
-          <option>The Magnolia House</option>
-          <option>The Augusta Loft</option>
-          <option>The Reedy River Retreat</option>
+          <option value="">Select a retreat...</option>
+          <option>Rotem House One</option>
+          <option>Rotem House Two</option>
           <option>Not sure yet</option>
         </select>
       </div>
@@ -1175,22 +1268,145 @@
   </div>
 </section>
 
+<!-- ABOUT HOST -->
+<section id="about" style="padding:120px 52px; max-width:1100px; margin:0 auto;">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;" data-reveal>
+    <div>
+      <p class="section-eyebrow">Your Host</p>
+      <h2 class="section-title">A Little<br><em>About Me</em></h2>
+      <div style="width:36px;height:1px;background:var(--gold);opacity:0.4;margin:24px 0;"></div>
+      <p style="font-size:15px;font-weight:300;color:var(--text-mid);line-height:2;margin-bottom:20px;">Hi, I'm Rotem — a passionate host who believes that where you stay shapes how you feel. I've poured my heart into creating two retreats that offer something rare: genuine luxury in the heart of South Carolina's natural beauty.</p>
+      <p style="font-size:15px;font-weight:300;color:var(--text-mid);line-height:2;margin-bottom:36px;">Every detail — from the premium linens to the curated local guide — is chosen with your comfort and joy in mind. For me, hosting isn't a business. It's a privilege.</p>
+      <a href="#contact" class="btn-primary"><span>Connect with Me</span></a>
+    </div>
+    <div style="position:relative;">
+      <div style="aspect-ratio:4/5;overflow:hidden;border:1px solid var(--border);">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=85" alt="Your Host" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.85) saturate(0.9);">
+      </div>
+      <div style="position:absolute;bottom:-20px;right:-20px;background:var(--dark-2);border:1px solid var(--border);padding:20px 28px;backdrop-filter:blur(12px);">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--gold);line-height:1;">5★</div>
+        <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-top:4px;">Superhost</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AREA & SURROUNDINGS -->
+<section id="area" style="padding:120px 52px;background:var(--dark-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div data-reveal style="text-align:center;margin-bottom:72px;">
+      <p class="section-eyebrow">The Surroundings</p>
+      <h2 class="section-title">Greenville,<br><em>South Carolina</em></h2>
+      <p style="max-width:520px;margin:24px auto 0;font-size:15px;font-weight:300;color:var(--text-muted);line-height:1.9;">A city where vibrant culture meets pristine nature — mountains, rivers, parks, and a thriving arts scene, all within reach.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);" data-reveal>
+      <div style="background:var(--dark-3);padding:40px 32px;">
+        <div style="font-size:28px;margin-bottom:16px;">🏞</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--cream);margin-bottom:10px;">Falls Park on the Reedy</div>
+        <div style="font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;">Stunning waterfall in the heart of downtown — a short drive from both retreats. Perfect for morning walks and sunset strolls.</div>
+      </div>
+      <div style="background:var(--dark-3);padding:40px 32px;">
+        <div style="font-size:28px;margin-bottom:16px;">🌲</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--cream);margin-bottom:10px;">Paris Mountain State Park</div>
+        <div style="font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;">Hiking trails, lakes, and lush forest just minutes away. Ideal for nature lovers seeking adventure and serenity.</div>
+      </div>
+      <div style="background:var(--dark-3);padding:40px 32px;">
+        <div style="font-size:28px;margin-bottom:16px;">🍽</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--cream);margin-bottom:10px;">Dining & Culture</div>
+        <div style="font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;">Award-winning restaurants, art galleries, boutique shops, and a thriving food scene — Greenville has it all.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="map" style="height:420px;position:relative;border-top:1px solid var(--border);">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105565.85699!2d-82.4587!3d34.8526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885893a8c8e94e91%3A0xa8d72bad85196e14!2sGreenville%2C%20SC!5e0!3m2!1sen!2sus!4v1"
+    width="100%" height="100%" style="border:0;display:block;filter:grayscale(60%) brightness(0.7);"
+    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(14,12,9,0.92);backdrop-filter:blur(16px);border:1px solid var(--border);padding:20px 32px;text-align:center;pointer-events:none;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--gold);">Greenville, SC</div>
+    <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted);margin-top:4px;">South Carolina</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding:120px 52px;max-width:900px;margin:0 auto;">
+  <div data-reveal style="margin-bottom:64px;">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently Asked<br><em>Questions</em></h2>
+  </div>
+  <div id="faq-list" data-reveal>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>How do I book directly and what are the benefits?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">Booking directly through our contact form or WhatsApp gives you the best rates (no platform fees), flexible communication, and a personal touch. We respond within the hour.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>What is the minimum stay?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">We typically require a minimum of 2 nights for weekend stays and 3 nights during peak seasons and holidays. For longer stays, please contact us directly for special rates.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Are the retreats pet-friendly?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">We love pets! Both retreats are pet-friendly. Please let us know in advance so we can prepare accordingly. A small pet fee may apply.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>What is included in the stay?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">All stays include premium linens, towels, specialty coffee and teas, complimentary toiletries, a fully equipped kitchen, high-speed WiFi, and a curated local guide to the area.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>What is the cancellation policy?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">We offer a flexible cancellation policy — free cancellation up to 7 days before check-in. For direct bookings, contact us and we'll work with you to find the best solution.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Is self check-in available?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">Yes! Both retreats offer seamless self check-in with a smart lock. Detailed instructions are sent 24 hours before your arrival. We're also available if you prefer a personal welcome.</div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <a href="#" class="footer-logo">Greenville Escapes</a>
+    <a href="#" class="footer-logo">Rotem Houses</a>
     <div class="footer-links">
       <a href="#properties">Properties</a>
       <a href="#experience">Experience</a>
       <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="https://www.airbnb.com" target="_blank">Airbnb Profile</a>
     </div>
-    <div class="footer-copy">© 2026 Greenville Escapes. All rights reserved.</div>
+    <div class="footer-copy">© 2026 Rotem Houses. All rights reserved.</div>
   </div>
 </footer>
 
-<script>
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/19175471580?text=Hi%20Rotem!%20I'm%20interested%20in%20booking%20a%20retreat." target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── Cursor ──
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -1273,6 +1489,21 @@
     });
   }, { passive: true });
 
+  // ── FAQ toggle ──
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-q.open').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
   // ── Form submit ──
   function handleSubmit(e) {
     e.preventDefault();
@@ -1287,7 +1518,154 @@
     }, 5000);
   }
 
-  // ── Smooth hover on property cards ──
+  // ── Hero Slideshow ──
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    let current = 0;
+    let timer;
+
+    function goSlide(n) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    window.goSlide = goSlide;
+
+    function nextSlide() { goSlide(current + 1); }
+    timer = setInterval(nextSlide, 5000);
+
+    // pause on hover
+    document.getElementById('hero').addEventListener('mouseenter', () => clearInterval(timer));
+    document.getElementById('hero').addEventListener('mouseleave', () => { timer = setInterval(nextSlide, 5000); });
+  })();
+
+  // ── Hero Shader ──
+  (function() {
+    const VERT = `attribute vec2 a_pos; void main(){gl_Position=vec4(a_pos,0.0,1.0);}`;
+    const FRAG = `
+precision highp float;
+uniform float u_time;
+uniform vec2 u_res;
+uniform vec2 u_mouse;
+uniform vec2 u_click;
+uniform float u_clickAge;
+uniform float u_clickStr;
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){
+  vec2 i=floor(p),f=fract(p);
+  float a=hash(i),b=hash(i+vec2(1,0)),c=hash(i+vec2(0,1)),d=hash(i+vec2(1,1));
+  vec2 u=f*f*(3.0-2.0*f);
+  return mix(a,b,u.x)+(c-a)*u.y*(1.0-u.x)+(d-b)*u.x*u.y;
+}
+float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.02;a*=0.5;}return v;}
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_res.xy;
+  float aspect=u_res.x/u_res.y;
+  vec2 pa=vec2(uv.x*aspect,uv.y);
+  vec2 ma=vec2(u_mouse.x*aspect,u_mouse.y);
+  vec2 ca=vec2(u_click.x*aspect,u_click.y);
+  float dM=length(ma-pa);
+  float dC=length(pa-ca);
+  vec2 pull=(ma-pa)/(dM+0.18)*0.14;
+  float ripple=sin(dC*20.0-u_clickAge*7.0)*exp(-dC*3.2)*exp(-u_clickAge*1.6)*u_clickStr;
+  vec2 q=uv*1.7+pull+vec2(0.0,u_time*0.04);
+  float n1=fbm(q+vec2(u_time*0.025,0.0));
+  float n2=fbm(q+vec2(-u_time*0.018,n1));
+  float aurora=fbm(vec2(uv.x*2.5+n2*1.1,uv.y*1.3+n1*0.5+u_time*0.05));
+  aurora+=ripple*0.3;
+  vec3 deep=vec3(0.04,0.09,0.06);
+  vec3 forest=vec3(0.10,0.23,0.15);
+  vec3 moss=vec3(0.26,0.42,0.27);
+  vec3 cream=vec3(0.95,0.93,0.88);
+  vec3 gold=vec3(0.79,0.66,0.30);
+  vec3 col=mix(deep,forest,smoothstep(0.0,0.9,uv.y+n1*0.18));
+  col=mix(col,moss,smoothstep(0.45,0.85,aurora)*0.5);
+  col+=cream*exp(-dM*dM*4.5)*0.05;
+  col+=gold*smoothstep(0.72,0.95,aurora)*0.16;
+  col+=gold*max(0.0,ripple)*0.5;
+  float vig=smoothstep(1.1,0.3,length(uv-0.5));
+  col*=0.5+0.6*vig;
+  col=col/(1.0+col*0.45);
+  gl_FragColor=vec4(col,0.72);
+}`;
+    const canvas = document.getElementById('hero-shader');
+    const gl = canvas.getContext('webgl', {antialias:false, premultipliedAlpha:false, alpha:true});
+    if (!gl) return;
+
+    const compile = (type, src) => {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s));
+      return s;
+    };
+    const prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+    gl.linkProgram(prog); gl.useProgram(prog);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+    const aPos = gl.getAttribLocation(prog, 'a_pos');
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+    const u = {
+      time: gl.getUniformLocation(prog,'u_time'),
+      res:  gl.getUniformLocation(prog,'u_res'),
+      mouse:gl.getUniformLocation(prog,'u_mouse'),
+      click:gl.getUniformLocation(prog,'u_click'),
+      ca:   gl.getUniformLocation(prog,'u_clickAge'),
+      cs:   gl.getUniformLocation(prog,'u_clickStr'),
+    };
+
+    const dpr = Math.min(window.devicePixelRatio||1, 1.5);
+    const resize = () => {
+      const r = canvas.getBoundingClientRect();
+      canvas.width = Math.max(2, r.width*dpr|0);
+      canvas.height = Math.max(2, r.height*dpr|0);
+      gl.viewport(0,0,canvas.width,canvas.height);
+    };
+    resize();
+    new ResizeObserver(resize).observe(canvas);
+
+    const state = { mouse:[0.5,0.6], target:[0.5,0.6], click:[0.5,0.5], clickT0:-10, clickStr:0 };
+    window.addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      state.target = [(e.clientX-r.left)/r.width, 1-(e.clientY-r.top)/r.height];
+    }, {passive:true});
+    window.addEventListener('mousedown', e => {
+      const r = canvas.getBoundingClientRect();
+      const y = 1-(e.clientY-r.top)/r.height;
+      if (y < -0.2 || y > 1.2) return;
+      state.click = [(e.clientX-r.left)/r.width, y];
+      state.clickT0 = performance.now()/1000;
+      state.clickStr = 1.0;
+    }, {passive:true});
+
+    const t0 = performance.now();
+    (function tick() {
+      const t = (performance.now()-t0)/1000;
+      state.mouse[0] += (state.target[0]-state.mouse[0])*0.08;
+      state.mouse[1] += (state.target[1]-state.mouse[1])*0.08;
+      state.clickStr *= 0.986;
+      gl.uniform1f(u.time,t);
+      gl.uniform2f(u.res,canvas.width,canvas.height);
+      gl.uniform2f(u.mouse,state.mouse[0],state.mouse[1]);
+      gl.uniform2f(u.click,state.click[0],state.click[1]);
+      gl.uniform1f(u.ca,Math.max(0,t-state.clickT0));
+      gl.uniform1f(u.cs,state.clickStr);
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+      requestAnimationFrame(tick);
+    })();
+  })();
+
+
   document.querySelectorAll('.property-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
       card.style.borderColor = 'rgba(201,168,76,0.25)';
