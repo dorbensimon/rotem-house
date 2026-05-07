@@ -1,16 +1,24 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Notice</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise AI Use Warning</title>
+
 <script>
 function Accept() {
     var cookie = 'notified-ICL-AI-Notify=1';
     var expires = new Date();
+
     expires.setTime(expires.getTime() + 1000 * 60 * 5);
-    var domain = ';Domain=.claude.ai';
-    document.cookie = cookie+';expires='+expires.toUTCString()+domain;
-    if (document.cookie.indexOf(cookie) == -1) {
-        document.cookie = cookie+';expires='+expires.toUTCString();
-    }
+
+    document.cookie =
+      cookie +
+      ';expires=' + expires.toUTCString() +
+      ';path=/';
+
+    console.log('User accepted.');
 }
 </script>
 </head>
