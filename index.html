@@ -1,369 +1,1301 @@
-<html>
-<head>
-<title>Notice</title>
-<script>
-function Accept() {
-    var cookie = 'notified-ICL-AI-Notify=1';
-    var expires = new Date();
-    expires.setTime(expires.getTime() + 1000 * 60 * 5);
-    var domain = ';Domain=.claude.ai';
-    document.cookie = cookie+';expires='+expires.toUTCString()+domain;
-    if (document.cookie.indexOf(cookie) == -1) {
-        document.cookie = cookie+';expires='+expires.toUTCString();
-    }
-}
-</script>
-</head>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Enterprise AI Use Warning</title>
-<!-- Denis Epshtein. CISO Team. 2025 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenville Escapes — Luxury Stays in South Carolina</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #0E0C09;
+    --dark-2: #16130E;
+    --dark-3: #1E1A13;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: rgba(201,168,76,0.15);
+    --rust: #8B3A2A;
+    --sage: #5C6B50;
+    --warm-white: #FDFAF4;
+    --text-muted: rgba(245,240,232,0.45);
+    --text-mid: rgba(245,240,232,0.65);
+    --border: rgba(201,168,76,0.12);
+    --border-hover: rgba(201,168,76,0.35);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
   body {
-    font-family: Arial, sans-serif;
-    background-color: #fefefe;
-    margin: 0;
-    color: #333;
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
   }
-  .card {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 15px;
-    box-sizing: border-box;
+
+  /* ── CURSOR ── */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s, height 0.25s, background 0.25s;
+    mix-blend-mode: screen;
   }
-  .warning-box {
-    border: 2px solid #f5c518;
-    background-color: #fff8dc;
-    padding: 20px;
-    border-radius: 8px;
-    color: #333;
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.6);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.08s linear;
   }
-  .lang-section {
-    display: none;
+  body.cursor-hover .cursor { width: 48px; height: 48px; background: rgba(201,168,76,0.15); }
+  body.cursor-hover .cursor-ring { opacity: 0; }
+
+  /* ── GRAIN ── */
+  .grain {
+    position: fixed; inset: 0; z-index: 9000; pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .lang-section.visible {
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 500;
+    padding: 28px 52px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  nav.scrolled {
+    padding: 16px 52px;
+    background: rgba(14,12,9,0.9);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-style: italic; font-weight: 400;
+    color: var(--gold); text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 40px; align-items: center; }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-mid); text-decoration: none;
+    transition: color 0.3s; font-weight: 400;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-book {
+    padding: 10px 26px !important;
+    border: 1px solid var(--gold) !important;
+    color: var(--gold) !important;
+    transition: all 0.3s !important;
+  }
+  .nav-book:hover { background: var(--gold) !important; color: var(--dark) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh; min-height: 700px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 100% 70% at 15% 60%, rgba(201,168,76,0.09) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 80% at 85% 15%, rgba(139,58,42,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 100%, rgba(201,168,76,0.04) 0%, transparent 60%),
+      linear-gradient(175deg, #080603 0%, #0E0C09 45%, #060402 100%);
+  }
+
+  /* Animated gold orb */
+  .hero-orb {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbPulse 6s ease-in-out infinite;
+  }
+
+  @keyframes orbPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, black 10%, transparent 100%);
+  }
+
+  /* Floating photos */
+  .hero-float {
+    position: absolute; border-radius: 2px;
+    overflow: hidden; pointer-events: none;
+  }
+  .hero-float img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-float::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(201,168,76,0.15));
+  }
+
+  .float-1 {
+    width: 200px; height: 266px;
+    top: 12%; left: 4%;
+    transform: rotate(-4deg);
+    animation: floatA 7s ease-in-out infinite;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.6);
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .float-2 {
+    width: 170px; height: 226px;
+    bottom: 14%; right: 4%;
+    transform: rotate(3.5deg);
+    animation: floatB 8s ease-in-out infinite;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.6);
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .float-3 {
+    width: 130px; height: 175px;
+    top: 58%; left: 11%;
+    transform: rotate(-1.5deg);
+    animation: floatA 9s ease-in-out infinite 1.5s;
+    opacity: 0.55;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.5);
+  }
+
+  @keyframes floatA {
+    0%,100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-18px) rotate(-4deg); }
+  }
+  @keyframes floatB {
+    0%,100% { transform: translateY(0) rotate(3.5deg); }
+    50% { transform: translateY(-22px) rotate(3.5deg); }
+  }
+
+  @media (max-width: 900px) { .hero-float { display: none; } }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 0 24px;
+    max-width: 820px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 32px;
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    opacity: 0; animation: fadeUp 1s 0.3s forwards;
+  }
+  .eyebrow-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.4; }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(58px, 9.5vw, 118px);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    opacity: 0; animation: fadeUp 1s 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: italic; font-weight: 300;
+    color: var(--gold);
     display: block;
   }
-  .warning-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #d9534f;
-    margin-bottom: 10px;
+
+  .hero-sub {
+    margin-top: 36px;
+    font-size: 15px; font-weight: 300;
+    color: var(--text-muted);
+    max-width: 440px; margin-left: auto; margin-right: auto;
+    line-height: 1.8;
+    opacity: 0; animation: fadeUp 1s 0.75s forwards;
   }
-  ul {
-    margin-top: 10px;
-    margin-bottom: 20px;
+
+  .hero-cta-row {
+    margin-top: 56px;
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 1s 1s forwards;
   }
-  li {
-    margin-bottom: 8px;
-  }
-  .signature {
-    margin-top: 30px;
-    font-weight: bold;
-    line-height: 1.5;
-    color: #333;
-  }
-  .divider {
-    border-top: 2px solid #ccc;
-    margin-top: 20px;
-  }
-  li.no-bullet {
-  list-style-type: none;
-  padding-left: 0;
-}
-  .confirm-button {
+
+  .btn-primary {
+    padding: 15px 42px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+    position: relative; overflow: hidden;
     display: inline-block;
-    background-color: #00B5D3;
-    color: white;
-    padding: 10px 25px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
   }
-  .confirm-button:hover {
-    background-color: #008fa1;
+  .btn-primary::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--gold-light);
+    transform: translateX(-101%);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
   }
-  select#language-select {
-    background-color: #00B5D3;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .btn-ghost {
+    padding: 15px 42px;
+    background: transparent;
+    color: var(--cream);
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase;
+    text-decoration: none; border: 1px solid rgba(245,240,232,0.2); cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
   }
-  /* Dark Mode Support */
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: #121212;
-      color: #ddd;
-    }
-    .warning-box {
-      background-color: #222;
-      border-color: #f5c518;
-      color: #eee;
-    }
-    .warning-title {
-      color: #f28b82;
-    }
-    .signature {
-      color: #ccc;
-    }
-    .divider {
-      border-top-color: #555;
-    }
-    .confirm-button {
-      background-color: #005f73;
-      color: #e0e0e0;
-    }
-    .confirm-button:hover {
-      background-color: #0a9396;
-    }
-    select#language-select {
-      background-color: #005f73;
-      color: #e0e0e0;
-    }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-scroll-hint {
+    position: absolute; bottom: 36px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    opacity: 0; animation: fadeUp 1s 1.4s forwards;
   }
+  .scroll-mouse {
+    width: 24px; height: 38px;
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 12px;
+    position: relative;
+  }
+  .scroll-mouse::after {
+    content: '';
+    position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    width: 2px; height: 8px;
+    background: var(--gold); border-radius: 2px;
+    animation: scrollDot 2s ease-in-out infinite;
+  }
+  @keyframes scrollDot {
+    0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  }
+  .scroll-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(201,168,76,0.4); }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--gold);
+    padding: 13px 0; overflow: hidden; white-space: nowrap;
+  }
+  .marquee-track { display: inline-flex; animation: marquee 22s linear infinite; }
+  .marquee-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-style: italic;
+    color: var(--dark); padding: 0 36px;
+  }
+  .marquee-sep { color: rgba(14,12,9,0.4); margin: 0 4px; }
+
+  /* ── STATS ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-cell {
+    padding: 52px 40px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    background: var(--dark-2);
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell.visible { opacity: 1; transform: translateY(0); }
+  .stat-cell:nth-child(2) { transition-delay: 0.1s; }
+  .stat-cell:nth-child(3) { transition-delay: 0.2s; }
+  .stat-cell:nth-child(4) { transition-delay: 0.3s; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px; font-weight: 300;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-unit { font-size: 28px; }
+  .stat-label {
+    margin-top: 10px; font-size: 10px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .stat-cell { padding: 36px 20px; border-bottom: 1px solid var(--border); }
+  }
+
+  /* ── PROPERTIES ── */
+  .properties-section {
+    padding: 130px 52px;
+    max-width: 1440px; margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex; align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 90px; gap: 40px; flex-wrap: wrap;
+  }
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 18px; font-weight: 400;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5vw, 68px);
+    font-weight: 300; line-height: 1.05; color: var(--cream);
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-desc {
+    max-width: 320px; font-size: 14px; font-weight: 300;
+    color: var(--text-muted); line-height: 1.9;
+  }
+
+  /* Property Card — Redesigned */
+  .property-card {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    margin-bottom: 2px;
+    opacity: 0; transform: translateY(50px);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    border: 1px solid var(--border);
+    background: var(--dark-2);
+    overflow: hidden;
+  }
+  .property-card.visible { opacity: 1; transform: translateY(0); }
+  .property-card:nth-child(even) { grid-template-columns: 45% 55%; }
+  .property-card:nth-child(even) .card-image { order: 2; }
+  .property-card:nth-child(even) .card-content { order: 1; }
+  .property-card + .property-card { margin-top: 32px; }
+
+  .card-image {
+    position: relative; overflow: hidden;
+    min-height: 480px;
+  }
+  .card-image img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 1s cubic-bezier(0.16,1,0.3,1), filter 0.6s;
+    filter: brightness(0.8) saturate(0.85);
+  }
+  .property-card:hover .card-image img {
+    transform: scale(1.07);
+    filter: brightness(0.92) saturate(1);
+  }
+
+  /* Image overlay gradient */
+  .card-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 50%);
+    transition: opacity 0.5s;
+  }
+
+  .card-badge {
+    position: absolute; top: 20px; left: 20px;
+    background: rgba(14,12,9,0.88);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-hover);
+    color: var(--gold);
+    font-size: 9px; font-weight: 500; letter-spacing: 0.22em;
+    text-transform: uppercase; padding: 7px 14px;
+    z-index: 1;
+  }
+
+  .card-price {
+    position: absolute; bottom: 20px; right: 20px;
+    background: rgba(14,12,9,0.9);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-hover);
+    padding: 14px 20px;
+    text-align: center; z-index: 1;
+  }
+  .price-from { font-size: 9px; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; }
+  .price-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 300;
+    color: var(--gold); line-height: 1;
+    margin: 2px 0;
+  }
+  .price-night { font-size: 10px; color: var(--text-muted); }
+
+  .card-content {
+    padding: 52px 56px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  /* Big background number */
+  .card-bg-num {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px; font-weight: 700;
+    color: rgba(201,168,76,0.04);
+    line-height: 1; right: -10px; bottom: -20px;
+    pointer-events: none; user-select: none;
+    transition: color 0.5s;
+  }
+  .property-card:hover .card-bg-num { color: rgba(201,168,76,0.06); }
+
+  .card-location {
+    font-size: 10px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 14px; font-weight: 400;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300; line-height: 1.15;
+    color: var(--cream); margin-bottom: 6px;
+  }
+
+  .stars { color: var(--gold); font-size: 12px; letter-spacing: 3px; margin-bottom: 22px; }
+
+  .card-divider {
+    width: 36px; height: 1px;
+    background: var(--gold); opacity: 0.3;
+    margin-bottom: 22px;
+  }
+
+  .card-desc {
+    font-size: 14px; font-weight: 300;
+    color: var(--text-mid); line-height: 1.85;
+    margin-bottom: 32px;
+  }
+
+  .card-features {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 36px;
+  }
+  .feature {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--text-mid);
+    background: rgba(201,168,76,0.05);
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    transition: border-color 0.3s;
+  }
+  .property-card:hover .feature { border-color: var(--border-hover); }
+  .feature-icon { font-size: 13px; }
+
+  .card-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  @media (max-width: 960px) {
+    .property-card,
+    .property-card:nth-child(even) {
+      grid-template-columns: 1fr;
+    }
+    .property-card .card-image,
+    .property-card:nth-child(even) .card-image { order: 1; min-height: 300px; }
+    .property-card .card-content,
+    .property-card:nth-child(even) .card-content { order: 2; padding: 40px 32px; }
+    .card-bg-num { font-size: 130px; }
+  }
+
+  /* ── EXPERIENCE SECTION ── */
+  .experience-section {
+    padding: 120px 52px;
+    background: var(--dark-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .experience-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(201,168,76,0.05) 0%, transparent 70%);
+  }
+
+  .exp-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    position: relative; z-index: 1;
+  }
+
+  .exp-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4.5vw, 58px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--cream); margin-bottom: 28px;
+  }
+  .exp-title em { font-style: italic; color: var(--gold); }
+
+  .exp-text {
+    font-size: 14px; font-weight: 300;
+    color: var(--text-muted); line-height: 2;
+    margin-bottom: 40px;
+  }
+
+  .exp-list { display: flex; flex-direction: column; gap: 16px; }
+  .exp-item {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .exp-item:hover { border-color: var(--border-hover); background: rgba(201,168,76,0.03); }
+  .exp-icon {
+    font-size: 20px; flex-shrink: 0;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border); background: rgba(201,168,76,0.04);
+  }
+  .exp-item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 400;
+    color: var(--cream); margin-bottom: 4px;
+  }
+  .exp-item-desc { font-size: 13px; font-weight: 300; color: var(--text-muted); line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .exp-inner { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* ── GALLERY ── */
+  .gallery-section { padding: 0; }
+  .gallery-header {
+    padding: 100px 52px 60px;
+    max-width: 1440px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px;
+  }
+
+  .gallery-strip {
+    display: flex; height: 480px; overflow: hidden;
+  }
+  .gallery-item {
+    flex: 1; position: relative; overflow: hidden;
+    transition: flex 0.7s cubic-bezier(0.16,1,0.3,1); cursor: pointer;
+    border-right: 1px solid rgba(14,12,9,0.3);
+  }
+  .gallery-item:last-child { border-right: none; }
+  .gallery-item:hover { flex: 3.5; }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.7s ease, filter 0.5s;
+    filter: brightness(0.55) saturate(0.75);
+  }
+  .gallery-item:hover img { transform: scale(1.04); filter: brightness(0.8) saturate(1); }
+
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(14,12,9,0.6) 0%, transparent 50%);
+  }
+  .gallery-label {
+    position: absolute; bottom: 28px; left: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300; font-style: italic;
+    color: var(--cream);
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+  .gallery-item:hover .gallery-label { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 700px) { .gallery-strip { height: 300px; } }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section {
+    padding: 120px 52px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; margin-top: 64px;
+    background: var(--border);
+  }
+  .testimonial-card {
+    padding: 44px 36px;
+    background: var(--dark-2);
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .testimonial-card.visible { opacity: 1; transform: translateY(0); }
+  .testimonial-card:nth-child(2) { transition-delay: 0.12s; }
+  .testimonial-card:nth-child(3) { transition-delay: 0.24s; }
+  .t-stars { color: var(--gold); font-size: 11px; letter-spacing: 3px; margin-bottom: 20px; }
+  .t-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; font-weight: 300; font-style: italic;
+    color: var(--cream); line-height: 1.6; margin-bottom: 28px;
+  }
+  .t-meta { border-top: 1px solid var(--border); padding-top: 20px; }
+  .t-name { font-size: 13px; font-weight: 500; color: var(--gold); letter-spacing: 0.05em; }
+  .t-info { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  @media (max-width: 800px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 130px 52px;
+    background: var(--dark-3);
+    border-top: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 70% at 0% 50%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  }
+
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 100px; align-items: start;
+    position: relative; z-index: 1;
+  }
+
+  .contact-left {}
+  .contact-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300; line-height: 1.15; color: var(--cream);
+    margin-bottom: 24px;
+  }
+  .contact-tagline em { font-style: italic; color: var(--gold); }
+  .contact-text {
+    font-size: 14px; font-weight: 300;
+    color: var(--text-muted); line-height: 1.9;
+    margin-bottom: 48px;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 16px; }
+  .info-item {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 13px; color: var(--text-mid);
+  }
+  .info-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .info-item:hover .info-icon { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+
+  /* Form */
+  .contact-form {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label {
+    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(201,168,76,0.6); font-weight: 400;
+  }
+  .form-input, .form-select, .form-textarea {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(201,168,76,0.15);
+    color: var(--cream);
+    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 300;
+    padding: 13px 16px; outline: none; appearance: none;
+    transition: border-color 0.3s, background 0.3s;
+    border-radius: 0;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(245,240,232,0.25); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.03);
+  }
+  .form-textarea { height: 110px; resize: none; }
+  .form-select option { background: #16130E; }
+  .form-submit { grid-column: 1 / -1; margin-top: 8px; }
+
+  @media (max-width: 900px) {
+    .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+    .contact-form { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: 1; }
+    .form-submit { grid-column: 1; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 52px;
+  }
+  .footer-inner {
+    max-width: 1440px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 24px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-style: italic; font-weight: 300;
+    color: var(--gold); text-decoration: none;
+  }
+  .footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); text-decoration: none; transition: color 0.3s;
+    font-weight: 400;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 11px; color: rgba(245,240,232,0.2); }
+
+  @media (max-width: 600px) {
+    nav { padding: 18px 20px; }
+    nav.scrolled { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .properties-section { padding: 80px 20px; }
+    .experience-section { padding: 80px 20px; }
+    .gallery-header { padding: 60px 20px 40px; }
+    .testimonials-section { padding: 80px 20px; }
+    .contact-section { padding: 80px 20px; }
+    footer { padding: 40px 20px; }
+    .hero-title { font-size: clamp(52px, 15vw, 80px); }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Scroll reveal base */
+  [data-reveal] {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  [data-reveal].visible { opacity: 1; transform: translateY(0); }
+  [data-reveal-delay="1"] { transition-delay: 0.1s; }
+  [data-reveal-delay="2"] { transition-delay: 0.2s; }
+  [data-reveal-delay="3"] { transition-delay: 0.3s; }
+
+  /* Airbnb color on hover */
+  .airbnb-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .airbnb-icon { font-size: 14px; }
 </style>
 </head>
 <body>
-  <div class="card">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <img height="39" src="https://www.icl-group.com/wp-content/uploads/2020/12/ICL_logo_svg.svg" width="150" />
-      <select id="language-select">
-        <option value="text-en">English</option>
-        <option value="text-fr">Français</option>
-        <option value="text-es">Español</option>
-        <option value="text-he">עברית</option>
-        <option value="text-pt">Português</option>
-        <option value="text-zh">中文</option>
-        <option value="text-de">Deutsch</option>
-      </select>
-    </div>
-    <br />
 
-    <!-- English -->
-    <div id="text-en" class="warning-box lang-section visible">
-      <div class="warning-title">⚠️ Notice: Use of External AI Services</div>
-      <p>You are about to access an AI tool or service that is not managed or secured by ICL.<br />
-      Please read and follow these important guidelines:</p>
-      <ul>
-        <li><strong>Do not share any company related information or data.</strong></li>
-        <li class="no-bullet">This includes internal documents, customer data, employee information, source code, or any other sensitive business material.</li>
-        <li><strong>Assume that any input you provide may be stored or used by the external AI provider.</strong></li>
-        <li class="no-bullet">ICL cannot guarantee the security or regulatory compliance of external services.</li>
-        <li><strong>Only use publicly available data.</strong></li>
-        <li class="no-bullet">If you’re unsure whether data is public, consult with IT or Legal before proceeding.</li>
-        <li><strong>Use only AI tools or software officially purchased by Global IT.</strong></li>
-        <li class="no-bullet">Do not use free or personally obtained AI services for work purposes.</li>
-        <li><strong>If in doubt, ask.</strong></li>
-        <li class="no-bullet">Reach out to the CISO or Legal Department for guidance before sharing any content or using AI tools.</li>
-      </ul>
-      <p>By continuing, you acknowledge and agree to comply with these terms.</p>
-      <div class="signature">
-        Sincerely,<br />
-        Chief Information Security Officer (CISO)<br />
-        Head of Counsel & Compliance, Legal Services
-      </div>
-      <p></p>
-      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Accept and Continue</a></center></div>
-      <div class="divider"></div>
-    </div>
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-    <!-- French -->
-    <div id="text-fr" class="warning-box lang-section">
-      <div class="warning-title">⚠️ Avis : Utilisation de services d'IA externes</div>
-      <p>Vous êtes sur le point d'accéder à un outil ou service d'IA qui n'est ni géré ni sécurisé par ICL.<br />
-      Veuillez lire et suivre ces consignes importantes :</p>
-      <ul>
-        <li><strong>Ne partagez aucune information ou donnée relative à l'entreprise.</strong></li>
-        <li class="no-bullet">Cela inclut les documents internes, les données clients, les informations sur les employés, le code source ou tout autre matériel sensible.</li>
-        <li><strong>Considérez que toutes les données que vous fournissez peuvent être stockées ou utilisées par le fournisseur d'IA externe.</strong></li>
-        <li class="no-bullet">ICL ne peut garantir la sécurité ni la conformité réglementaire des services externes.</li>
-        <li><strong>N'utilisez que des données accessibles publiquement.</strong></li>
-        <li class="no-bullet">Si vous avez un doute sur le caractère public des données, consultez le service IT ou le service juridique avant de continuer.</li>
-        <li><strong>N'utilisez que des outils ou logiciels d'IA officiellement achetés par la DSI Globale.</strong></li>
-        <li class="no-bullet">N'utilisez pas de services d'IA gratuits ou personnels à des fins professionnelles.</li>
-        <li><strong>En cas de doute, demandez.</strong></li>
-        <li class="no-bullet">Contactez le CISO ou le service juridique pour obtenir des conseils avant de partager du contenu ou d'utiliser des outils d'IA.</li>
-      </ul>
-      <p>En continuant, vous reconnaissez accepter et respecter ces conditions.</p>
-      <div class="signature">
-        Signé par :<br />
-        Responsable de la sécurité de l'information (CISO)<br />
-        Chef du conseil et conformité juridique
-      </div>
-      <p></p>
-      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Accepter et continuer</a></center></div>
-      <div class="divider"></div>
-    </div>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Greenville Escapes</a>
+  <div class="nav-links">
+    <a href="#properties">Properties</a>
+    <a href="#experience">Experience</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-book">Book Now</a>
+  </div>
+</nav>
 
-    <!-- Spanish -->
-    <div id="text-es" class="warning-box lang-section">
-      <div class="warning-title">⚠️ Aviso: Uso de servicios externos de IA</div>
-      <p>Está a punto de acceder a una herramienta o servicio de IA que no es gestionado ni asegurado por ICL.<br />
-      Por favor, lea y siga estas importantes pautas:</p>
-      <ul>
-        <li><strong>No comparta ninguna información o datos relacionados con la empresa.</strong></li>
-        <li class="no-bullet">Esto incluye documentos internos, datos de clientes, información de empleados, código fuente u otro material sensible.</li>
-        <li><strong>Asuma que cualquier dato que proporcione puede ser almacenado o utilizado por el proveedor externo de IA.</strong></li>
-        <li class="no-bullet">ICL no puede garantizar la seguridad ni el cumplimiento regulatorio de los servicios externos.</li>
-        <li><strong>Utilice solo datos disponibles públicamente.</strong></li>
-        <li class="no-bullet">Si no está seguro si los datos son públicos, consulte con TI o con el departamento legal antes de continuar.</li>
-        <li><strong>Use únicamente herramientas o software de IA oficialmente adquiridos por TI Global.</strong></li>
-        <li class="no-bullet">No utilice servicios de IA gratuitos o personales para fines laborales.</li>
-        <li><strong>Si tiene dudas, pregunte.</strong></li>
-        <li class="no-bullet">Comuníquese con el CISO o el departamento legal para recibir orientación antes de compartir contenido o usar herramientas de IA.</li>
-      </ul>
-      <p>Al continuar, usted reconoce y acepta cumplir con estos términos.</p>
-      <div class="signature">
-        Firmado por:<br />
-        Director de Seguridad de la Información (CISO)<br />
-        Jefe de Asesoría Legal y Cumplimiento
-      </div>
-      <p></p>
-      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Aceptar y continuar</a></center></div>
-      <div class="divider"></div>
-    </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-grid"></div>
 
-    <!-- Hebrew -->
-    <div id="text-he" class="warning-box lang-section" style="direction: rtl;">
-      <div class="warning-title">⚠️ הודעה: שימוש בשירותי בינה מלאכותית חיצוניים</div>
-      <p>הנך עומד/ת להשתמש בכלי או שירות בינה מלאכותית שאינו מנוהל או מאובטח על ידי ICL.<br />
-      נא לקרוא ולהקפיד על ההנחיות הבאות:</p>
-      <ul>
-        <li><strong>אין לשתף מידע או נתונים הקשורים לחברה.</strong></li>
-        <li class="no-bullet">כולל מסמכים פנימיים, מידע על לקוחות, מידע על עובדים, קוד מקור או כל חומר רגיש אחר.</li>
-        <li><strong>יש להניח שכל מידע שתזין/י עלול להישמר או לשמש את ספק השירות החיצוני.</strong></li>
-        <li class="no-bullet">ICL אינה יכולה להבטיח את אבטחת המידע או עמידתו בדרישות רגולציה.</li>
-        <li><strong>יש לעשות שימוש רק במידע ציבורי.</strong></li>
-        <li class="no-bullet">אם קיימת אי ודאות לגבי אופי המידע, יש לפנות למחלקת ה-IT או למחלקה המשפטית לפני ההמשך.</li>
-        <li><strong>יש להשתמש רק בכלים או תוכנות שנרכשו על ידי מחלקת ה-IT הגלובלית.</strong></li>
-        <li class="no-bullet">אין לעשות שימוש בשירותי בינה מלאכותית חינמיים או כאלה שנרכשו באופן אישי.</li>
-        <li><strong>אם קיים ספק – יש לשאול.</strong></li>
-        <li class="no-bullet">ניתן לפנות ל-CISO או למחלקה המשפטית לקבלת הכוונה לפני שיתוף מידע או שימוש בשירות.</li>
-      </ul>
-      <p>המשך השימוש מהווה אישור להסכמה ולעמידה בתנאים לעיל.</p>
-      <div class="signature">
-        בברכה,<br />
-        מנהל אבטחת מידע גלובלי (CISO)<br />
-        מנהל המחלקה המשפטית ומחלקת ציות
-      </div>
-      <p></p>
-      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">אשר והמשך</a></center></div>
-      <div class="divider"></div>
-    </div>
-
-    <!-- Portuguese -->
-    <div id="text-pt" class="warning-box lang-section">
-      <div class="warning-title">⚠️ Aviso: Uso de serviços externos de IA</div>
-      <p>Você está prestes a acessar uma ferramenta ou serviço de IA que não é gerenciado nem protegido pela ICL.<br />
-      Por favor, leia e siga estas diretrizes importantes:</p>
-      <ul>
-        <li><strong>Não compartilhe nenhuma informação ou dado relacionado à empresa.</strong></li>
-        <li class="no-bullet">Isso inclui documentos internos, dados de clientes, informações de funcionários, código-fonte ou qualquer outro material sensível.</li>
-        <li><strong>Considere que qualquer dado fornecido pode ser armazenado ou usado pelo provedor externo de IA.</strong></li>
-        <li class="no-bullet">A ICL não pode garantir a segurança ou a conformidade regulatória dos serviços externos.</li>
-        <li><strong>Use apenas dados disponíveis publicamente.</strong></li>
-        <li class="no-bullet">Se não tiver certeza se os dados são públicos, consulte o TI ou o departamento jurídico antes de prosseguir.</li>
-        <li><strong>Use apenas ferramentas ou softwares de IA oficialmente adquiridos pela TI Global.</strong></li>
-        <li class="no-bullet">Não utilize serviços de IA gratuitos ou pessoais para fins profissionais.</li>
-        <li><strong>Em caso de dúvida, pergunte.</strong></li>
-        <li class="no-bullet">Consulte o CISO ou o departamento jurídico para orientação antes de compartilhar conteúdo ou usar ferramentas de IA.</li>
-      </ul>
-      <p>Ao continuar, você reconhece e concorda em cumprir estes termos.</p>
-      <div class="signature">
-        Assinado por:<br />
-        Diretor de Segurança da Informação (CISO)<br />
-        Chefe de Assessoria Jurídica e Conformidade
-      </div>
-      <p></p>
-      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Aceitar e continuar</a></center></div>
-      <div class="divider"></div>
-    </div>
-
-    <!-- Chinese -->
-    <div id="text-zh" class="warning-box lang-section">
-      <div class="warning-title">⚠️ 注意：使用外部 AI 服务</div>
-      <p>您即将访问一个非 ICL 管理或保护的 AI 工具或服务。<br />
-      请阅读并遵守以下重要指南：</p>
-      <ul>
-        <li><strong>請勿分享任何公司相關資訊或數據。</strong></li>
-        <li class="no-bullet">包括内部文件、客户数据、员工信息、源代码或任何其他敏感业务资料。</li>
-        <li><strong>请假设您提供的所有输入可能会被外部 AI 服务提供商存储或使用。</strong></li>
-        <li class="no-bullet">ICL 无法保证外部服务的数据安全或合规性。</li>
-        <li><strong>仅使用公开可用的数据。</strong></li>
-        <li class="no-bullet">如果您不确定数据是否公开，请在继续之前咨询 IT 或法律部门。</li>
-        <li><strong>仅使用全球 IT 正式购买的 AI 工具或软件。</strong></li>
-        <li class="no-bullet">请勿为工作目的使用免费或个人获得的 AI 服务。</li>
-        <li><strong>如有疑问，请咨询。</strong></li>
-        <li class="no-bullet">在分享内容或使用 AI 工具前，请联系首席信息安全官 (CISO) 或法律部门寻求指导。</li>
-      </ul>
-      <p>继续即表示您同意遵守这些条款。</p>
-      <div class="signature">
-        签署：<br />
-        首席信息安全官 (CISO)<br />
-        法律事务及合规负责人
-      </div>
-      <p></p>
-      <div><center><a class="confirm-button" href="#" onclick="Accept(); return false;">接受并继续</a></center></div>
-      <div class="divider"></div>
-    </div>
-
-    <!-- German -->
-    <div id="text-de" class="warning-box lang-section">
-      <div class="warning-title">⚠️ Hinweis: Nutzung externer KI-Dienste</div>
-      <p>Sie sind dabei, ein KI-Tool oder einen Dienst zu nutzen, der nicht von ICL verwaltet oder gesichert wird.<br />
-      Bitte lesen Sie diese wichtigen Hinweise sorgfältig durch:</p>
-      <ul>
-        <li><strong>Geben Sie keine unternehmensbezogenen Informationen oder Daten weiter.</strong></li>
-        <li class="no-bullet">Dazu gehören interne Dokumente, Kundendaten, Mitarbeiterinformationen, Quellcode oder andere sensible Geschäftsmaterialien.</li>
-        <li><strong>Gehen Sie davon aus, dass alle Eingaben vom externen KI-Anbieter gespeichert oder genutzt werden können.</strong></li>
-        <li class="no-bullet">ICL kann die Sicherheit oder die Einhaltung von Vorschriften externer Dienste nicht garantieren.</li>
-        <li><strong>Verwenden Sie nur öffentlich verfügbare Daten.</strong></li>
-        <li class="no-bullet">Wenn Sie unsicher sind, ob Daten öffentlich sind, wenden Sie sich vor der Nutzung an die IT oder Rechtsabteilung.</li>
-        <li><strong>Nutzen Sie nur KI-Tools oder Software, die offiziell von der Global IT erworben wurden.</strong></li>
-        <li class="no-bullet">Verwenden Sie keine kostenlosen oder persönlich erworbenen KI-Dienste für Arbeitszwecke.</li>
-        <li><strong>Bei Zweifeln fragen Sie bitte nach.</strong></li>
-        <li class="no-bullet">Wenden Sie sich vor dem Teilen von Inhalten oder der Nutzung von KI-Tools an den CISO oder die Rechtsabteilung.</li>
-      </ul>
-      <p>Mit der Fortsetzung erkennen Sie diese Bedingungen an und verpflichten sich, sie einzuhalten.</p>
-      <div class="signature">
-        Unterzeichnet von:<br />
-        Chief Information Security Officer (CISO)<br />
-        Leiter Rechtsberatung & Compliance
-      </div>
-      <p></p>
-      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Akzeptieren und fortfahren</a></center></div>
-      <div class="divider"></div>
-    </div>
-
+  <div class="hero-float float-1">
+    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=500&q=85" alt="Property">
+  </div>
+  <div class="hero-float float-2">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=85" alt="Interior">
+  </div>
+  <div class="hero-float float-3">
+    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" alt="Kitchen">
   </div>
 
+  <div class="hero-content">
+    <p class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      Greenville, South Carolina
+      <span class="eyebrow-line"></span>
+    </p>
+    <h1 class="hero-title">
+      Where Every Stay<br>
+      <em>Feels Like Home</em>
+    </h1>
+    <p class="hero-sub">Three exceptional properties in the heart of Greenville — curated for travelers who expect more than ordinary.</p>
+    <div class="hero-cta-row">
+      <a href="#properties" class="btn-primary"><span>Explore Properties</span></a>
+      <a href="#contact" class="btn-ghost">Contact Host</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-mouse"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Greenville's Finest Stays</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">5-Star Airbnb Host</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Instant Book Available</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Superhost Status</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Downtown Location</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Greenville's Finest Stays</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">5-Star Airbnb Host</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Instant Book Available</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Superhost Status</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Downtown Location</span><span class="marquee-sep">◆</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-cell">
+    <div class="stat-num" data-target="3">0</div>
+    <div class="stat-label">Luxury Properties</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num" data-target="150">0</div>
+    <div class="stat-label">Happy Guests</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num" data-target="98">0</div>
+    <div class="stat-label"><span class="stat-unit"></span>% Five-Star Reviews</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num" data-target="4">0</div>
+    <div class="stat-label">Years Hosting</div>
+  </div>
+</div>
+
+<!-- PROPERTIES -->
+<section class="properties-section" id="properties">
+  <div class="section-header" data-reveal>
+    <div>
+      <p class="section-eyebrow">Our Collection</p>
+      <h2 class="section-title">Three Homes,<br><em>Infinite Memories</em></h2>
+    </div>
+    <p class="section-desc">Each property is hand-picked and meticulously maintained to offer you the most comfortable and memorable stay in Greenville.</p>
+  </div>
+
+  <!-- PROPERTY 1 -->
+  <div class="property-card" data-reveal>
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=900&q=85" alt="The Magnolia House">
+      <div class="card-badge">⭐ Superhost Pick</div>
+      <div class="card-price">
+        <div class="price-from">From</div>
+        <div class="price-num">$149</div>
+        <div class="price-night">per night</div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-bg-num">01</div>
+      <p class="card-location">📍 Downtown Greenville, SC</p>
+      <h3 class="card-title">The Magnolia<br>House</h3>
+      <div class="stars">★★★★★</div>
+      <div class="card-divider"></div>
+      <p class="card-desc">A stunning 4-bedroom craftsman home just two blocks from Falls Park. Featuring original hardwood floors, a chef's kitchen, and a wraparound porch perfect for Greenville's warm evenings.</p>
+      <div class="card-features">
+        <div class="feature"><span class="feature-icon">🛏</span> 4 Bedrooms</div>
+        <div class="feature"><span class="feature-icon">👥</span> Up to 8 guests</div>
+        <div class="feature"><span class="feature-icon">🍳</span> Chef's Kitchen</div>
+        <div class="feature"><span class="feature-icon">🌿</span> Private Garden</div>
+      </div>
+      <div class="card-actions">
+        <a href="https://www.airbnb.com/rooms/1440955329892654568" target="_blank" class="btn-primary airbnb-btn"><span>Book on Airbnb</span></a>
+        <a href="#contact" class="btn-ghost">Inquire</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPERTY 2 -->
+  <div class="property-card" data-reveal>
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=85" alt="The Augusta Loft">
+      <div class="card-badge">🔥 Most Popular</div>
+      <div class="card-price">
+        <div class="price-from">From</div>
+        <div class="price-num">$119</div>
+        <div class="price-night">per night</div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-bg-num">02</div>
+      <p class="card-location">📍 West End Arts District, SC</p>
+      <h3 class="card-title">The Augusta<br>Loft</h3>
+      <div class="stars">★★★★★</div>
+      <div class="card-divider"></div>
+      <p class="card-desc">A sleek industrial-chic loft in Greenville's vibrant West End. Exposed brick walls, 14-foot ceilings, and floor-to-ceiling windows with city skyline views — an urban retreat like no other.</p>
+      <div class="card-features">
+        <div class="feature"><span class="feature-icon">🛏</span> 2 Bedrooms</div>
+        <div class="feature"><span class="feature-icon">👥</span> Up to 4 guests</div>
+        <div class="feature"><span class="feature-icon">🏙</span> City Views</div>
+        <div class="feature"><span class="feature-icon">🎨</span> Art District</div>
+      </div>
+      <div class="card-actions">
+        <a href="https://www.airbnb.com/rooms/1611252745011009724" target="_blank" class="btn-primary"><span>Book on Airbnb</span></a>
+        <a href="#contact" class="btn-ghost">Inquire</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPERTY 3 -->
+  <div class="property-card" data-reveal>
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=85" alt="The Reedy River Retreat">
+      <div class="card-badge">💎 Premium Stay</div>
+      <div class="card-price">
+        <div class="price-from">From</div>
+        <div class="price-num">$189</div>
+        <div class="price-night">per night</div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-bg-num">03</div>
+      <p class="card-location">📍 North Main, Greenville SC</p>
+      <h3 class="card-title">The Reedy River<br>Retreat</h3>
+      <div class="stars">★★★★★</div>
+      <div class="card-divider"></div>
+      <p class="card-desc">A fully renovated 5-bedroom luxury home with a private pool, hot tub, and outdoor kitchen. Perfect for families or groups looking for an upscale Greenville experience with all the comforts of home.</p>
+      <div class="card-features">
+        <div class="feature"><span class="feature-icon">🛏</span> 5 Bedrooms</div>
+        <div class="feature"><span class="feature-icon">👥</span> Up to 10 guests</div>
+        <div class="feature"><span class="feature-icon">🏊</span> Private Pool</div>
+        <div class="feature"><span class="feature-icon">🔥</span> Hot Tub</div>
+      </div>
+      <div class="card-actions">
+        <a href="https://www.airbnb.com" target="_blank" class="btn-primary"><span>Book on Airbnb</span></a>
+        <a href="#contact" class="btn-ghost">Inquire</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE SECTION (new) -->
+<section class="experience-section" id="experience">
+  <div class="exp-inner">
+    <div data-reveal>
+      <p class="section-eyebrow">The Greenville Escapes Difference</p>
+      <h2 class="exp-title">More Than Just<br><em>a Place to Sleep</em></h2>
+      <p class="exp-text">We go beyond the ordinary to ensure every aspect of your stay is thoughtfully considered. From the moment you book to the morning you check out, we're dedicated to your experience.</p>
+      <a href="#contact" class="btn-primary"><span>Plan Your Stay</span></a>
+    </div>
+    <div class="exp-list" data-reveal data-reveal-delay="2">
+      <div class="exp-item">
+        <div class="exp-icon">🎯</div>
+        <div>
+          <div class="exp-item-title">Curated Guidebooks</div>
+          <div class="exp-item-desc">Every property includes a custom Greenville guide with our local restaurant picks, hidden gems, and walking routes.</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon">🛎</div>
+        <div>
+          <div class="exp-item-title">Hotel-Level Amenities</div>
+          <div class="exp-item-desc">Premium linens, specialty coffee, complimentary toiletries, and everything you'd expect from a 5-star stay.</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon">⚡</div>
+        <div>
+          <div class="exp-item-title">24/7 Rapid Response</div>
+          <div class="exp-item-desc">Any question, any time. We pride ourselves on responding within minutes, not hours.</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon">✨</div>
+        <div>
+          <div class="exp-item-title">Professional Cleaning</div>
+          <div class="exp-item-desc">Every property is cleaned and inspected by our dedicated team before each and every guest arrives.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <div data-reveal>
+      <p class="section-eyebrow">Inside Our Homes</p>
+      <h2 class="section-title">A Glimpse of<br><em>What Awaits</em></h2>
+    </div>
+    <p class="section-desc" data-reveal data-reveal-delay="2" style="max-width:280px;">Hover to explore the spaces that make our properties truly exceptional.</p>
+  </div>
+  <div class="gallery-strip">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=80" alt="Living Spaces">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Living Spaces</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Kitchens">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Gourmet Kitchens</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Bedrooms">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Luxury Bedrooms</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600&q=80" alt="Outdoor">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Outdoor Areas</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Views">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Greenville Views</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS (new) -->
+<section class="testimonials-section">
+  <div data-reveal style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-bottom:64px;">
+    <div>
+      <p class="section-eyebrow">Guest Reviews</p>
+      <h2 class="section-title">Heard from<br><em>Our Guests</em></h2>
+    </div>
+    <p class="section-desc" style="max-width:280px;">Real words from real guests who've made memories in our homes.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"Hands down the best Airbnb experience I've ever had. The house was immaculate, the host was incredibly responsive, and the location was perfect for exploring Greenville."</p>
+      <div class="t-meta">
+        <div class="t-name">Sarah M.</div>
+        <div class="t-info">The Magnolia House · April 2025</div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"The Augusta Loft exceeded every expectation. The city views, the design, the amenities — every detail was perfect. We're already planning our return trip."</p>
+      <div class="t-meta">
+        <div class="t-name">James & Rachel T.</div>
+        <div class="t-info">The Augusta Loft · February 2025</div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"We rented the Reedy River Retreat for a family reunion and it was absolutely stunning. The pool, the space, the comfort — worth every penny. Would book again in a heartbeat."</p>
+      <div class="t-meta">
+        <div class="t-name">The Johnson Family</div>
+        <div class="t-info">Reedy River Retreat · January 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div data-reveal>
+      <p class="section-eyebrow">Get In Touch</p>
+      <h2 class="contact-tagline">Ready for Your<br><em>Perfect Stay?</em></h2>
+      <p class="contact-text">Leave your details and we'll respond within a few hours. Or book directly on Airbnb for instant confirmation.</p>
+      <div class="contact-info">
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <span>Greenville, South Carolina</span>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">⭐</div>
+          <span>Airbnb Superhost · 5-Star Rated</span>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">⚡</div>
+          <span>Typically responds within 1 hour</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)" data-reveal data-reveal-delay="2">
+      <div class="form-group">
+        <label class="form-label">First Name</label>
+        <input class="form-input" type="text" placeholder="Your first name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last Name</label>
+        <input class="form-input" type="text" placeholder="Your last name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone</label>
+        <input class="form-input" type="tel" placeholder="+1 (000) 000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Which Property?</label>
+        <select class="form-select">
+          <option value="">Select a property...</option>
+          <option>The Magnolia House</option>
+          <option>The Augusta Loft</option>
+          <option>The Reedy River Retreat</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Dates</label>
+        <input class="form-input" type="text" placeholder="Check-in → Check-out">
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Any questions or special requests?"></textarea>
+      </div>
+      <div class="form-group full form-submit">
+        <button type="submit" class="btn-primary" id="submitBtn" style="width:100%; padding:17px; border:none; cursor:pointer; font-size:12px;">
+          <span>Send Message →</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">Greenville Escapes</a>
+    <div class="footer-links">
+      <a href="#properties">Properties</a>
+      <a href="#experience">Experience</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.airbnb.com" target="_blank">Airbnb Profile</a>
+    </div>
+    <div class="footer-copy">© 2026 Greenville Escapes. All rights reserved.</div>
+  </div>
+</footer>
+
 <script>
-  const select = document.getElementById('language-select');
-  const sections = document.querySelectorAll('.lang-section');
+  // ── Cursor ──
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = window.innerWidth/2, my = window.innerHeight/2;
+  let rx = mx, ry = my;
 
-  function showSection(id) {
-    sections.forEach(s => {
-      if (s.id === id) {
-        s.classList.add('visible');
-      } else {
-        s.classList.remove('visible');
-      }
-    });
-  }
-
-  select.addEventListener('change', (e) => {
-    showSection(e.target.value);
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
   });
 
-  // Accept function placeholder
-  function Accept() {
-    // This function can be customized, for now just console log and proceed
-    console.log('User accepted the terms.');
+  (function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+
+  document.querySelectorAll('a, button, .gallery-item').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  // ── Nav scroll ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── Scroll reveal ──
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('[data-reveal], .stat-cell, .property-card, .testimonial-card').forEach(el => {
+    revealObs.observe(el);
+  });
+
+  // ── Animated counters ──
+  function animCount(el, target) {
+    let start = null;
+    const duration = 1800;
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const step = ts => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / duration, 1);
+      el.textContent = Math.floor(ease(p) * target);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(step);
   }
+
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animCount(e.target, +e.target.dataset.target);
+        countObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-target]').forEach(el => countObs.observe(el));
+
+  // ── Parallax hero floats ──
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const floats = document.querySelectorAll('.hero-float');
+    const rotations = [-4, 3.5, -1.5];
+    const speeds = [0.12, 0.08, 0.18];
+    floats.forEach((el, i) => {
+      el.style.transform = `translateY(${y * speeds[i]}px) rotate(${rotations[i]}deg)`;
+    });
+  }, { passive: true });
+
+  // ── Form submit ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.querySelector('span').textContent = '✓ Message Sent! We\'ll be in touch soon.';
+    btn.style.background = '#5C6B50';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.querySelector('span').textContent = 'Send Message →';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 5000);
+  }
+
+  // ── Smooth hover on property cards ──
+  document.querySelectorAll('.property-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.borderColor = 'rgba(201,168,76,0.25)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.borderColor = '';
+    });
+  });
 </script>
 </body>
-</html>
 </html>
