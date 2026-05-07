@@ -1,0 +1,369 @@
+<html>
+<head>
+<title>Notice</title>
+<script>
+function Accept() {
+    var cookie = 'notified-ICL-AI-Notify=1';
+    var expires = new Date();
+    expires.setTime(expires.getTime() + 1000 * 60 * 5);
+    var domain = ';Domain=.claude.ai';
+    document.cookie = cookie+';expires='+expires.toUTCString()+domain;
+    if (document.cookie.indexOf(cookie) == -1) {
+        document.cookie = cookie+';expires='+expires.toUTCString();
+    }
+}
+</script>
+</head>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Enterprise AI Use Warning</title>
+<!-- Denis Epshtein. CISO Team. 2025 -->
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fefefe;
+    margin: 0;
+    color: #333;
+  }
+  .card {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+  .warning-box {
+    border: 2px solid #f5c518;
+    background-color: #fff8dc;
+    padding: 20px;
+    border-radius: 8px;
+    color: #333;
+  }
+  .lang-section {
+    display: none;
+  }
+  .lang-section.visible {
+    display: block;
+  }
+  .warning-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #d9534f;
+    margin-bottom: 10px;
+  }
+  ul {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+  .signature {
+    margin-top: 30px;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #333;
+  }
+  .divider {
+    border-top: 2px solid #ccc;
+    margin-top: 20px;
+  }
+  li.no-bullet {
+  list-style-type: none;
+  padding-left: 0;
+}
+  .confirm-button {
+    display: inline-block;
+    background-color: #00B5D3;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .confirm-button:hover {
+    background-color: #008fa1;
+  }
+  select#language-select {
+    background-color: #00B5D3;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  /* Dark Mode Support */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #121212;
+      color: #ddd;
+    }
+    .warning-box {
+      background-color: #222;
+      border-color: #f5c518;
+      color: #eee;
+    }
+    .warning-title {
+      color: #f28b82;
+    }
+    .signature {
+      color: #ccc;
+    }
+    .divider {
+      border-top-color: #555;
+    }
+    .confirm-button {
+      background-color: #005f73;
+      color: #e0e0e0;
+    }
+    .confirm-button:hover {
+      background-color: #0a9396;
+    }
+    select#language-select {
+      background-color: #005f73;
+      color: #e0e0e0;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <img height="39" src="https://www.icl-group.com/wp-content/uploads/2020/12/ICL_logo_svg.svg" width="150" />
+      <select id="language-select">
+        <option value="text-en">English</option>
+        <option value="text-fr">Français</option>
+        <option value="text-es">Español</option>
+        <option value="text-he">עברית</option>
+        <option value="text-pt">Português</option>
+        <option value="text-zh">中文</option>
+        <option value="text-de">Deutsch</option>
+      </select>
+    </div>
+    <br />
+
+    <!-- English -->
+    <div id="text-en" class="warning-box lang-section visible">
+      <div class="warning-title">⚠️ Notice: Use of External AI Services</div>
+      <p>You are about to access an AI tool or service that is not managed or secured by ICL.<br />
+      Please read and follow these important guidelines:</p>
+      <ul>
+        <li><strong>Do not share any company related information or data.</strong></li>
+        <li class="no-bullet">This includes internal documents, customer data, employee information, source code, or any other sensitive business material.</li>
+        <li><strong>Assume that any input you provide may be stored or used by the external AI provider.</strong></li>
+        <li class="no-bullet">ICL cannot guarantee the security or regulatory compliance of external services.</li>
+        <li><strong>Only use publicly available data.</strong></li>
+        <li class="no-bullet">If you’re unsure whether data is public, consult with IT or Legal before proceeding.</li>
+        <li><strong>Use only AI tools or software officially purchased by Global IT.</strong></li>
+        <li class="no-bullet">Do not use free or personally obtained AI services for work purposes.</li>
+        <li><strong>If in doubt, ask.</strong></li>
+        <li class="no-bullet">Reach out to the CISO or Legal Department for guidance before sharing any content or using AI tools.</li>
+      </ul>
+      <p>By continuing, you acknowledge and agree to comply with these terms.</p>
+      <div class="signature">
+        Sincerely,<br />
+        Chief Information Security Officer (CISO)<br />
+        Head of Counsel & Compliance, Legal Services
+      </div>
+      <p></p>
+      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Accept and Continue</a></center></div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- French -->
+    <div id="text-fr" class="warning-box lang-section">
+      <div class="warning-title">⚠️ Avis : Utilisation de services d'IA externes</div>
+      <p>Vous êtes sur le point d'accéder à un outil ou service d'IA qui n'est ni géré ni sécurisé par ICL.<br />
+      Veuillez lire et suivre ces consignes importantes :</p>
+      <ul>
+        <li><strong>Ne partagez aucune information ou donnée relative à l'entreprise.</strong></li>
+        <li class="no-bullet">Cela inclut les documents internes, les données clients, les informations sur les employés, le code source ou tout autre matériel sensible.</li>
+        <li><strong>Considérez que toutes les données que vous fournissez peuvent être stockées ou utilisées par le fournisseur d'IA externe.</strong></li>
+        <li class="no-bullet">ICL ne peut garantir la sécurité ni la conformité réglementaire des services externes.</li>
+        <li><strong>N'utilisez que des données accessibles publiquement.</strong></li>
+        <li class="no-bullet">Si vous avez un doute sur le caractère public des données, consultez le service IT ou le service juridique avant de continuer.</li>
+        <li><strong>N'utilisez que des outils ou logiciels d'IA officiellement achetés par la DSI Globale.</strong></li>
+        <li class="no-bullet">N'utilisez pas de services d'IA gratuits ou personnels à des fins professionnelles.</li>
+        <li><strong>En cas de doute, demandez.</strong></li>
+        <li class="no-bullet">Contactez le CISO ou le service juridique pour obtenir des conseils avant de partager du contenu ou d'utiliser des outils d'IA.</li>
+      </ul>
+      <p>En continuant, vous reconnaissez accepter et respecter ces conditions.</p>
+      <div class="signature">
+        Signé par :<br />
+        Responsable de la sécurité de l'information (CISO)<br />
+        Chef du conseil et conformité juridique
+      </div>
+      <p></p>
+      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Accepter et continuer</a></center></div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- Spanish -->
+    <div id="text-es" class="warning-box lang-section">
+      <div class="warning-title">⚠️ Aviso: Uso de servicios externos de IA</div>
+      <p>Está a punto de acceder a una herramienta o servicio de IA que no es gestionado ni asegurado por ICL.<br />
+      Por favor, lea y siga estas importantes pautas:</p>
+      <ul>
+        <li><strong>No comparta ninguna información o datos relacionados con la empresa.</strong></li>
+        <li class="no-bullet">Esto incluye documentos internos, datos de clientes, información de empleados, código fuente u otro material sensible.</li>
+        <li><strong>Asuma que cualquier dato que proporcione puede ser almacenado o utilizado por el proveedor externo de IA.</strong></li>
+        <li class="no-bullet">ICL no puede garantizar la seguridad ni el cumplimiento regulatorio de los servicios externos.</li>
+        <li><strong>Utilice solo datos disponibles públicamente.</strong></li>
+        <li class="no-bullet">Si no está seguro si los datos son públicos, consulte con TI o con el departamento legal antes de continuar.</li>
+        <li><strong>Use únicamente herramientas o software de IA oficialmente adquiridos por TI Global.</strong></li>
+        <li class="no-bullet">No utilice servicios de IA gratuitos o personales para fines laborales.</li>
+        <li><strong>Si tiene dudas, pregunte.</strong></li>
+        <li class="no-bullet">Comuníquese con el CISO o el departamento legal para recibir orientación antes de compartir contenido o usar herramientas de IA.</li>
+      </ul>
+      <p>Al continuar, usted reconoce y acepta cumplir con estos términos.</p>
+      <div class="signature">
+        Firmado por:<br />
+        Director de Seguridad de la Información (CISO)<br />
+        Jefe de Asesoría Legal y Cumplimiento
+      </div>
+      <p></p>
+      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Aceptar y continuar</a></center></div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- Hebrew -->
+    <div id="text-he" class="warning-box lang-section" style="direction: rtl;">
+      <div class="warning-title">⚠️ הודעה: שימוש בשירותי בינה מלאכותית חיצוניים</div>
+      <p>הנך עומד/ת להשתמש בכלי או שירות בינה מלאכותית שאינו מנוהל או מאובטח על ידי ICL.<br />
+      נא לקרוא ולהקפיד על ההנחיות הבאות:</p>
+      <ul>
+        <li><strong>אין לשתף מידע או נתונים הקשורים לחברה.</strong></li>
+        <li class="no-bullet">כולל מסמכים פנימיים, מידע על לקוחות, מידע על עובדים, קוד מקור או כל חומר רגיש אחר.</li>
+        <li><strong>יש להניח שכל מידע שתזין/י עלול להישמר או לשמש את ספק השירות החיצוני.</strong></li>
+        <li class="no-bullet">ICL אינה יכולה להבטיח את אבטחת המידע או עמידתו בדרישות רגולציה.</li>
+        <li><strong>יש לעשות שימוש רק במידע ציבורי.</strong></li>
+        <li class="no-bullet">אם קיימת אי ודאות לגבי אופי המידע, יש לפנות למחלקת ה-IT או למחלקה המשפטית לפני ההמשך.</li>
+        <li><strong>יש להשתמש רק בכלים או תוכנות שנרכשו על ידי מחלקת ה-IT הגלובלית.</strong></li>
+        <li class="no-bullet">אין לעשות שימוש בשירותי בינה מלאכותית חינמיים או כאלה שנרכשו באופן אישי.</li>
+        <li><strong>אם קיים ספק – יש לשאול.</strong></li>
+        <li class="no-bullet">ניתן לפנות ל-CISO או למחלקה המשפטית לקבלת הכוונה לפני שיתוף מידע או שימוש בשירות.</li>
+      </ul>
+      <p>המשך השימוש מהווה אישור להסכמה ולעמידה בתנאים לעיל.</p>
+      <div class="signature">
+        בברכה,<br />
+        מנהל אבטחת מידע גלובלי (CISO)<br />
+        מנהל המחלקה המשפטית ומחלקת ציות
+      </div>
+      <p></p>
+      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">אשר והמשך</a></center></div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- Portuguese -->
+    <div id="text-pt" class="warning-box lang-section">
+      <div class="warning-title">⚠️ Aviso: Uso de serviços externos de IA</div>
+      <p>Você está prestes a acessar uma ferramenta ou serviço de IA que não é gerenciado nem protegido pela ICL.<br />
+      Por favor, leia e siga estas diretrizes importantes:</p>
+      <ul>
+        <li><strong>Não compartilhe nenhuma informação ou dado relacionado à empresa.</strong></li>
+        <li class="no-bullet">Isso inclui documentos internos, dados de clientes, informações de funcionários, código-fonte ou qualquer outro material sensível.</li>
+        <li><strong>Considere que qualquer dado fornecido pode ser armazenado ou usado pelo provedor externo de IA.</strong></li>
+        <li class="no-bullet">A ICL não pode garantir a segurança ou a conformidade regulatória dos serviços externos.</li>
+        <li><strong>Use apenas dados disponíveis publicamente.</strong></li>
+        <li class="no-bullet">Se não tiver certeza se os dados são públicos, consulte o TI ou o departamento jurídico antes de prosseguir.</li>
+        <li><strong>Use apenas ferramentas ou softwares de IA oficialmente adquiridos pela TI Global.</strong></li>
+        <li class="no-bullet">Não utilize serviços de IA gratuitos ou pessoais para fins profissionais.</li>
+        <li><strong>Em caso de dúvida, pergunte.</strong></li>
+        <li class="no-bullet">Consulte o CISO ou o departamento jurídico para orientação antes de compartilhar conteúdo ou usar ferramentas de IA.</li>
+      </ul>
+      <p>Ao continuar, você reconhece e concorda em cumprir estes termos.</p>
+      <div class="signature">
+        Assinado por:<br />
+        Diretor de Segurança da Informação (CISO)<br />
+        Chefe de Assessoria Jurídica e Conformidade
+      </div>
+      <p></p>
+      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Aceitar e continuar</a></center></div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- Chinese -->
+    <div id="text-zh" class="warning-box lang-section">
+      <div class="warning-title">⚠️ 注意：使用外部 AI 服务</div>
+      <p>您即将访问一个非 ICL 管理或保护的 AI 工具或服务。<br />
+      请阅读并遵守以下重要指南：</p>
+      <ul>
+        <li><strong>請勿分享任何公司相關資訊或數據。</strong></li>
+        <li class="no-bullet">包括内部文件、客户数据、员工信息、源代码或任何其他敏感业务资料。</li>
+        <li><strong>请假设您提供的所有输入可能会被外部 AI 服务提供商存储或使用。</strong></li>
+        <li class="no-bullet">ICL 无法保证外部服务的数据安全或合规性。</li>
+        <li><strong>仅使用公开可用的数据。</strong></li>
+        <li class="no-bullet">如果您不确定数据是否公开，请在继续之前咨询 IT 或法律部门。</li>
+        <li><strong>仅使用全球 IT 正式购买的 AI 工具或软件。</strong></li>
+        <li class="no-bullet">请勿为工作目的使用免费或个人获得的 AI 服务。</li>
+        <li><strong>如有疑问，请咨询。</strong></li>
+        <li class="no-bullet">在分享内容或使用 AI 工具前，请联系首席信息安全官 (CISO) 或法律部门寻求指导。</li>
+      </ul>
+      <p>继续即表示您同意遵守这些条款。</p>
+      <div class="signature">
+        签署：<br />
+        首席信息安全官 (CISO)<br />
+        法律事务及合规负责人
+      </div>
+      <p></p>
+      <div><center><a class="confirm-button" href="#" onclick="Accept(); return false;">接受并继续</a></center></div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- German -->
+    <div id="text-de" class="warning-box lang-section">
+      <div class="warning-title">⚠️ Hinweis: Nutzung externer KI-Dienste</div>
+      <p>Sie sind dabei, ein KI-Tool oder einen Dienst zu nutzen, der nicht von ICL verwaltet oder gesichert wird.<br />
+      Bitte lesen Sie diese wichtigen Hinweise sorgfältig durch:</p>
+      <ul>
+        <li><strong>Geben Sie keine unternehmensbezogenen Informationen oder Daten weiter.</strong></li>
+        <li class="no-bullet">Dazu gehören interne Dokumente, Kundendaten, Mitarbeiterinformationen, Quellcode oder andere sensible Geschäftsmaterialien.</li>
+        <li><strong>Gehen Sie davon aus, dass alle Eingaben vom externen KI-Anbieter gespeichert oder genutzt werden können.</strong></li>
+        <li class="no-bullet">ICL kann die Sicherheit oder die Einhaltung von Vorschriften externer Dienste nicht garantieren.</li>
+        <li><strong>Verwenden Sie nur öffentlich verfügbare Daten.</strong></li>
+        <li class="no-bullet">Wenn Sie unsicher sind, ob Daten öffentlich sind, wenden Sie sich vor der Nutzung an die IT oder Rechtsabteilung.</li>
+        <li><strong>Nutzen Sie nur KI-Tools oder Software, die offiziell von der Global IT erworben wurden.</strong></li>
+        <li class="no-bullet">Verwenden Sie keine kostenlosen oder persönlich erworbenen KI-Dienste für Arbeitszwecke.</li>
+        <li><strong>Bei Zweifeln fragen Sie bitte nach.</strong></li>
+        <li class="no-bullet">Wenden Sie sich vor dem Teilen von Inhalten oder der Nutzung von KI-Tools an den CISO oder die Rechtsabteilung.</li>
+      </ul>
+      <p>Mit der Fortsetzung erkennen Sie diese Bedingungen an und verpflichten sich, sie einzuhalten.</p>
+      <div class="signature">
+        Unterzeichnet von:<br />
+        Chief Information Security Officer (CISO)<br />
+        Leiter Rechtsberatung & Compliance
+      </div>
+      <p></p>
+      <div><center><a class="confirm-button" href="https://claude.ai/accepted-ICL-AI-Notify?aHR0cHM6Ly9jbGF1ZGUuYWkvZGVzaWduL3YxL2Rlc2lnbi9wcm9qZWN0cy8wMTllMDI1OC00MTE2LTc4OGQtYTdlZi1mZjQ5MGUwY2VkNzQvZG93bmxvYWQ&#x2F;cGF0aD1ST1RFTSUyMEhPVVNFUy5odG1s;XvK4ojy0tpuZi8lmSND+SJv1sgsl4riU8dv4gdauxz0=" onclick="Accept();">Akzeptieren und fortfahren</a></center></div>
+      <div class="divider"></div>
+    </div>
+
+  </div>
+
+<script>
+  const select = document.getElementById('language-select');
+  const sections = document.querySelectorAll('.lang-section');
+
+  function showSection(id) {
+    sections.forEach(s => {
+      if (s.id === id) {
+        s.classList.add('visible');
+      } else {
+        s.classList.remove('visible');
+      }
+    });
+  }
+
+  select.addEventListener('change', (e) => {
+    showSection(e.target.value);
+  });
+
+  // Accept function placeholder
+  function Accept() {
+    // This function can be customized, for now just console log and proceed
+    console.log('User accepted the terms.');
+  }
+</script>
+</body>
+</html>
+</html>
