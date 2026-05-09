@@ -475,11 +475,26 @@
 
     @media (max-width: 768px) {
       .cinema {
-        height: 360vh;
+        height: 220vh;
       }
 
       .cinema-house-card img {
-        object-position: center 30%;
+        object-position: center 38%;
+        transform: scale(1);
+      }
+
+      .cinema-sub-wrap {
+        top: 84%;
+        padding: 0 8vw;
+      }
+
+      .cinema-sub-wrap p {
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+
+      .cinema-clouds-bottom {
+        bottom: -8vh;
       }
 
       .hero-info-section {
@@ -1985,7 +2000,7 @@
         <ul>
           <li><a href="#book">Check Availability</a></li>
           <li><a href="https://wa.me/" target="_blank">WhatsApp Us</a></li>
-          <li><a href="/cdn-cgi/l/email-protection#deb6bbb2b2b19eacb1aabbb3b6b1abadbbf0bdb1b3">Email Us</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#6d05080101022d1f021908000502181e08430e0200">Email Us</a></li>
         </ul>
       </div>
     </div>
@@ -2003,6 +2018,13 @@
   </a>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    /* Always open the page from the very top (iOS often restores mid-scroll) */
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
+    window.addEventListener('load', () => window.scrollTo(0, 0));
+    window.scrollTo(0, 0);
+  </script>
   <script>
     /* === Cinematic intro: house card → write title → fill with image → clouds rise === */
     (function buildCinema() {
