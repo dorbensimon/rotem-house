@@ -2266,7 +2266,11 @@
       font-size: 14px;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       transition: all .3s;
-      border-radius: 8px
+      border-radius: 8px;
+      box-sizing: border-box;
+      max-width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .form-input:focus,
@@ -2556,7 +2560,12 @@
 
       .booking-inner {
         grid-template-columns: 1fr;
-        gap: 40px
+        gap: 40px;
+        padding: 0 16px;
+      }
+
+      .booking-cta {
+        padding: 60px 0;
       }
 
       .booking-text h2 {
@@ -2564,27 +2573,42 @@
       }
 
       .booking-form {
-        padding: 28px 22px;
+        padding: 24px 18px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       .form-title {
-        font-size: 28px;
+        font-size: 26px;
+      }
+
+      .form-sub {
+        font-size: 12px;
       }
 
       .form-input,
       .form-select {
-        padding: 16px 16px;
+        padding: 14px 14px;
         font-size: 16px;
         /* Prevent iOS zoom on focus */
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .form-group {
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
 
       .form-row {
         grid-template-columns: 1fr;
         gap: 0;
+      }
+
+      .form-submit {
+        font-size: 12px;
+        padding: 16px;
+        letter-spacing: 1px;
       }
 
       .footer-grid {
@@ -2790,10 +2814,10 @@
         </g>
       </svg>
       <div class="cinema-sub-wrap" id="cinemaSubWrap">
+        <p>Luxury vacation homes in South Carolina · Find what moves you.</p>
         <div class="cinema-cta-group">
           <a href="#book" class="cinema-cta cinema-cta-primary">Book Now →</a>
           <a href="#properties" class="cinema-cta cinema-cta-secondary">View Properties</a>
-          <p>Luxury vacation homes in South Carolina </p>
         </div>
       </div>
       <div class="cinema-clouds-bottom" id="cloudsBottom"></div>
@@ -2902,9 +2926,6 @@
             </div>
             <div class="prop-slide"><img src="/images/greenville-master-suite.jpg"
                 alt="Master suite with luxurious soaking tub at Greenville vacation home">
-            </div>
-            <div class="prop-slide"><img src="/images/childrens-room.jpg"
-                alt="Children's room with twin beds at Greenville family vacation home">
             </div>
           </div>
           <div class="prop-arrows">
@@ -3276,8 +3297,8 @@
           <div class="form-group">
             <label class="form-label">Preferred Property</label>
             <select class="form-select">
-              <option>Cozy & Luxurious Home with Pool — Greenville</option>
-              <option>Clemson Getaway Pool Retreat — Pendleton</option>
+              <option>Greenville Pool Home</option>
+              <option>Clemson Pendleton Retreat</option>
               <option>Not sure yet</option>
             </select>
           </div>
@@ -3350,8 +3371,7 @@
           <div class="faq-answer">
             <p>The <strong>Greenville home</strong> comfortably hosts up to 6 guests with 3 bedrooms and 4 beds. The
               <strong>Clemson Pendleton retreat</strong> hosts up to 10 guests with 4 bedrooms, 8 beds, and 2.5
-              bathrooms — perfect for larger groups and game-day weekends.
-            </p>
+              bathrooms — perfect for larger groups and game-day weekends.</p>
           </div>
         </details>
 
@@ -3643,7 +3663,7 @@
           localStorage.setItem(INTRO_KEY, nowTime.toString());
           // Auto-play the intro on mobile (no scroll required)
           apply(0);
-          const dur = 2000;
+          const dur = 4000;
           const start = performance.now() + 250;
           function tick(now) {
             const t = clamp((now - start) / dur, 0, 1);
