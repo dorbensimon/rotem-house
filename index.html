@@ -476,6 +476,8 @@
     @media (max-width: 768px) {
       .cinema {
         height: 100vh;
+        height: 100svh;
+        /* ← שורה חדשה - iOS fix */
       }
 
       .cinema-house-card {
@@ -2155,23 +2157,42 @@
         apply(p);
       }
 
-      if (isMobile) {
-        // Auto-play the intro on mobile (no scroll required)
-        apply(0);
-        const dur = 5500;
-        const start = performance.now() + 250;
-        function tick(now) {
-          const t = clamp((now - start) / dur, 0, 1);
-          apply(t);
-          if (t < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      } else {
-        onScroll();
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll);
-      }
+      // ===== Skip intro animation if seen in last 5 minutes =====
+      const INTRO_KEY = 'rotemHouseIntroLastSeen';
+      const FIVE_MINUTES = 5 * 60 * 1000; // 5 דקות במילישניות
+      const lastSeen = parseInt(localStorage.getItem(INTRO_KEY) || '0', 10);
+      const now = Date.now();
+      const skipIntro = (now - lastSeen) < FIVE_MINUTES;
 
+      if (skipIntro) {
+        // משתמש ראה את האנימציה ב-5 הדקות האחרונות - דלג ישר לסוף
+        apply(1);
+        if (!isMobile) {
+          // במחשב - חבר את הגלילה למצב הסופי
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('resize', onScroll);
+        }
+      } else {
+        // הפעם הראשונה (או אחרי 5 דקות) - הרץ את האנימציה הרגילה
+        localStorage.setItem(INTRO_KEY, now.toString());
+
+        if (isMobile) {
+          // Auto-play the intro on mobile (no scroll required)
+          apply(0);
+          const dur = 5500;
+          const start = performance.now() + 250;
+          function tick(now) {
+            const t = clamp((now - start) / dur, 0, 1);
+            apply(t);
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        } else {
+          onScroll();
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('resize', onScroll);
+        }
+      }
       // Slide-up + fade-in for the section right after the cinema
       const heroInfo = document.querySelector('.hero-info-section');
       if (heroInfo && 'IntersectionObserver' in window) {
