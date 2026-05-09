@@ -2030,9 +2030,22 @@
   <script>
     /* Always open the page from the very top (iOS often restores mid-scroll) */
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
-    window.addEventListener('load', () => window.scrollTo(0, 0));
     window.scrollTo(0, 0);
+
+    window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
+
+    window.addEventListener('load', () => {
+      window.scrollTo(0, 0);
+      // iOS Safari sometimes ignores the first scrollTo - force it multiple times
+      setTimeout(() => window.scrollTo(0, 0), 50);
+      setTimeout(() => window.scrollTo(0, 0), 200);
+      setTimeout(() => window.scrollTo(0, 0), 500);
+    });
+
+    // Fix for iOS Safari back/forward cache (bfcache) restoring scroll position
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) window.scrollTo(0, 0);
+    });
   </script>
   <script>
     /* === Cinematic intro: house card → write title → fill with image → clouds rise === */
@@ -2157,26 +2170,24 @@
         apply(p);
       }
 
-      // ===== Skip intro animation if seen in last 5 minutes =====
+      // ===== Skip intro animation if seen in last 5 minutes (mobile only) =====
       const INTRO_KEY = 'rotemHouseIntroLastSeen';
       const FIVE_MINUTES = 5 * 60 * 1000; // 5 דקות במילישניות
       const lastSeen = parseInt(localStorage.getItem(INTRO_KEY) || '0', 10);
-      const now = Date.now();
-      const skipIntro = (now - lastSeen) < FIVE_MINUTES;
+      const nowTime = Date.now();
+      const skipIntro = isMobile && (nowTime - lastSeen) < FIVE_MINUTES;
 
       if (skipIntro) {
-        // משתמש ראה את האנימציה ב-5 הדקות האחרונות - דלג ישר לסוף
+        // משתמש במובייל ראה את האנימציה ב-5 הדקות האחרונות - דלג ישר לסוף
+        // הקטן את גובה הסקשן כדי שלא יהיה אזור ריק לגלול
+        cinema.style.height = '100vh';
+        cinema.style.height = '100svh';
         apply(1);
-        if (!isMobile) {
-          // במחשב - חבר את הגלילה למצב הסופי
-          window.addEventListener('scroll', onScroll, { passive: true });
-          window.addEventListener('resize', onScroll);
-        }
+        // אל תוסיף מאזיני גלילה - האנימציה במצב סופי
       } else {
-        // הפעם הראשונה (או אחרי 5 דקות) - הרץ את האנימציה הרגילה
-        localStorage.setItem(INTRO_KEY, now.toString());
-
+        // הפעם הראשונה (או אחרי 5 דקות במובייל, או תמיד במחשב) - הרץ את האנימציה
         if (isMobile) {
+          localStorage.setItem(INTRO_KEY, nowTime.toString());
           // Auto-play the intro on mobile (no scroll required)
           apply(0);
           const dur = 5500;
@@ -2188,7 +2199,8 @@
           }
           requestAnimationFrame(tick);
         } else {
-          onScroll();
+          // במחשב - תמיד אנימציה תלוית גלילה, מתחילים מ-0 (התחלה ריקה)
+          apply(0);
           window.addEventListener('scroll', onScroll, { passive: true });
           window.addEventListener('resize', onScroll);
         }
