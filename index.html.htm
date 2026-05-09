@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotem House — Luxury Vacation Homes in South Carolina</title>
+  <meta name="description"
+    content="Luxury vacation homes in South Carolina. Private pools, premium amenities, Superhost approved. Book direct & save 10%.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --sky-light: #a8d5e8;
+      --sky: #7ab8d4;
+      --sky-deep: #4a7fa8;
+      --navy: #1e3a5f;
+      --navy-deep: #0f2540;
+      --white: #ffffff;
+      --cream: #f4f7fa;
+      --gold: #d4af37;
+      --gold-soft: #e8c97a;
+      --gold-cream: #faf3e0;
+      --gold-warm: #f5e9c8;
+      --text-dark: #1a2942;
+      --text-light: rgba(255, 255, 255, .85);
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text-dark);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* NAV - Liquid Glass Style */
+    nav {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      padding: 10px 12px 10px 28px;
+      background: rgba(255, 255, 255, .12);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 100px;
+      box-shadow:
+        0 8px 32px rgba(15, 37, 64, .15),
+        inset 0 1px 0 rgba(255, 255, 255, .4),
+        inset 0 -1px 0 rgba(255, 255, 255, .1);
+      transition: all .4s cubic-bezier(.4, 0, .2, 1);
+      width: auto;
+      max-width: calc(100% - 40px);
+    }
+
+    nav.scrolled {
+      top: 14px;
+      background: rgba(255, 255, 255, .7);
+      border-color: rgba(255, 255, 255, .4);
+      box-shadow:
+        0 8px 40px rgba(15, 37, 64, .12),
+        inset 0 1px 0 rgba(255, 255, 255, .6);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      color: var(--white);
+      transition: color .4s;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--gold);
+      font-style: italic
+    }
+
+    nav.scrolled .logo {
+      color: var(--navy)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: .5px;
+      font-weight: 500;
+      transition: all .3s;
+      padding: 10px 18px;
+      border-radius: 50px;
+      position: relative;
+      background: transparent;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, .15);
+      backdrop-filter: blur(10px);
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--navy)
+    }
+
+    nav.scrolled .nav-links a:hover {
+      background: rgba(30, 58, 95, .08)
+    }
+
+    /* Liquid Glass CTA Button */
+    .nav-cta {
+      padding: 11px 24px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .25) 0%, rgba(255, 255, 255, .1) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: .5px;
+      font-weight: 600;
+      transition: all .3s;
+      border: 1px solid rgba(255, 255, 255, .4);
+      border-radius: 50px;
+      white-space: nowrap;
+      box-shadow:
+        0 4px 12px rgba(15, 37, 64, .1),
+        inset 0 1px 0 rgba(255, 255, 255, .5);
+    }
+
+    .nav-cta:hover {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+      box-shadow:
+        0 8px 20px rgba(212, 175, 55, .4),
+        inset 0 1px 0 rgba(255, 255, 255, .5);
+    }
+
+    nav.scrolled .nav-cta {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+
+    nav.scrolled .nav-cta:hover {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+      border-color: var(--gold);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 24px;
+      cursor: pointer
+    }
+
+    nav.scrolled .menu-btn {
+      color: var(--navy)
+    }
+
+    /* CINEMATIC INTRO — house card → title written → fills with image → clouds rise */
+    .cinema {
+      position: relative;
+      width: 100%;
+      height: 420vh;
+      background: linear-gradient(180deg, #6a9bbf 0%, #8ec0db 60%, #cce4ef 100%);
+    }
+
+    .cinema-stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      will-change: transform;
+    }
+
+    .cinema-sky {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(ellipse 220px 80px at 8% 18%, rgba(255, 255, 255, .55), transparent 70%),
+        radial-gradient(ellipse 180px 70px at 88% 28%, rgba(255, 255, 255, .45), transparent 70%),
+        radial-gradient(ellipse 260px 90px at 50% 12%, rgba(255, 255, 255, .4), transparent 70%),
+        radial-gradient(ellipse 200px 75px at 22% 80%, rgba(255, 255, 255, .5), transparent 70%),
+        radial-gradient(ellipse 240px 85px at 78% 88%, rgba(255, 255, 255, .5), transparent 70%),
+        linear-gradient(180deg, #4d7fa6 0%, #79a8ca 35%, #a8cee0 70%, #d6e9f1 100%);
+    }
+
+    .cinema-house-card {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      will-change: transform, opacity;
+      overflow: hidden;
+    }
+
+    .cinema-house-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      display: block;
+      transform: scale(1.25);
+      transform-origin: center 60%;
+    }
+
+    @keyframes houseFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    /* Subtle vignette so title is readable on top */
+    .cinema-house-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(15, 37, 64, 0) 0%, rgba(15, 37, 64, 0) 60%, rgba(15, 37, 64, .18) 100%);
+    }
+
+    .cinema-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    .cinema-svg .t-stroke {
+      fill: none;
+      stroke: rgba(255, 255, 255, .95);
+      stroke-width: 1.8;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .cinema-svg .t-stroke .ls {
+      stroke-dasharray: 520;
+      stroke-dashoffset: 520;
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, .6));
+    }
+
+    .cinema-svg .t-fill {
+      fill: url(#housePattern);
+      stroke: rgba(255, 255, 255, .55);
+      stroke-width: .6;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -2px;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+
+    .cinema-svg.is-filled .t-fill {
+      opacity: 1;
+    }
+
+    .cinema-svg.is-filled .t-stroke {
+      opacity: .25;
+    }
+
+    .cinema-sub-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 76%;
+      text-align: center;
+      z-index: 5;
+      padding: 0 6vw;
+      opacity: 0;
+      will-change: opacity, transform;
+    }
+
+    .cinema-sub-wrap p {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: clamp(14px, 1.5vw, 20px);
+      color: rgba(255, 255, 255, .95);
+      letter-spacing: .5px;
+      text-shadow: 0 2px 12px rgba(15, 37, 64, .4);
+      margin-bottom: 18px;
+    }
+
+    .cinema-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, .18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, .5);
+      border-radius: 100px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 500;
+      text-transform: uppercase;
+      pointer-events: auto;
+      transition: all .3s;
+    }
+
+    .cinema-cta:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .cinema-clouds-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      z-index: 6;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .cinema-clouds-bottom .puff {
+      position: absolute;
+      background:
+        radial-gradient(ellipse 30% 35% at 25% 40%, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .7) 30%, rgba(255, 255, 255, 0) 70%),
+        radial-gradient(ellipse 28% 32% at 60% 30%, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, .6) 35%, rgba(255, 255, 255, 0) 70%),
+        radial-gradient(ellipse 35% 30% at 80% 55%, rgba(255, 255, 255, .92) 0%, rgba(255, 255, 255, .6) 35%, rgba(255, 255, 255, 0) 70%),
+        radial-gradient(ellipse 32% 36% at 35% 65%, rgba(255, 255, 255, .88) 0%, rgba(255, 255, 255, .55) 35%, rgba(255, 255, 255, 0) 72%),
+        radial-gradient(ellipse 26% 24% at 70% 75%, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, .5) 35%, rgba(255, 255, 255, 0) 72%),
+        radial-gradient(ellipse 22% 26% at 15% 25%, rgba(255, 255, 255, .75) 0%, rgba(255, 255, 255, .4) 40%, rgba(255, 255, 255, 0) 75%),
+        radial-gradient(ellipse 20% 22% at 90% 20%, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .35) 40%, rgba(255, 255, 255, 0) 75%);
+      filter: blur(6px);
+      will-change: transform, opacity;
+    }
+
+    .hero-info-section {
+      background: linear-gradient(180deg, #cce4ef 0%, var(--cream) 60%);
+      padding: 80px clamp(20px, 5vw, 60px) 60px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: transform 1.4s cubic-bezier(.2, .7, .2, 1), opacity 1.2s ease;
+    }
+
+    .hero-info-section.is-in {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Soft fade from cinema sky into the next section */
+    .cinema::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 28vh;
+      pointer-events: none;
+      z-index: 7;
+      background: linear-gradient(180deg, rgba(204, 228, 239, 0) 0%, rgba(204, 228, 239, .55) 50%, #cce4ef 100%);
+    }
+
+    .hero-info-stats {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .hero-info-stats .stat-card {
+      background: rgba(30, 58, 95, .06);
+      border: 1px solid rgba(30, 58, 95, .12);
+      padding: 16px 32px;
+      border-radius: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hero-info-stats .stat-card-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sky-deep);
+    }
+
+    .hero-info-stats .stat-card-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .hero-info-distances {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-info-distances .distance-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--navy);
+    }
+
+    .hero-info-distances .distance-time {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 600;
+      background: var(--white);
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(74, 127, 168, .2);
+    }
+
+    .hero-info-distances .distance-label {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 11px;
+      opacity: .8;
+      text-align: left;
+      line-height: 1.3;
+    }
+
+    @media (max-width: 768px) {
+      .cinema {
+        height: 360vh;
+      }
+
+      .cinema-house-card img {
+        object-position: center 30%;
+      }
+
+      .hero-info-section {
+        padding: 60px 20px 40px;
+      }
+
+      .hero-info-stats .stat-card {
+        padding: 12px 20px;
+      }
+
+      .hero-info-distances {
+        gap: 14px;
+      }
+    }
+
+    .marquee {
+      background: linear-gradient(90deg, var(--navy) 0%, var(--navy-deep) 50%, var(--navy) 100%);
+      padding: 24px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      z-index: 3;
+      border-top: 1px solid rgba(212, 175, 55, .2);
+      border-bottom: 1px solid rgba(212, 175, 55, .2);
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: scroll 35s linear infinite;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--white)
+    }
+
+    .marquee-track span {
+      padding: 0 30px
+    }
+
+    .marquee-track .dot {
+      color: var(--gold);
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center
+    }
+
+    @keyframes scroll {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    .stats {
+      padding: 80px 60px;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      position: relative;
+      z-index: 3;
+      border-bottom: 1px solid rgba(30, 58, 95, .05);
+    }
+
+    .stat {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .8s;
+      position: relative;
+      z-index: 2
+    }
+
+    .stat.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .stat-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 2px 8px rgba(212, 175, 55, .3))
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1
+    }
+
+    .stat-suffix {
+      font-size: 32px;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sky-deep);
+      margin-top: 12px;
+      font-weight: 500
+    }
+
+    .section {
+      padding: 120px 60px;
+      position: relative;
+      z-index: 2;
+      background: var(--cream)
+    }
+
+    .section-light {
+      background: var(--white)
+    }
+
+    .section-head {
+      max-width: 1300px;
+      margin: 0 auto 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .section-label::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--gold)
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      color: var(--navy)
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--sky-deep);
+      font-weight: 500
+    }
+
+    .section-desc {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--sky-deep);
+      max-width: 480px
+    }
+
+    .properties {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 160px
+    }
+
+    .property {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 80px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1s
+    }
+
+    .property.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .property:nth-child(even) {
+      grid-template-columns: 1fr 1.2fr
+    }
+
+    .property:nth-child(even) .prop-media {
+      order: 2
+    }
+
+    .prop-media {
+      position: relative
+    }
+
+    .prop-slider {
+      position: relative;
+      height: 560px;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 30px 60px rgba(30, 58, 95, .2)
+    }
+
+    .prop-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease
+    }
+
+    .prop-slide.active {
+      opacity: 1
+    }
+
+    .prop-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .prop-arrows {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      gap: 8px;
+      z-index: 3
+    }
+
+    .prop-arr {
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255, 255, 255, .4);
+      background: rgba(255, 255, 255, .15);
+      backdrop-filter: blur(10px);
+      color: var(--white);
+      font-size: 18px;
+      cursor: pointer;
+      transition: all .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%
+    }
+
+    .prop-arr:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white)
+    }
+
+    .prop-dots {
+      position: absolute;
+      bottom: 32px;
+      left: 24px;
+      display: flex;
+      gap: 8px;
+      z-index: 3
+    }
+
+    .prop-dot {
+      width: 32px;
+      height: 3px;
+      background: rgba(255, 255, 255, .4);
+      transition: all .3s;
+      cursor: pointer;
+      border-radius: 3px
+    }
+
+    .prop-dot.active {
+      background: var(--gold);
+      width: 48px
+    }
+
+    .prop-tag {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      background: var(--gold);
+      color: var(--white);
+      padding: 10px 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      z-index: 3;
+      border-radius: 50px
+    }
+
+    .prop-info {
+      padding: 40px 0
+    }
+
+    .prop-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      color: rgba(74, 127, 168, .2);
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 16px;
+      font-style: italic
+    }
+
+    .prop-location {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .prop-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      color: var(--navy)
+    }
+
+    .prop-name em {
+      font-style: italic;
+      color: var(--sky-deep);
+      font-weight: 500
+    }
+
+    .prop-stars {
+      color: var(--gold);
+      font-size: 16px;
+      margin-bottom: 24px;
+      letter-spacing: 2px
+    }
+
+    .prop-stars span {
+      color: var(--sky-deep);
+      font-size: 12px;
+      margin-left: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase
+    }
+
+    .prop-desc {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--sky-deep);
+      margin-bottom: 32px;
+      max-width: 520px
+    }
+
+    .prop-features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 36px;
+      max-width: 520px
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--navy);
+      padding: 12px 16px;
+      background: var(--white);
+      border: 1px solid rgba(74, 127, 168, .15);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(30, 58, 95, .04)
+    }
+
+    .feature::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .prop-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(74, 127, 168, .15)
+    }
+
+    .prop-price {
+      font-family: 'Playfair Display', serif
+    }
+
+    .prop-price .from {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sky-deep);
+      font-family: 'Outfit', sans-serif
+    }
+
+    .prop-price .num {
+      font-size: 42px;
+      color: var(--navy);
+      font-weight: 600
+    }
+
+    .prop-price .num span {
+      font-size: 14px;
+      color: var(--sky-deep);
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 1px;
+      font-weight: 300
+    }
+
+    .btn-primary {
+      padding: 16px 36px;
+      background: var(--navy);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: all .3s;
+      border: 1px solid var(--navy);
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      border-radius: 50px
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, .3)
+    }
+
+    .amenities-section {
+      background: var(--white)
+    }
+
+    .amen-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px
+    }
+
+    .amen-item {
+      text-align: center;
+      padding: 50px 30px;
+      border: 1px solid rgba(74, 127, 168, .15);
+      border-radius: 16px;
+      transition: all .4s;
+      cursor: pointer;
+      background: var(--cream);
+      opacity: 0;
+      transform: translateY(30px)
+    }
+
+    .amen-item.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .amen-item:hover {
+      border-color: var(--gold);
+      background: var(--white);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(30, 58, 95, .1)
+    }
+
+    .amen-icon {
+      font-size: 36px;
+      margin-bottom: 20px;
+      display: block
+    }
+
+    .amen-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-weight: 600
+    }
+
+    .amen-desc {
+      font-size: 13px;
+      color: var(--sky-deep);
+      line-height: 1.7
+    }
+
+    .reviews-section {
+      background: var(--cream)
+    }
+
+    .reviews-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px
+    }
+
+    .review {
+      padding: 40px;
+      background: var(--white);
+      border: 1px solid rgba(74, 127, 168, .1);
+      border-radius: 16px;
+      position: relative;
+      transition: all .4s;
+      opacity: 0;
+      transform: translateY(30px);
+      box-shadow: 0 4px 20px rgba(30, 58, 95, .04)
+    }
+
+    .review.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .review:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(30, 58, 95, .1)
+    }
+
+    .review::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      color: rgba(212, 175, 55, .2);
+      line-height: 1
+    }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 14px;
+      margin-bottom: 20px;
+      letter-spacing: 2px
+    }
+
+    .review-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--navy);
+      font-style: italic;
+      margin-bottom: 30px
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(74, 127, 168, .1)
+    }
+
+    .review-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky-deep), var(--navy));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 16px
+    }
+
+    .review-meta .name {
+      font-size: 14px;
+      color: var(--navy);
+      font-weight: 600
+    }
+
+    .review-meta .date {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--sky-deep);
+      margin-top: 3px
+    }
+
+    .booking-cta {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+      padding: 120px 60px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .booking-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(122, 184, 212, .15) 0%, transparent 50%)
+    }
+
+    .booking-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 2
+    }
+
+    .booking-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 30px;
+      color: var(--white)
+    }
+
+    .booking-text h2 em {
+      font-style: italic;
+      color: var(--gold-soft)
+    }
+
+    .booking-text p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, .75);
+      margin-bottom: 36px
+    }
+
+    .booking-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px
+    }
+
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, .9)
+    }
+
+    .perk::before {
+      content: '✓';
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+      width: 24px;
+      height: 24px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .booking-form {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .15);
+      padding: 48px;
+      backdrop-filter: blur(10px);
+      border-radius: 16px
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--white);
+      margin-bottom: 8px;
+      font-weight: 600
+    }
+
+    .form-sub {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .6);
+      margin-bottom: 32px;
+      letter-spacing: 1px
+    }
+
+    .form-group {
+      margin-bottom: 20px
+    }
+
+    .form-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .7);
+      margin-bottom: 8px
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .2);
+      color: var(--white);
+      font-size: 14px;
+      font-family: 'Outfit', sans-serif;
+      transition: all .3s;
+      border-radius: 8px
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, .12)
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, .4)
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all .3s;
+      border-radius: 50px
+    }
+
+    .form-submit:hover {
+      background: var(--gold-soft);
+      color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, .4)
+    }
+
+    footer {
+      background: var(--navy-deep);
+      padding: 80px 60px 30px;
+      border-top: 1px solid rgba(255, 255, 255, .05)
+    }
+
+    .footer-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px
+    }
+
+    .foot-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      color: var(--white);
+      font-weight: 600
+    }
+
+    .foot-logo span {
+      color: var(--gold);
+      font-style: italic
+    }
+
+    .foot-tag {
+      font-size: 14px;
+      color: rgba(255, 255, 255, .6);
+      line-height: 1.7;
+      max-width: 320px;
+      font-style: italic
+    }
+
+    .foot-col h4 {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px
+    }
+
+    .foot-col ul {
+      list-style: none
+    }
+
+    .foot-col li {
+      margin-bottom: 12px
+    }
+
+    .foot-col a {
+      color: rgba(255, 255, 255, .6);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .2s
+    }
+
+    .foot-col a:hover {
+      color: var(--gold)
+    }
+
+    .foot-bottom {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px
+    }
+
+    .foot-copy {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .4);
+      letter-spacing: 1px
+    }
+
+    .foot-airbnb {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5)
+    }
+
+    .foot-airbnb span {
+      color: #FF5A5F;
+      font-weight: 600
+    }
+
+    .wa-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 50;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, .4);
+      transition: all .3s
+    }
+
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, .6)
+    }
+
+    .wa-float svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff
+    }
+
+    @media(max-width:1024px) {
+      nav {
+        padding: 8px 8px 8px 20px;
+        gap: 16px;
+        top: 16px;
+      }
+
+      .logo {
+        font-size: 18px
+      }
+
+      .nav-links {
+        gap: 2px
+      }
+
+      .nav-links a {
+        font-size: 11px;
+        padding: 8px 12px
+      }
+
+      .nav-cta {
+        padding: 9px 18px;
+        font-size: 11px
+      }
+
+      .menu-btn {
+        display: none
+      }
+
+      .hero-content {
+        padding: 120px 30px 40px
+      }
+
+      .hero-bottom-bar {
+        position: relative;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px;
+        text-align: center;
+        bottom: 0
+      }
+
+      .contact-info {
+        text-align: center
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 60px 30px
+      }
+
+      .section {
+        padding: 80px 30px
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 30px
+      }
+
+      .property,
+      .property:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .property:nth-child(even) .prop-media {
+        order: 0
+      }
+
+      .prop-slider {
+        height: 380px
+      }
+
+      .prop-name {
+        font-size: 40px
+      }
+
+      .amen-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .reviews-grid {
+        grid-template-columns: 1fr
+      }
+
+      .booking-inner {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .booking-text h2 {
+        font-size: 42px
+      }
+
+      .booking-form {
+        padding: 32px
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px
+      }
+
+      .foot-bottom {
+        flex-direction: column;
+        text-align: center
+      }
+
+      .palm-left,
+      .palm-right {
+        width: 35%
+      }
+
+      .hero-distances {
+        gap: 15px
+      }
+
+      .distance-time {
+        font-size: 18px
+      }
+    }
+
+    @media(max-width:768px) {
+      nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        max-width: calc(100% - 20px);
+        padding: 6px 6px 6px 16px
+      }
+
+      .logo {
+        font-size: 16px
+      }
+
+      .nav-links a {
+        padding: 7px 10px;
+        font-size: 10px
+      }
+
+      .nav-cta {
+        padding: 8px 14px;
+        font-size: 10px
+      }
+    }
+
+    @media(max-width:600px) {
+      nav {
+        padding: 5px 5px 5px 14px
+      }
+
+      .logo {
+        display: none
+      }
+
+      .stats {
+        grid-template-columns: 1fr
+      }
+
+      .amen-grid {
+        grid-template-columns: 1fr
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr
+      }
+
+      .marquee-track {
+        font-size: 22px
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        align-items: center
+      }
+
+      .stat-card {
+        width: 100%;
+        max-width: 280px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="nav">
+    <div class="logo">ROTEM<span>House</span></div>
+    <ul class="nav-links">
+      <li><a href="#properties">Properties</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#book">Contact</a></li>
+    </ul>
+    <a href="#book" class="nav-cta">Book Direct</a>
+  </nav>
+
+  <section class="cinema" id="cinema">
+    <div class="cinema-stage">
+      <div class="cinema-sky"></div>
+      <div class="cinema-house-card" id="houseCard">
+        <img src="/images/house.jpg.jpg" alt="BH & CO Rental Property">
+      </div>
+      <svg class="cinema-svg" id="cinemaSvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="housePattern" patternUnits="userSpaceOnUse" x="0" y="0" width="1600" height="2400">
+            <image id="housePatternImg" href="/images/house.jpg.jpg" width="1600" height="2400"
+              preserveAspectRatio="xMidYMid slice" />
+          </pattern>
+        </defs>
+        <g>
+          <text class="t-stroke" data-line="BH &amp; CO" x="800" y="370" text-anchor="middle" font-size="220"></text>
+          <text class="t-stroke" data-line="RENTALS" x="800" y="600" text-anchor="middle" font-size="220"></text>
+        </g>
+        <g class="cinema-fill-group">
+          <text class="t-fill" x="800" y="370" text-anchor="middle" font-size="220">BH &amp; CO</text>
+          <text class="t-fill" x="800" y="600" text-anchor="middle" font-size="220">RENTALS</text>
+        </g>
+      </svg>
+      <div class="cinema-sub-wrap" id="cinemaSubWrap">
+        <p>Luxury vacation homes in South Carolina · Find what moves you.</p>
+        <a href="#properties" class="cinema-cta">View Properties →</a>
+      </div>
+      <div class="cinema-clouds-bottom" id="cloudsBottom"></div>
+    </div>
+  </section>
+
+  <section class="hero-info-section">
+    <div class="hero-info-stats">
+      <div class="stat-card"><span class="stat-card-label">Booking With</span><span class="stat-card-value">10%
+          OFF</span></div>
+      <div class="stat-card"><span class="stat-card-label">Cancellation</span><span
+          class="stat-card-value">Flexible</span></div>
+      <div class="stat-card"><span class="stat-card-label">Property Size</span><span class="stat-card-value">3500
+          SQ.FT</span></div>
+    </div>
+    <div class="hero-info-distances">
+      <div class="distance-badge"><span class="distance-time">5 MIN</span><span
+          class="distance-label">DOWNTOWN<br>GREENVILLE</span></div>
+      <div class="distance-badge"><span class="distance-time">15 MIN</span><span class="distance-label">FALLS
+          PARK<br>RIVERWALK</span></div>
+      <div class="distance-badge"><span class="distance-time">25 MIN</span><span class="distance-label">PARIS
+          MOUNTAIN<br>STATE PARK</span></div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-icon">🏡</div>
+      <div class="stat-num"><span data-target="3">0</span></div>
+      <div class="stat-label">Luxury Homes</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">⭐</div>
+      <div class="stat-num"><span data-target="200">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Happy Guests</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">💎</div>
+      <div class="stat-num"><span data-target="98">0</span><span class="stat-suffix">%</span></div>
+      <div class="stat-label">5-Star Rating</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-num"><span data-target="5">0</span></div>
+      <div class="stat-label">Years Hosting</div>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Private Pools</span><span class="dot">◆</span>
+      <span>Superhost Status</span><span class="dot">◆</span>
+      <span>Premium Locations</span><span class="dot">◆</span>
+      <span>5-Star Reviews</span><span class="dot">◆</span>
+      <span>Book Direct & Save 10%</span><span class="dot">◆</span>
+      <span>Private Pools</span><span class="dot">◆</span>
+      <span>Superhost Status</span><span class="dot">◆</span>
+      <span>Premium Locations</span><span class="dot">◆</span>
+      <span>5-Star Reviews</span><span class="dot">◆</span>
+      <span>Book Direct & Save 10%</span><span class="dot">◆</span>
+    </div>
+  </div>
+
+  <section class="section" id="properties">
+    <div class="section-head">
+      <div>
+        <p class="section-label">The Collection</p>
+        <h2 class="section-title">Three Homes,<br><em>Infinite Memories</em></h2>
+      </div>
+      <p class="section-desc">Each property is hand-picked and meticulously maintained to deliver an unforgettable stay.
+        From mountain retreats to lakeside escapes, find the home that's just right for you.</p>
+    </div>
+
+    <div class="properties">
+      <div class="property">
+        <div class="prop-media">
+          <div class="prop-slider" id="slider-1">
+            <div class="prop-slide active"><img
+                src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1000&q=85" alt="Magnolia House">
+            </div>
+            <div class="prop-slide"><img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1000&q=85"
+                alt="Magnolia interior"></div>
+            <div class="prop-slide"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1000&q=85"
+                alt="Magnolia bedroom"></div>
+          </div>
+          <div class="prop-arrows">
+            <button class="prop-arr" onclick="slide('slider-1',-1)">‹</button>
+            <button class="prop-arr" onclick="slide('slider-1',1)">›</button>
+          </div>
+          <div class="prop-dots" id="dots-1"></div>
+          <div class="prop-tag">⭐ Most Popular</div>
+        </div>
+        <div class="prop-info">
+          <div class="prop-num">01</div>
+          <p class="prop-location">📍 Downtown Greenville, SC</p>
+          <h2 class="prop-name">The Magnolia<br><em>House</em></h2>
+          <div class="prop-stars">★★★★★ <span>4.98 · 87 Reviews</span></div>
+          <p class="prop-desc">A stunning 4-bedroom craftsman home just two blocks from Falls Park. Original hardwood
+            floors, chef's kitchen, and a wraparound porch perfect for Carolina evenings.</p>
+          <div class="prop-features">
+            <div class="feature">Private Pool</div>
+            <div class="feature">4 Bedrooms · Sleeps 8</div>
+            <div class="feature">Chef's Kitchen</div>
+            <div class="feature">Pet Friendly</div>
+            <div class="feature">High-Speed WiFi</div>
+            <div class="feature">Walk to Downtown</div>
+          </div>
+          <div class="prop-bottom">
+            <div class="prop-price">
+              <div class="from">From</div>
+              <div class="num">$249<span> / night</span></div>
+            </div>
+            <a href="https://www.airbnb.com/rooms/1440955329892654568" target="_blank" class="btn-primary">Book on
+              Airbnb</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="property">
+        <div class="prop-media">
+          <div class="prop-slider" id="slider-2">
+            <div class="prop-slide active"><img
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=85" alt="Pendleton Estate">
+            </div>
+            <div class="prop-slide"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1000&q=85"
+                alt="Pendleton living"></div>
+            <div class="prop-slide"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000&q=85"
+                alt="Pendleton pool"></div>
+          </div>
+          <div class="prop-arrows">
+            <button class="prop-arr" onclick="slide('slider-2',-1)">‹</button>
+            <button class="prop-arr" onclick="slide('slider-2',1)">›</button>
+          </div>
+          <div class="prop-dots" id="dots-2"></div>
+          <div class="prop-tag">🏊 Private Pool</div>
+        </div>
+        <div class="prop-info">
+          <div class="prop-num">02</div>
+          <p class="prop-location">📍 Pendleton, SC</p>
+          <h2 class="prop-name">The Pendleton<br><em>Estate</em></h2>
+          <div class="prop-stars">★★★★★ <span>5.0 · 64 Reviews</span></div>
+          <p class="prop-desc">A serene country estate on 5 acres with private pool, fire pit, and panoramic mountain
+            views. Perfect for families and groups seeking a tranquil escape from city life.</p>
+          <div class="prop-features">
+            <div class="feature">Heated Pool</div>
+            <div class="feature">5 Bedrooms · Sleeps 12</div>
+            <div class="feature">Fire Pit & Grill</div>
+            <div class="feature">Mountain Views</div>
+            <div class="feature">Game Room</div>
+            <div class="feature">5 Acres Private</div>
+          </div>
+          <div class="prop-bottom">
+            <div class="prop-price">
+              <div class="from">From</div>
+              <div class="num">$389<span> / night</span></div>
+            </div>
+            <a href="#" target="_blank" class="btn-primary">Book on Airbnb</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="property">
+        <div class="prop-media">
+          <div class="prop-slider" id="slider-3">
+            <div class="prop-slide active"><img
+                src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1000&q=85"
+                alt="Reedy River Retreat"></div>
+            <div class="prop-slide"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1000&q=85"
+                alt="Reedy interior"></div>
+            <div class="prop-slide"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1000&q=85"
+                alt="Reedy view"></div>
+          </div>
+          <div class="prop-arrows">
+            <button class="prop-arr" onclick="slide('slider-3',-1)">‹</button>
+            <button class="prop-arr" onclick="slide('slider-3',1)">›</button>
+          </div>
+          <div class="prop-dots" id="dots-3"></div>
+          <div class="prop-tag">🌿 Nature Escape</div>
+        </div>
+        <div class="prop-info">
+          <div class="prop-num">03</div>
+          <p class="prop-location">📍 Reedy River, SC</p>
+          <h2 class="prop-name">The Reedy River<br><em>Retreat</em></h2>
+          <div class="prop-stars">★★★★★ <span>4.95 · 52 Reviews</span></div>
+          <p class="prop-desc">A modern riverside retreat with floor-to-ceiling windows, private dock, and easy access
+            to hiking trails. Wake up to mist over the water and birdsong every morning.</p>
+          <div class="prop-features">
+            <div class="feature">Private Dock</div>
+            <div class="feature">3 Bedrooms · Sleeps 6</div>
+            <div class="feature">Hot Tub</div>
+            <div class="feature">River Access</div>
+            <div class="feature">Modern Design</div>
+            <div class="feature">Hiking Trails</div>
+          </div>
+          <div class="prop-bottom">
+            <div class="prop-price">
+              <div class="from">From</div>
+              <div class="num">$199<span> / night</span></div>
+            </div>
+            <a href="#" target="_blank" class="btn-primary">Book on Airbnb</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section amenities-section" id="amenities">
+    <div class="section-head">
+      <div>
+        <p class="section-label">What We Offer</p>
+        <h2 class="section-title">Crafted for<br><em>Comfort</em></h2>
+      </div>
+      <p class="section-desc">Every detail is considered to ensure your stay exceeds expectations. From the moment you
+        arrive until you reluctantly check out.</p>
+    </div>
+    <div class="amen-grid">
+      <div class="amen-item"><span class="amen-icon">🏊</span>
+        <h3 class="amen-title">Private Pools</h3>
+        <p class="amen-desc">Heated pools available year-round at every property</p>
+      </div>
+      <div class="amen-item"><span class="amen-icon">🔑</span>
+        <h3 class="amen-title">Self Check-in</h3>
+        <p class="amen-desc">Smart locks for seamless arrival anytime</p>
+      </div>
+      <div class="amen-item"><span class="amen-icon">📶</span>
+        <h3 class="amen-title">Fast WiFi</h3>
+        <p class="amen-desc">High-speed internet throughout, perfect for remote work</p>
+      </div>
+      <div class="amen-item"><span class="amen-icon">🛁</span>
+        <h3 class="amen-title">Premium Linens</h3>
+        <p class="amen-desc">Hotel-quality sheets and towels at every property</p>
+      </div>
+      <div class="amen-item"><span class="amen-icon">☕</span>
+        <h3 class="amen-title">Coffee Bar</h3>
+        <p class="amen-desc">Espresso machines and fresh local beans included</p>
+      </div>
+      <div class="amen-item"><span class="amen-icon">🐕</span>
+        <h3 class="amen-title">Pet Friendly</h3>
+        <p class="amen-desc">Bring your furry friends — beds and bowls provided</p>
+      </div>
+      <div class="amen-item"><span class="amen-icon">🎮</span>
+        <h3 class="amen-title">Entertainment</h3>
+        <p class="amen-desc">Smart TVs, board games, and outdoor activities</p>
+      </div>
+      <div class="amen-item"><span class="amen-icon">✨</span>
+        <h3 class="amen-title">Concierge</h3>
+        <p class="amen-desc">24/7 host support for anything you may need</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews-section" id="reviews">
+    <div class="section-head">
+      <div>
+        <p class="section-label">Guest Stories</p>
+        <h2 class="section-title">What Guests<br><em>Are Saying</em></h2>
+      </div>
+      <p class="section-desc">Real reviews from real guests who've experienced the magic of our properties firsthand.
+      </p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Absolutely magical stay. The Magnolia House exceeded every expectation. The host's
+          attention to detail is unmatched.</p>
+        <div class="review-author">
+          <div class="review-avatar">SM</div>
+          <div class="review-meta">
+            <div class="name">Sarah M.</div>
+            <div class="date">October 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">The Pendleton Estate was the perfect family getaway. The kids lived in the pool and we
+          loved evenings by the fire pit.</p>
+        <div class="review-author">
+          <div class="review-avatar">JD</div>
+          <div class="review-meta">
+            <div class="name">James D.</div>
+            <div class="date">September 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">A true hidden gem. The Reedy River Retreat is exactly what we needed — peaceful,
+          beautiful, and incredibly comfortable.</p>
+        <div class="review-author">
+          <div class="review-avatar">EL</div>
+          <div class="review-meta">
+            <div class="name">Emily L.</div>
+            <div class="date">August 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking-cta" id="book">
+    <div class="booking-inner">
+      <div class="booking-text">
+        <h2>Book Direct,<br><em>Save 10%</em></h2>
+        <p>Skip the platform fees and get exclusive perks when you book directly with us. Plus, enjoy priority booking
+          and personalized recommendations.</p>
+        <div class="booking-perks">
+          <div class="perk">10% off any direct booking</div>
+          <div class="perk">Free welcome basket on arrival</div>
+          <div class="perk">Late checkout when available</div>
+          <div class="perk">Dedicated host support 24/7</div>
+          <div class="perk">Local recommendations & insider tips</div>
+        </div>
+      </div>
+      <div class="booking-form">
+        <h3 class="form-title">Check Availability</h3>
+        <p class="form-sub">We'll respond within 1 hour</p>
+        <form onsubmit="submitForm(event)">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" placeholder="John Smith" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-input" placeholder="+1 555 0123" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="you@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Preferred Property</label>
+            <select class="form-select">
+              <option>The Magnolia House</option>
+              <option>The Pendleton Estate</option>
+              <option>The Reedy River Retreat</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Check-in</label>
+              <input type="date" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Check-out</label>
+              <input type="date" class="form-input">
+            </div>
+          </div>
+          <button type="submit" class="form-submit">Get 10% Off → Send Request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="foot-logo">ROTEM<span>House</span></div>
+        <p class="foot-tag">"Where Southern Charm Meets Modern Luxury — Three Premium Vacation Homes in the Heart of
+          South Carolina."</p>
+      </div>
+      <div class="foot-col">
+        <h4>Properties</h4>
+        <ul>
+          <li><a href="#properties">Magnolia House</a></li>
+          <li><a href="#properties">Pendleton Estate</a></li>
+          <li><a href="#properties">Reedy River Retreat</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#book">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Book Direct</h4>
+        <ul>
+          <li><a href="#book">Check Availability</a></li>
+          <li><a href="https://wa.me/" target="_blank">WhatsApp Us</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#deb6bbb2b2b19eacb1aabbb3b6b1abadbbf0bdb1b3">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">© 2026 Rotem House · All Rights Reserved</p>
+      <p class="foot-airbnb">Also listed on <span>Airbnb</span></p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/" target="_blank" class="wa-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    /* === Cinematic intro: house card → write title → fill with image → clouds rise === */
+    (function buildCinema() {
+      const cinema = document.getElementById('cinema');
+      const houseCard = document.getElementById('houseCard');
+      const svg = document.getElementById('cinemaSvg');
+      const housePatternImg = document.getElementById('housePatternImg');
+      const subWrap = document.getElementById('cinemaSubWrap');
+      const cloudsBottom = document.getElementById('cloudsBottom');
+      if (!cinema) return;
+
+      // Build per-letter tspans inside each stroke text so each glyph can be drawn
+      // sequentially with stroke-dasharray (laser-style writing).
+      const SVG_NS = 'http://www.w3.org/2000/svg';
+      const letterEls = [];
+      svg.querySelectorAll('.t-stroke').forEach(t => {
+        const line = t.getAttribute('data-line');
+        Array.from(line).forEach(ch => {
+          const ts = document.createElementNS(SVG_NS, 'tspan');
+          ts.setAttribute('class', 'ls');
+          ts.textContent = ch;
+          t.appendChild(ts);
+          if (ch !== ' ') letterEls.push(ts);
+        });
+      });
+      const DASH = 520;
+      letterEls.forEach(el => { el.style.strokeDashoffset = DASH; });
+
+      // Build cloud puffs along bottom — varied sizes and offsets so they don't look monolithic
+      const puffs = [
+        // base wide puffs
+        { x: 5, w: 720, h: 460, delay: 0.00, blur: 4 },
+        { x: 22, w: 820, h: 520, delay: 0.06, blur: 5 },
+        { x: 42, w: 880, h: 540, delay: 0.02, blur: 4 },
+        { x: 60, w: 800, h: 500, delay: 0.07, blur: 6 },
+        { x: 78, w: 760, h: 480, delay: 0.04, blur: 5 },
+        { x: 95, w: 700, h: 460, delay: 0.10, blur: 4 },
+        // mid layer (smaller, faster)
+        { x: 12, w: 520, h: 340, delay: 0.14, blur: 3 },
+        { x: 30, w: 580, h: 380, delay: 0.18, blur: 4 },
+        { x: 48, w: 540, h: 360, delay: 0.20, blur: 3 },
+        { x: 66, w: 580, h: 380, delay: 0.16, blur: 4 },
+        { x: 84, w: 520, h: 340, delay: 0.22, blur: 3 },
+        // wisps (thinner, blow ahead)
+        { x: 18, w: 380, h: 200, delay: 0.30, blur: 8 },
+        { x: 38, w: 420, h: 220, delay: 0.28, blur: 8 },
+        { x: 58, w: 400, h: 210, delay: 0.32, blur: 8 },
+        { x: 78, w: 380, h: 200, delay: 0.30, blur: 8 },
+      ];
+      const puffEls = puffs.map(p => {
+        const el = document.createElement('div');
+        el.className = 'puff';
+        el.style.left = 'calc(' + p.x + '% - ' + (p.w / 2) + 'px)';
+        el.style.width = p.w + 'px';
+        el.style.height = p.h + 'px';
+        el.style.bottom = (-p.h * 0.4) + 'px';
+        el.style.filter = 'blur(' + p.blur + 'px)';
+        // small random rotation for organic feel
+        const rot = (Math.random() - 0.5) * 12;
+        el.dataset.rot = rot.toFixed(1);
+        el.dataset.delay = p.delay;
+        // outer puffs drift further outward
+        el.dataset.driftX = ((p.x - 50) * 1.6).toFixed(1);
+        cloudsBottom.appendChild(el);
+        return el;
+      });
+
+      function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function smooth(t) { return t * t * (3 - 2 * t); }
+
+      function onScroll() {
+        const rect = cinema.getBoundingClientRect();
+        const total = cinema.offsetHeight - window.innerHeight;
+        const p = clamp(-rect.top / total, 0, 1);
+
+        // 0.00–0.15: house card visible, idle
+        // 0.15–0.50: title strokes write left → right; house card slowly fades
+        // 0.50–0.70: stroke fills with image (image scrolls behind text via pattern y shift)
+        // 0.70–1.00: clouds rise from bottom; sub copy fades in
+
+        // House floats in the lower portion (sky extends above). Gentle parallax rise.
+        houseCard.style.opacity = '1';
+
+        // SVG title: fade in 0.12–0.22
+        const svgFade = smooth(clamp((p - 0.12) / 0.12, 0, 1));
+        svg.style.opacity = svgFade.toFixed(3);
+
+        // Stroke writing — per letter, laser style (slow, 0.15 → 0.70)
+        const writeP = clamp((p - 0.15) / 0.55, 0, 1);
+        const n = letterEls.length;
+        // Each letter occupies 1/n of the range, with slight overlap for smoother flow
+        const overlap = 0.4; // 0 = strict sequential, 1 = all parallel
+        letterEls.forEach((el, i) => {
+          const start = (i / n) * (1 - overlap / n);
+          const end = start + (1 / n) * (1 + overlap);
+          const local = clamp((writeP - start) / Math.max(end - start, 0.0001), 0, 1);
+          const eased = local * local * (3 - 2 * local);
+          el.style.strokeDashoffset = (DASH * (1 - eased)).toFixed(1);
+        });
+
+        // Switch to filled state at p > 0.7
+        if (p > 0.7) svg.classList.add('is-filled'); else svg.classList.remove('is-filled');
+
+        // Pattern image y-scroll for parallax-inside-text feel (0.7 → 0.95)
+        const parP = smooth(clamp((p - 0.7) / 0.25, 0, 1));
+        // shift pattern up so different parts of house show through letters
+        const patY = lerp(-200, -1200, parP);
+        housePatternImg.setAttribute('y', patY.toFixed(0));
+
+        // Clouds rise from bottom and drift outward — fully clear the screen (later & longer)
+        const cloudP = clamp((p - 0.55) / 0.45, 0, 1);
+        puffEls.forEach((el, i) => {
+          const delay = parseFloat(el.dataset.delay);
+          const driftX = parseFloat(el.dataset.driftX);
+          const local = smooth(clamp((cloudP - delay) / (1 - delay), 0, 1));
+          const ty = lerp(0, -window.innerHeight * 1.7, local);
+          const tx = driftX * local;
+          // fade in fast, fade out at the very end so nothing lingers near the seam
+          const fadeIn = smooth(clamp(local * 2, 0, 1));
+          const fadeOut = smooth(clamp((local - 0.75) / 0.25, 0, 1));
+          const op = fadeIn * (1 - fadeOut);
+          el.style.transform = 'translate(' + tx + 'vw, ' + ty + 'px) rotate(' + el.dataset.rot + 'deg)';
+          el.style.opacity = op.toFixed(3);
+        });
+
+        // Sub copy: fades in 0.78 → 0.92
+        const subP = smooth(clamp((p - 0.78) / 0.14, 0, 1));
+        subWrap.style.opacity = subP.toFixed(3);
+        subWrap.style.transform = 'translateY(' + ((1 - subP) * 24).toFixed(1) + 'px)';
+      }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+
+      // Slide-up + fade-in for the section right after the cinema
+      const heroInfo = document.querySelector('.hero-info-section');
+      if (heroInfo && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { heroInfo.classList.add('is-in'); io.disconnect(); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+        io.observe(heroInfo);
+      } else if (heroInfo) {
+        heroInfo.classList.add('is-in');
+      }
+    })();
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+    function setupSlider(id) {
+      const slider = document.getElementById(id);
+      if (!slider) return;
+      const slides = slider.querySelectorAll('.prop-slide');
+      const dotsContainer = document.getElementById('dots-' + id.split('-')[1]);
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'prop-dot' + (i === 0 ? ' active' : '');
+        d.onclick = () => goToSlide(id, i);
+        dotsContainer.appendChild(d);
+      });
+    }
+    function slide(id, dir) {
+      const slider = document.getElementById(id);
+      const slides = slider.querySelectorAll('.prop-slide');
+      const dots = document.getElementById('dots-' + id.split('-')[1]).children;
+      let curr = Array.from(slides).findIndex(s => s.classList.contains('active'));
+      slides[curr].classList.remove('active'); dots[curr].classList.remove('active');
+      curr = (curr + dir + slides.length) % slides.length;
+      slides[curr].classList.add('active'); dots[curr].classList.add('active');
+    }
+    function goToSlide(id, idx) {
+      const slider = document.getElementById(id);
+      const slides = slider.querySelectorAll('.prop-slide');
+      const dots = document.getElementById('dots-' + id.split('-')[1]).children;
+      slides.forEach(s => s.classList.remove('active'));
+      Array.from(dots).forEach(d => d.classList.remove('active'));
+      slides[idx].classList.add('active'); dots[idx].classList.add('active');
+    }
+    ['slider-1', 'slider-2', 'slider-3'].forEach(setupSlider);
+    setInterval(() => ['slider-1', 'slider-2', 'slider-3'].forEach(id => slide(id, 1)), 6000);
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: .1 });
+    document.querySelectorAll('.stat,.property,.amen-item,.review').forEach(el => observer.observe(el));
+
+    const cObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const t = parseInt(e.target.dataset.target);
+          let start = null;
+          const step = ts => {
+            if (!start) start = ts;
+            const p = Math.min((ts - start) / 1500, 1);
+            e.target.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * t);
+            if (p < 1) requestAnimationFrame(step);
+            else e.target.textContent = t;
+          };
+          requestAnimationFrame(step);
+          cObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: .5 });
+    document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
+
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = '✓ Request Received! We\'ll be in touch shortly';
+      btn.style.background = '#1e3a5f';
+      setTimeout(() => { btn.textContent = 'Get 10% Off → Send Request'; btn.style.background = '' }, 5000);
+    }
+  </script>
+</body>
+
+</html>
