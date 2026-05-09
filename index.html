@@ -689,14 +689,6 @@
       text-align: center;
       position: relative;
       z-index: 10;
-      transform: translateY(120px);
-      opacity: 0;
-      transition: transform 1.4s cubic-bezier(.2, .7, .2, 1), opacity 1.2s ease;
-    }
-
-    .hero-info-section.is-in {
-      transform: translateY(0);
-      opacity: 1;
     }
 
     /* Soft fade from cinema sky into the next section */
@@ -2927,6 +2919,9 @@
             <div class="prop-slide"><img src="/images/greenville-master-suite.jpg"
                 alt="Master suite with luxurious soaking tub at Greenville vacation home">
             </div>
+            <div class="prop-slide"><img src="/images/childrens-room.jpg"
+                alt="Children's room with twin beds at Greenville family vacation home">
+            </div>
           </div>
           <div class="prop-arrows">
             <button class="prop-arr" onclick="slide('slider-1',-1)">‹</button>
@@ -3508,16 +3503,15 @@
     window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
 
     window.addEventListener('load', () => {
-      window.scrollTo(0, 0);
-      // iOS Safari sometimes ignores the first scrollTo - force it multiple times
-      setTimeout(() => window.scrollTo(0, 0), 50);
-      setTimeout(() => window.scrollTo(0, 0), 200);
-      setTimeout(() => window.scrollTo(0, 0), 500);
+      // Only force scroll up if browser tried to restore a non-top position
+      if (window.scrollY > 5) {
+        window.scrollTo(0, 0);
+      }
     });
 
     // Fix for iOS Safari back/forward cache (bfcache) restoring scroll position
     window.addEventListener('pageshow', (e) => {
-      if (e.persisted) window.scrollTo(0, 0);
+      if (e.persisted && window.scrollY > 5) window.scrollTo(0, 0);
     });
   </script>
   <script>
@@ -3677,18 +3671,6 @@
           window.addEventListener('scroll', onScroll, { passive: true });
           window.addEventListener('resize', onScroll);
         }
-      }
-      // Slide-up + fade-in for the section right after the cinema
-      const heroInfo = document.querySelector('.hero-info-section');
-      if (heroInfo && 'IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) { heroInfo.classList.add('is-in'); io.disconnect(); }
-          });
-        }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
-        io.observe(heroInfo);
-      } else if (heroInfo) {
-        heroInfo.classList.add('is-in');
       }
     })();
 
