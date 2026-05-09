@@ -1400,23 +1400,13 @@
     }
 
     @keyframes amenity-scroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
 
     @keyframes amenity-scroll-reverse {
-      from {
-        transform: translateX(-50%);
-      }
-
-      to {
-        transform: translateX(0);
-      }
+      from { transform: translateX(-50%); }
+      to { transform: translateX(0); }
     }
 
     .amen-pill {
@@ -1635,7 +1625,6 @@
         opacity: 0;
         transform: translateY(-8px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
@@ -1984,7 +1973,7 @@
       display: contents;
     }
 
-    .reviews-hidden.collapsed>.review {
+    .reviews-hidden.collapsed > .review {
       display: none;
     }
 
@@ -2961,55 +2950,57 @@
         </div>
       </div>
 
-      <div class="property">
-        <div class="prop-media">
-          <div class="prop-slider" id="slider-2">
-            <div class="prop-slide active"><img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=85"
-                alt="Clemson Getaway 4-bedroom vacation home with private pool in Pendleton, South Carolina">
+        <div class="property">
+          <div class="prop-media">
+            <div class="prop-slider" id="slider-2">
+              <div class="prop-slide active"><img
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=85"
+                  alt="Clemson Getaway 4-bedroom vacation home with private pool in Pendleton, South Carolina">
+              </div>
+              <div class="prop-slide"><img
+                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1000&q=85"
+                  alt="Spacious living room with fireplace at Clemson Getaway vacation rental"></div>
+              <div class="prop-slide"><img
+                  src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000&q=85"
+                  alt="Private fenced pool at Pendleton vacation home near Clemson University"></div>
             </div>
-            <div class="prop-slide"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1000&q=85"
-                alt="Spacious living room with fireplace at Clemson Getaway vacation rental"></div>
-            <div class="prop-slide"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000&q=85"
-                alt="Private fenced pool at Pendleton vacation home near Clemson University"></div>
-          </div>
-          <div class="prop-arrows">
-            <button class="prop-arr" onclick="slide('slider-2',-1)">‹</button>
-            <button class="prop-arr" onclick="slide('slider-2',1)">›</button>
-          </div>
-          <div class="prop-dots" id="dots-2"></div>
-          <div class="prop-tag">🎓 Near Clemson University</div>
-        </div>
-        <div class="prop-info">
-          <div class="prop-num">02</div>
-          <p class="prop-location">📍 Pendleton, South Carolina</p>
-          <h2 class="prop-name">Clemson Getaway<br><em>Pool Retreat</em></h2>
-          <div class="prop-stars">★★★★★ <span>5.0 · 2 Reviews · Superhost</span></div>
-          <p class="prop-desc">A modern, stylish 4-bedroom home fully equipped for the perfect group getaway. Step
-            outside to a private fenced pool, outdoor fireplace, BBQ grill, and trampoline — everything you need for a
-            memorable stay with family or friends. Just 12 minutes from Clemson University.</p>
-          <div class="prop-features">
-            <div class="feature">Private Fenced Pool</div>
-            <div class="feature">4 Bedrooms · Sleeps 10</div>
-            <div class="feature">2.5 Baths · 8 Beds</div>
-            <div class="feature">Outdoor Fireplace</div>
-            <div class="feature">BBQ Grill & Trampoline</div>
-            <div class="feature">Game Area</div>
-            <div class="feature">Self Check-in</div>
-            <div class="feature">Pet Friendly</div>
-            <div class="feature">12min to Clemson University</div>
-          </div>
-          <div class="prop-bottom">
-            <div class="prop-price">
-              <div class="from">Check availability</div>
-              <div class="num">on Airbnb</div>
+            <div class="prop-arrows">
+              <button class="prop-arr" onclick="slide('slider-2',-1)">‹</button>
+              <button class="prop-arr" onclick="slide('slider-2',1)">›</button>
             </div>
-            <a href="https://www.airbnb.com/rooms/1611252745011009724" target="_blank" class="btn-primary">Book on
-              Airbnb</a>
+            <div class="prop-dots" id="dots-2"></div>
+            <div class="prop-tag">🎓 Near Clemson University</div>
+          </div>
+          <div class="prop-info">
+            <div class="prop-num">02</div>
+            <p class="prop-location">📍 Pendleton, South Carolina</p>
+            <h2 class="prop-name">Clemson Getaway<br><em>Pool Retreat</em></h2>
+            <div class="prop-stars">★★★★★ <span>5.0 · 2 Reviews · Superhost</span></div>
+            <p class="prop-desc">A modern, stylish 4-bedroom home fully equipped for the perfect group getaway. Step
+              outside to a private fenced pool, outdoor fireplace, BBQ grill, and trampoline — everything you need for a
+              memorable stay with family or friends. Just 12 minutes from Clemson University.</p>
+            <div class="prop-features">
+              <div class="feature">Private Fenced Pool</div>
+              <div class="feature">4 Bedrooms · Sleeps 10</div>
+              <div class="feature">2.5 Baths · 8 Beds</div>
+              <div class="feature">Outdoor Fireplace</div>
+              <div class="feature">BBQ Grill & Trampoline</div>
+              <div class="feature">Game Area</div>
+              <div class="feature">Self Check-in</div>
+              <div class="feature">Pet Friendly</div>
+              <div class="feature">12min to Clemson University</div>
+            </div>
+            <div class="prop-bottom">
+              <div class="prop-price">
+                <div class="from">Check availability</div>
+                <div class="num">on Airbnb</div>
+              </div>
+              <a href="https://www.airbnb.com/rooms/1611252745011009724" target="_blank" class="btn-primary">Book on
+                Airbnb</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
 
   <section class="section reviews-section" id="reviews">
@@ -3102,80 +3093,77 @@
         </div>
       </div>
       <div class="reviews-hidden" id="reviewsHidden">
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">Rotem is an excellent host. She is very easy to communicate with. Her place is
-            gorgeous.
-            Me and my family had an incredible time at her beautiful house. She surprised us with thoughtful touches.
-          </p>
-          <div class="review-author">
-            <div class="review-avatar">E</div>
-            <div class="review-meta">
-              <div class="name">Ericka</div>
-              <div class="date">July 2025 · Group trip</div>
-            </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Rotem is an excellent host. She is very easy to communicate with. Her place is gorgeous.
+          Me and my family had an incredible time at her beautiful house. She surprised us with thoughtful touches.</p>
+        <div class="review-author">
+          <div class="review-avatar">E</div>
+          <div class="review-meta">
+            <div class="name">Ericka</div>
+            <div class="date">July 2025 · Group trip</div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">This Airbnb was perfect for us. Super close to my son's place. Loved that there were
-            little gifts left for us. So thoughtful and a nice touch.</p>
-          <div class="review-author">
-            <div class="review-avatar">S</div>
-            <div class="review-meta">
-              <div class="name">Shari</div>
-              <div class="date">December 2025 · Mission Viejo, CA</div>
-            </div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">This Airbnb was perfect for us. Super close to my son's place. Loved that there were
+          little gifts left for us. So thoughtful and a nice touch.</p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div class="review-meta">
+            <div class="name">Shari</div>
+            <div class="date">December 2025 · Mission Viejo, CA</div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">I had a wonderful and relaxing stay! The space was beautifully decorated, and you can
-            tell she put so much thought into every detail — with cozy touches throughout. Everything felt perfect.</p>
-          <div class="review-author">
-            <div class="review-avatar">C</div>
-            <div class="review-meta">
-              <div class="name">Candace</div>
-              <div class="date">October 2025 · Prosper, TX</div>
-            </div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">I had a wonderful and relaxing stay! The space was beautifully decorated, and you can
+          tell she put so much thought into every detail — with cozy touches throughout. Everything felt perfect.</p>
+        <div class="review-author">
+          <div class="review-avatar">C</div>
+          <div class="review-meta">
+            <div class="name">Candace</div>
+            <div class="date">October 2025 · Prosper, TX</div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">We had a great stay. The home is very comfortable and clean. The pool was clean and we
-            enjoyed relaxing on hot days. Thank you for all the extra touches you added to make it special.</p>
-          <div class="review-author">
-            <div class="review-avatar">K</div>
-            <div class="review-meta">
-              <div class="name">Karen</div>
-              <div class="date">September 2025 · Stayed a few nights</div>
-            </div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">We had a great stay. The home is very comfortable and clean. The pool was clean and we
+          enjoyed relaxing on hot days. Thank you for all the extra touches you added to make it special.</p>
+        <div class="review-author">
+          <div class="review-avatar">K</div>
+          <div class="review-meta">
+            <div class="name">Karen</div>
+            <div class="date">September 2025 · Stayed a few nights</div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">The backyard was amazing for children! The playground, trampoline and fire pit were
-            very
-            fun additions to make the stay more enjoyable. We especially loved the coffee bar!</p>
-          <div class="review-author">
-            <div class="review-avatar">A</div>
-            <div class="review-meta">
-              <div class="name">Alyssa</div>
-              <div class="date">February 2026 · Clermont, FL · Clemson Getaway</div>
-            </div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">The backyard was amazing for children! The playground, trampoline and fire pit were very
+          fun additions to make the stay more enjoyable. We especially loved the coffee bar!</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div class="review-meta">
+            <div class="name">Alyssa</div>
+            <div class="date">February 2026 · Clermont, FL · Clemson Getaway</div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">This is an amazing place, and she's the best host.</p>
-          <div class="review-author">
-            <div class="review-avatar">J</div>
-            <div class="review-meta">
-              <div class="name">Jose</div>
-              <div class="date">March 2026 · Group trip · Clemson Getaway</div>
-            </div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">This is an amazing place, and she's the best host.</p>
+        <div class="review-author">
+          <div class="review-avatar">J</div>
+          <div class="review-meta">
+            <div class="name">Jose</div>
+            <div class="date">March 2026 · Group trip · Clemson Getaway</div>
           </div>
         </div>
+      </div>
       </div><!-- end reviews-hidden -->
     </div>
 
@@ -3328,9 +3316,7 @@
             <span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
-            <p>We have two homes in South Carolina: one in <strong>Greenville</strong> (just 20 minutes from Downtown
-              Greenville and GSP Airport), and one in <strong>Pendleton</strong> (just 12 minutes from Clemson
-              University). Exact addresses are shared after booking confirmation.</p>
+            <p>We have two homes in South Carolina: one in <strong>Greenville</strong> (just 20 minutes from Downtown Greenville and GSP Airport), and one in <strong>Pendleton</strong> (just 12 minutes from Clemson University). Exact addresses are shared after booking confirmation.</p>
           </div>
         </details>
 
@@ -3340,9 +3326,7 @@
             <span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
-            <p>Both homes feature <strong>self check-in</strong> with smart locks, so you can arrive anytime that works
-              for you — no need to coordinate a meeting. You'll receive your unique entry code 24 hours before check-in.
-            </p>
+            <p>Both homes feature <strong>self check-in</strong> with smart locks, so you can arrive anytime that works for you — no need to coordinate a meeting. You'll receive your unique entry code 24 hours before check-in.</p>
           </div>
         </details>
 
@@ -3352,9 +3336,7 @@
             <span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
-            <p>Yes! Both homes are <strong>pet friendly</strong>. We do require a non-refundable pet fee of $150 for up
-              to 2 dogs. Service animals are welcomed at no additional charge — just please show valid ID before
-              arrival. We kindly ask that pets stay off furniture and beds during your stay.</p>
+            <p>Yes! Both homes are <strong>pet friendly</strong>. We do require a non-refundable pet fee of $150 for up to 2 dogs. Service animals are welcomed at no additional charge — just please show valid ID before arrival. We kindly ask that pets stay off furniture and beds during your stay.</p>
           </div>
         </details>
 
@@ -3364,9 +3346,7 @@
             <span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
-            <p>The <strong>Greenville home</strong> comfortably hosts up to 6 guests with 3 bedrooms and 4 beds. The
-              <strong>Clemson Pendleton retreat</strong> hosts up to 10 guests with 4 bedrooms, 8 beds, and 2.5
-              bathrooms — perfect for larger groups and game-day weekends.</p>
+            <p>The <strong>Greenville home</strong> comfortably hosts up to 6 guests with 3 bedrooms and 4 beds. The <strong>Clemson Pendleton retreat</strong> hosts up to 10 guests with 4 bedrooms, 8 beds, and 2.5 bathrooms — perfect for larger groups and game-day weekends.</p>
           </div>
         </details>
 
@@ -3376,9 +3356,7 @@
             <span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
-            <p>Absolutely. Booking direct through our site saves you Airbnb's service fees, and we pass those savings to
-              you as a <strong>10% discount</strong>. Plus, you'll get a free welcome basket on arrival, late checkout
-              when available, and dedicated host support.</p>
+            <p>Absolutely. Booking direct through our site saves you Airbnb's service fees, and we pass those savings to you as a <strong>10% discount</strong>. Plus, you'll get a free welcome basket on arrival, late checkout when available, and dedicated host support.</p>
           </div>
         </details>
 
@@ -3388,10 +3366,7 @@
             <span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
-            <p><strong>Greenville home:</strong> 20 minutes from Downtown Greenville (Falls Park, Liberty Bridge,
-              restaurants, breweries) and GSP Airport.<br><br><strong>Pendleton home:</strong> 12 minutes from Clemson
-              University — ideal for football games, campus visits, and exploring Lake Hartwell. The home features a
-              private pool, fenced yard, trampoline, BBQ grill, and outdoor fireplace.</p>
+            <p><strong>Greenville home:</strong> 20 minutes from Downtown Greenville (Falls Park, Liberty Bridge, restaurants, breweries) and GSP Airport.<br><br><strong>Pendleton home:</strong> 12 minutes from Clemson University — ideal for football games, campus visits, and exploring Lake Hartwell. The home features a private pool, fenced yard, trampoline, BBQ grill, and outdoor fireplace.</p>
           </div>
         </details>
 
@@ -3401,9 +3376,7 @@
             <span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
-            <p>We offer flexible cancellation. For exact terms based on your booking dates, please reach out via the
-              Check Availability form or message us through Airbnb. As a Superhost with 4.97★ rating, we're committed to
-              working with you on any changes.</p>
+            <p>We offer flexible cancellation. For exact terms based on your booking dates, please reach out via the Check Availability form or message us through Airbnb. As a Superhost with 4.97★ rating, we're committed to working with you on any changes.</p>
           </div>
         </details>
 
@@ -3413,10 +3386,7 @@
             <span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
-            <p>Yes, both homes are fully stocked. You'll find <strong>premium hotel-quality linens</strong>, body
-              towels, face towels, makeup towels, and pampering products including hairdryer, straightener, makeup
-              wipes, cotton swabs, and travel-sized toothbrushes and toothpaste. The kitchen has spices, coffee station,
-              cookbooks, and basic cooking essentials.</p>
+            <p>Yes, both homes are fully stocked. You'll find <strong>premium hotel-quality linens</strong>, body towels, face towels, makeup towels, and pampering products including hairdryer, straightener, makeup wipes, cotton swabs, and travel-sized toothbrushes and toothpaste. The kitchen has spices, coffee station, cookbooks, and basic cooking essentials.</p>
           </div>
         </details>
       </div>
@@ -3500,18 +3470,30 @@
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
 
-    window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
-
-    window.addEventListener('load', () => {
-      // Only force scroll up if browser tried to restore a non-top position
+    // Force scroll to top - iOS Safari restores scroll AFTER load event,
+    // so we need to check at multiple intervals
+    function forceTopIfRestored() {
       if (window.scrollY > 5) {
         window.scrollTo(0, 0);
       }
+    }
+
+    window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
+
+    window.addEventListener('load', () => {
+      forceTopIfRestored();
+      // iOS Safari restores scroll position 100-500ms after load
+      setTimeout(forceTopIfRestored, 100);
+      setTimeout(forceTopIfRestored, 300);
+      setTimeout(forceTopIfRestored, 600);
     });
 
     // Fix for iOS Safari back/forward cache (bfcache) restoring scroll position
     window.addEventListener('pageshow', (e) => {
-      if (e.persisted && window.scrollY > 5) window.scrollTo(0, 0);
+      if (e.persisted) {
+        forceTopIfRestored();
+        setTimeout(forceTopIfRestored, 100);
+      }
     });
   </script>
   <script>
