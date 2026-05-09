@@ -475,16 +475,23 @@
 
     @media (max-width: 768px) {
       .cinema {
-        height: 220vh;
+        height: 100vh;
+      }
+
+      .cinema-house-card {
+        background: #1a2640;
       }
 
       .cinema-house-card img {
-        object-position: center 38%;
+        object-fit: cover;
+        object-position: center 40%;
         transform: scale(1);
+        width: 100%;
+        height: 100%;
       }
 
       .cinema-sub-wrap {
-        top: 84%;
+        top: 60%;
         padding: 0 8vw;
       }
 
@@ -494,7 +501,7 @@
       }
 
       .cinema-clouds-bottom {
-        bottom: -8vh;
+        bottom: -10vh;
       }
 
       .hero-info-section {
@@ -1999,8 +2006,8 @@
         <h4>Book Direct</h4>
         <ul>
           <li><a href="#book">Check Availability</a></li>
-          <li><a href="https://wa.me/" target="_blank">WhatsApp Us</a></li>
-          <li><a href="/cdn-cgi/l/email-protection#6d05080101022d1f021908000502181e08430e0200">Email Us</a></li>
+          <li><a href="https://wa.me/19175471580" target="_blank">WhatsApp Us</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#4129242d2d2e01332e35242c292e3432246f222e2c">Email Us</a></li>
         </ul>
       </div>
     </div>
@@ -2010,7 +2017,7 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <a href="https://wa.me/19175471580" target="_blank" class="wa-float" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24">
       <path
         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -2096,17 +2103,8 @@
       function lerp(a, b, t) { return a + (b - a) * t; }
       function smooth(t) { return t * t * (3 - 2 * t); }
 
-      function onScroll() {
-        const rect = cinema.getBoundingClientRect();
-        const total = cinema.offsetHeight - window.innerHeight;
-        const p = clamp(-rect.top / total, 0, 1);
-
-        // 0.00–0.15: house card visible, idle
-        // 0.15–0.50: title strokes write left → right; house card slowly fades
-        // 0.50–0.70: stroke fills with image (image scrolls behind text via pattern y shift)
-        // 0.70–1.00: clouds rise from bottom; sub copy fades in
-
-        // House floats in the lower portion (sky extends above). Gentle parallax rise.
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      function apply(p) {
         houseCard.style.opacity = '1';
 
         // SVG title: fade in 0.12–0.22
@@ -2116,8 +2114,7 @@
         // Stroke writing — per letter, laser style (slow, 0.15 → 0.70)
         const writeP = clamp((p - 0.15) / 0.55, 0, 1);
         const n = letterEls.length;
-        // Each letter occupies 1/n of the range, with slight overlap for smoother flow
-        const overlap = 0.4; // 0 = strict sequential, 1 = all parallel
+        const overlap = 0.4;
         letterEls.forEach((el, i) => {
           const start = (i / n) * (1 - overlap / n);
           const end = start + (1 / n) * (1 + overlap);
@@ -2126,24 +2123,19 @@
           el.style.strokeDashoffset = (DASH * (1 - eased)).toFixed(1);
         });
 
-        // Switch to filled state at p > 0.7
         if (p > 0.7) svg.classList.add('is-filled'); else svg.classList.remove('is-filled');
 
-        // Pattern image y-scroll for parallax-inside-text feel (0.7 → 0.95)
         const parP = smooth(clamp((p - 0.7) / 0.25, 0, 1));
-        // shift pattern up so different parts of house show through letters
         const patY = lerp(-200, -1200, parP);
         housePatternImg.setAttribute('y', patY.toFixed(0));
 
-        // Clouds rise from bottom and drift outward — fully clear the screen (later & longer)
-        const cloudP = clamp((p - 0.55) / 0.45, 0, 1);
+        const cloudP = clamp((p - 0.5) / 0.32, 0, 1);
         puffEls.forEach((el, i) => {
           const delay = parseFloat(el.dataset.delay);
           const driftX = parseFloat(el.dataset.driftX);
           const local = smooth(clamp((cloudP - delay) / (1 - delay), 0, 1));
           const ty = lerp(0, -window.innerHeight * 1.7, local);
           const tx = driftX * local;
-          // fade in fast, fade out at the very end so nothing lingers near the seam
           const fadeIn = smooth(clamp(local * 2, 0, 1));
           const fadeOut = smooth(clamp((local - 0.75) / 0.25, 0, 1));
           const op = fadeIn * (1 - fadeOut);
@@ -2151,14 +2143,34 @@
           el.style.opacity = op.toFixed(3);
         });
 
-        // Sub copy: fades in 0.78 → 0.92
-        const subP = smooth(clamp((p - 0.78) / 0.14, 0, 1));
+        const subP = smooth(clamp((p - 0.88) / 0.10, 0, 1));
         subWrap.style.opacity = subP.toFixed(3);
         subWrap.style.transform = 'translateY(' + ((1 - subP) * 24).toFixed(1) + 'px)';
       }
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
+
+      function onScroll() {
+        const rect = cinema.getBoundingClientRect();
+        const total = cinema.offsetHeight - window.innerHeight;
+        const p = clamp(-rect.top / total, 0, 1);
+        apply(p);
+      }
+
+      if (isMobile) {
+        // Auto-play the intro on mobile (no scroll required)
+        apply(0);
+        const dur = 5500;
+        const start = performance.now() + 250;
+        function tick(now) {
+          const t = clamp((now - start) / dur, 0, 1);
+          apply(t);
+          if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      } else {
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+      }
 
       // Slide-up + fade-in for the section right after the cinema
       const heroInfo = document.querySelector('.hero-info-section');
