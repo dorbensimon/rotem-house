@@ -956,6 +956,186 @@
 
     .reviews-section {
       background: var(--apple-bg-alt) !important;
+      overflow: hidden;
+      padding-bottom: 80px;
+    }
+
+    /* ── Testimonial Stack ── */
+    .ts-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 56px;
+      padding: 0 48px;
+      min-height: 320px;
+    }
+
+    .ts-stage {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      height: 280px;
+      cursor: grab;
+    }
+
+    .ts-stage:active {
+      cursor: grabbing;
+    }
+
+    /* every card sits on top of each other */
+    .ts-card {
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .12);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .1);
+      transition: transform .55s cubic-bezier(.34, 1.56, .64, 1), opacity .45s ease;
+      will-change: transform, opacity;
+      user-select: none;
+    }
+
+    .ts-card-inner {
+      padding: 28px 30px 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .ts-stars {
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+
+    .ts-quote {
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgb(0, 0, 0);
+      margin: 0;
+      flex: 1;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+
+    .ts-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+      flex-shrink: 0;
+    }
+
+    .ts-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), #c8960c);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ts-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    .ts-date {
+      font-size: 11px;
+      color: rgb(0, 0, 0);
+      margin-top: 2px;
+    }
+
+    /* ── Arrow buttons ── */
+    .ts-arrow {
+      position: relative;
+      z-index: 10;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .15);
+      background: rgba(255, 255, 255, .06);
+      backdrop-filter: blur(8px);
+      color: rgba(255, 255, 255, .65);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ts-arrow:hover {
+      background: rgba(212, 175, 55, .2);
+      border-color: rgba(212, 175, 55, .4);
+      color: var(--gold);
+    }
+
+    /* ── Dots ── */
+    .ts-dots {
+      position: absolute;
+      bottom: -36px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .ts-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, .25);
+      cursor: pointer;
+      transition: all .25s;
+      padding: 0;
+    }
+
+    .ts-dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+
+    /* dragging state */
+    .ts-card.is-dragging {
+      transition: none;
+    }
+
+    @media (max-width: 600px) {
+      .ts-wrap {
+        padding: 0 36px;
+      }
+
+      .ts-stage {
+        height: 300px;
+      }
+
+      .ts-card-inner {
+        padding: 22px 20px 18px;
+      }
+
+      .ts-quote {
+        font-size: 14px;
+      }
     }
 
     .amenities-section {
@@ -2305,7 +2485,99 @@
       box-shadow: 0 10px 30px rgba(212, 175, 55, .4)
     }
 
-    /* ── Date trigger buttons ── */
+    /* ── Hero search bar ── */
+    .hero-search {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      padding: 12px 28px;
+      max-width: 420px;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .25);
+      transition: box-shadow .2s, transform .2s;
+      border: none;
+      text-align: left;
+    }
+
+    .hero-search:hover {
+      box-shadow: 0 12px 50px rgba(0, 0, 0, .35);
+      transform: translateY(-2px);
+    }
+
+    .hero-search-fields {
+      flex: 1;
+    }
+
+    .hero-search-text {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .hero-search-sub {
+      display: block;
+      font-size: 12px;
+      color: #666;
+      margin-top: 1px;
+    }
+
+    /* ── Guests stepper ── */
+    .guests-stepper {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--input-bg, rgba(255, 255, 255, .06));
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 12px;
+      padding: 12px 18px;
+      user-select: none;
+    }
+
+    .guests-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, .4);
+      background: rgba(212, 175, 55, .1);
+      color: var(--gold);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .18s;
+      flex-shrink: 0;
+    }
+
+    .guests-btn:hover {
+      background: rgba(212, 175, 55, .25);
+      border-color: var(--gold);
+    }
+
+    .guests-btn:disabled {
+      opacity: .3;
+      cursor: not-allowed;
+    }
+
+    .guests-count {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .guests-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, .6);
+      flex: 1;
+    }
+
     .date-trigger {
       display: flex;
       align-items: center;
@@ -3208,33 +3480,19 @@
       </svg>
       <div class="cinema-sub-wrap" id="cinemaSubWrap">
         <p>Luxury vacation homes in South Carolina · Find what moves you.</p>
-        <div class="cinema-cta-group">
-          <a href="#book" class="cinema-cta cinema-cta-primary">Book Now →</a>
-          <a href="#properties" class="cinema-cta cinema-cta-secondary">View Properties</a>
-        </div>
+        <button class="hero-search"
+          onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'});setTimeout(function(){var el=document.getElementById('propertySelect');if(el)el.focus();},600);"
+          aria-label="Check availability">
+          <div class="hero-search-fields">
+            <span class="hero-search-text">Check availability</span>
+            <span class="hero-search-sub">Add dates · Add guests</span>
+          </div>
+        </button>
       </div>
       <div class="cinema-clouds-bottom" id="cloudsBottom"></div>
     </div>
   </section>
 
-  <section class="hero-info-section">
-    <div class="hero-info-stats">
-      <div class="stat-card"><span class="stat-card-label">Booking With</span><span class="stat-card-value">10%
-          OFF</span></div>
-      <div class="stat-card"><span class="stat-card-label">Cancellation</span><span
-          class="stat-card-value">Flexible</span></div>
-      <div class="stat-card"><span class="stat-card-label">Property Size</span><span class="stat-card-value">3500
-          SQ.FT</span></div>
-    </div>
-    <div class="hero-info-distances">
-      <div class="distance-badge"><span class="distance-time">5 MIN</span><span
-          class="distance-label">DOWNTOWN<br>GREENVILLE</span></div>
-      <div class="distance-badge"><span class="distance-time">15 MIN</span><span class="distance-label">FALLS
-          PARK<br>RIVERWALK</span></div>
-      <div class="distance-badge"><span class="distance-time">25 MIN</span><span class="distance-label">PARIS
-          MOUNTAIN<br>STATE PARK</span></div>
-    </div>
-  </section>
 
   <div class="marquee">
     <div class="marquee-track">
@@ -3477,117 +3735,139 @@
       </div>
     </div>
 
-    <div class="reviews-grid">
-      <div class="review">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">I have to say this was an exceptional stay. Communication with the host was excellent,
-          and all instructions were clear and easy to follow. Highly recommended!</p>
-        <div class="review-author">
-          <div class="review-avatar">A</div>
-          <div class="review-meta">
-            <div class="name">Amit</div>
-            <div class="date">December 2025 · Group trip</div>
-          </div>
-        </div>
-      </div>
-      <div class="review">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">Home away from home is the best way I can describe our stay! Beautiful and comfortable
-          house — pool was really fun! Cooking was a delight since we didn't have to think about anything.</p>
-        <div class="review-author">
-          <div class="review-avatar">M</div>
-          <div class="review-meta">
-            <div class="name">Maria</div>
-            <div class="date">September 2025 · Cheektowaga, NY</div>
-          </div>
-        </div>
-      </div>
-      <div class="reviews-hidden" id="reviewsHidden">
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">Rotem is an excellent host. She is very easy to communicate with. Her place is
-            gorgeous.
-            Me and my family had an incredible time at her beautiful house. She surprised us with thoughtful touches.
-          </p>
-          <div class="review-author">
-            <div class="review-avatar">E</div>
-            <div class="review-meta">
-              <div class="name">Ericka</div>
-              <div class="date">July 2025 · Group trip</div>
+    <!-- Glass testimonial stack -->
+    <div class="ts-wrap">
+      <button class="ts-arrow ts-arrow--prev" id="tsPrev" aria-label="Previous">&#8249;</button>
+
+      <div class="ts-stage" id="tsStage">
+
+        <div class="ts-card" data-index="0">
+          <div class="ts-card-inner">
+            <div class="ts-stars">★★★★★</div>
+            <p class="ts-quote">"I have to say this was an exceptional stay. Communication with the host was excellent,
+              and all instructions were clear and easy to follow. Highly recommended!"</p>
+            <div class="ts-author">
+              <div class="ts-avatar">A</div>
+              <div>
+                <div class="ts-name">Amit</div>
+                <div class="ts-date">December 2025 · Group trip</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">This Airbnb was perfect for us. Super close to my son's place. Loved that there were
-            little gifts left for us. So thoughtful and a nice touch.</p>
-          <div class="review-author">
-            <div class="review-avatar">S</div>
-            <div class="review-meta">
-              <div class="name">Shari</div>
-              <div class="date">December 2025 · Mission Viejo, CA</div>
+
+        <div class="ts-card" data-index="1">
+          <div class="ts-card-inner">
+            <div class="ts-stars">★★★★★</div>
+            <p class="ts-quote">"Home away from home is the best way I can describe our stay! Beautiful and comfortable
+              house — pool was really fun! Cooking was a delight since we didn't have to think about anything."</p>
+            <div class="ts-author">
+              <div class="ts-avatar">M</div>
+              <div>
+                <div class="ts-name">Maria</div>
+                <div class="ts-date">September 2025 · Cheektowaga, NY</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">I had a wonderful and relaxing stay! The space was beautifully decorated, and you can
-            tell she put so much thought into every detail — with cozy touches throughout. Everything felt perfect.</p>
-          <div class="review-author">
-            <div class="review-avatar">C</div>
-            <div class="review-meta">
-              <div class="name">Candace</div>
-              <div class="date">October 2025 · Prosper, TX</div>
+
+        <div class="ts-card" data-index="2">
+          <div class="ts-card-inner">
+            <div class="ts-stars">★★★★★</div>
+            <p class="ts-quote">"Rotem is an excellent host. She is very easy to communicate with. Her place is
+              gorgeous. Me and my family had an incredible time. She surprised us with thoughtful touches."</p>
+            <div class="ts-author">
+              <div class="ts-avatar">E</div>
+              <div>
+                <div class="ts-name">Ericka</div>
+                <div class="ts-date">July 2025 · Group trip</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">We had a great stay. The home is very comfortable and clean. The pool was clean and we
-            enjoyed relaxing on hot days. Thank you for all the extra touches you added to make it special.</p>
-          <div class="review-author">
-            <div class="review-avatar">K</div>
-            <div class="review-meta">
-              <div class="name">Karen</div>
-              <div class="date">September 2025 · Stayed a few nights</div>
+
+        <div class="ts-card" data-index="3">
+          <div class="ts-card-inner">
+            <div class="ts-stars">★★★★★</div>
+            <p class="ts-quote">"This Airbnb was perfect for us. Super close to my son's place. Loved that there were
+              little gifts left for us. So thoughtful and a nice touch."</p>
+            <div class="ts-author">
+              <div class="ts-avatar">S</div>
+              <div>
+                <div class="ts-name">Shari</div>
+                <div class="ts-date">December 2025 · Mission Viejo, CA</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">The backyard was amazing for children! The playground, trampoline and fire pit were
-            very
-            fun additions to make the stay more enjoyable. We especially loved the coffee bar!</p>
-          <div class="review-author">
-            <div class="review-avatar">A</div>
-            <div class="review-meta">
-              <div class="name">Alyssa</div>
-              <div class="date">February 2026 · Clermont, FL · Clemson Getaway</div>
+
+        <div class="ts-card" data-index="4">
+          <div class="ts-card-inner">
+            <div class="ts-stars">★★★★★</div>
+            <p class="ts-quote">"I had a wonderful and relaxing stay! The space was beautifully decorated — you can tell
+              she put so much thought into every detail. Everything felt perfect."</p>
+            <div class="ts-author">
+              <div class="ts-avatar">C</div>
+              <div>
+                <div class="ts-name">Candace</div>
+                <div class="ts-date">October 2025 · Prosper, TX</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">This is an amazing place, and she's the best host.</p>
-          <div class="review-author">
-            <div class="review-avatar">J</div>
-            <div class="review-meta">
-              <div class="name">Jose</div>
-              <div class="date">March 2026 · Group trip · Clemson Getaway</div>
+
+        <div class="ts-card" data-index="5">
+          <div class="ts-card-inner">
+            <div class="ts-stars">★★★★★</div>
+            <p class="ts-quote">"We had a great stay. The home is very comfortable and clean. The pool was clean and we
+              enjoyed relaxing on hot days. Thank you for all the extra touches."</p>
+            <div class="ts-author">
+              <div class="ts-avatar">K</div>
+              <div>
+                <div class="ts-name">Karen</div>
+                <div class="ts-date">September 2025</div>
+              </div>
             </div>
           </div>
         </div>
-      </div><!-- end reviews-hidden -->
+
+        <div class="ts-card" data-index="6">
+          <div class="ts-card-inner">
+            <div class="ts-stars">★★★★★</div>
+            <p class="ts-quote">"The backyard was amazing for children! The playground, trampoline and fire pit were
+              very fun. We especially loved the coffee bar — such a nice touch!"</p>
+            <div class="ts-author">
+              <div class="ts-avatar">A</div>
+              <div>
+                <div class="ts-name">Alyssa</div>
+                <div class="ts-date">February 2026 · Clermont, FL · Clemson</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ts-card" data-index="7">
+          <div class="ts-card-inner">
+            <div class="ts-stars">★★★★★</div>
+            <p class="ts-quote">"This is an amazing place, and she's the best host."</p>
+            <div class="ts-author">
+              <div class="ts-avatar">J</div>
+              <div>
+                <div class="ts-name">Jose</div>
+                <div class="ts-date">March 2026 · Group trip · Clemson</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end ts-stage -->
+
+      <button class="ts-arrow ts-arrow--next" id="tsNext" aria-label="Next">&#8250;</button>
+
+      <!-- dots -->
+      <div class="ts-dots" id="tsDots"></div>
     </div>
 
-    <div class="reviews-cta">
-      <button class="reviews-show-more" id="reviewsShowMore" onclick="toggleReviews()">
-        <span class="reviews-show-more-text">Show 6 More Reviews</span>
-        <span class="reviews-show-more-icon">↓</span>
-      </button>
-      <a href="https://www.airbnb.com/users/show/682797064/listings" target="_blank" class="reviews-link">Read all
-        reviews on Airbnb →</a>
-    </div>
   </section>
   <section class="section amenities-section" id="amenities">
     <div class="section-head">
@@ -3720,6 +4000,17 @@
               <input type="hidden" id="checkOutValue">
             </div>
           </div>
+          <div class="form-group">
+            <label class="form-label" for="guestsInput">Number of Guests <span class="req-mark"
+                data-for="guestsInput">*</span></label>
+            <div class="guests-stepper" id="guestsStepper">
+              <button type="button" class="guests-btn" id="guestsMinus" aria-label="Remove guest">&#8722;</button>
+              <span class="guests-count" id="guestsCount">1</span>
+              <span class="guests-label">guest</span>
+              <button type="button" class="guests-btn" id="guestsPlus" aria-label="Add guest">&#43;</button>
+            </div>
+            <input type="hidden" id="guestsInput" value="1">
+          </div>
           <button type="submit" class="form-submit" id="formSubmitBtn">Get 10% Off &#8594; Send Request</button>
         </form>
       </div>
@@ -3779,7 +4070,8 @@
           <div class="faq-answer">
             <p>The <strong>Greenville home</strong> comfortably hosts up to 6 guests with 3 bedrooms and 4 beds. The
               <strong>Clemson Pendleton retreat</strong> hosts up to 10 guests with 4 bedrooms, 8 beds, and 2.5
-              bathrooms — perfect for larger groups and game-day weekends.</p>
+              bathrooms — perfect for larger groups and game-day weekends.
+            </p>
           </div>
         </details>
 
@@ -4171,29 +4463,6 @@
       btn.style.background = '#1e3a5f';
       setTimeout(() => { btn.textContent = 'Get 10% Off → Send Request'; btn.style.background = '' }, 5000);
     }
-
-    /* Reviews show more/less toggle */
-    (function initReviews() {
-      const hidden = document.getElementById('reviewsHidden');
-      if (hidden) hidden.classList.add('collapsed');
-    })();
-
-    function toggleReviews() {
-      const hidden = document.getElementById('reviewsHidden');
-      const btn = document.getElementById('reviewsShowMore');
-      const text = btn.querySelector('.reviews-show-more-text');
-      const isCollapsed = hidden.classList.contains('collapsed');
-
-      if (isCollapsed) {
-        hidden.classList.remove('collapsed');
-        btn.classList.add('expanded');
-        text.textContent = 'Show Less';
-      } else {
-        hidden.classList.add('collapsed');
-        btn.classList.remove('expanded');
-        text.textContent = 'Show 6 More Reviews';
-      }
-    }
   </script>
 
   <!-- ═══════════════════════════════════════════
@@ -4224,396 +4493,550 @@
   <!-- Toast container -->
   <div class="toast-stack" id="toastStack"></div>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- Testimonial Stack Logic -->
+  <script>
+    (function () {
+      var cards = Array.from(document.querySelectorAll('.ts-card'));
+      var dotsEl = document.getElementById('tsDots');
+      var stage = document.getElementById('tsStage');
+      var total = cards.length;
+      var active = 0;
+      var timer = null;
+      var dragStartX = 0, dragCurX = 0, dragging = false, moved = false;
+
+      /* ── Build dots ── */
+      var dots = cards.map(function (_, i) {
+        var d = document.createElement('button');
+        d.className = 'ts-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Go to review ' + (i + 1));
+        d.addEventListener('click', function () { goTo(i); resetTimer(); });
+        dotsEl.appendChild(d);
+        return d;
+      });
+
+      /* ── Render stack positions ── */
+      function render(skipTransition) {
+        cards.forEach(function (card, i) {
+          if (skipTransition) card.classList.add('is-dragging');
+          var order = (i - active + total) % total;
+          if (order === 0) {
+            card.style.transform = 'translateX(0) scale(1)';
+            card.style.opacity = '1';
+            card.style.zIndex = total;
+          } else if (order === 1) {
+            card.style.transform = 'translateX(8px) scale(0.95) translateY(-14px)';
+            card.style.opacity = '0.7';
+            card.style.zIndex = total - 1;
+          } else if (order === 2) {
+            card.style.transform = 'translateX(16px) scale(0.90) translateY(-26px)';
+            card.style.opacity = '0.4';
+            card.style.zIndex = total - 2;
+          } else {
+            card.style.transform = 'scale(0.85) translateY(-36px)';
+            card.style.opacity = '0';
+            card.style.zIndex = '0';
+          }
+          if (skipTransition) {
+            setTimeout(function () { card.classList.remove('is-dragging'); }, 20);
+          }
+        });
+        dots.forEach(function (d, i) {
+          d.classList.toggle('active', i === active);
+        });
+      }
+
+      function goTo(index) {
+        active = (index + total) % total;
+        render(false);
+      }
+
+      /* ── Auto-play ── */
+      function startTimer() {
+        timer = setInterval(function () { goTo(active + 1); }, 4000);
+      }
+      function resetTimer() {
+        clearInterval(timer);
+        startTimer();
+      }
+
+      /* ── Arrow buttons ── */
+      document.getElementById('tsPrev').addEventListener('click', function () {
+        goTo(active - 1); resetTimer();
+      });
+      document.getElementById('tsNext').addEventListener('click', function () {
+        goTo(active + 1); resetTimer();
+      });
+
+      /* ── Drag / swipe ── */
+      function onDragStart(x) {
+        dragging = true; moved = false;
+        dragStartX = x; dragCurX = x;
+        clearInterval(timer);
+        cards[active].classList.add('is-dragging');
+      }
+      function onDragMove(x) {
+        if (!dragging) return;
+        dragCurX = x;
+        var dx = dragCurX - dragStartX;
+        if (Math.abs(dx) > 4) moved = true;
+        cards[active].style.transform = 'translateX(' + dx + 'px) scale(1)';
+      }
+      function onDragEnd() {
+        if (!dragging) return;
+        dragging = false;
+        cards[active].classList.remove('is-dragging');
+        var dx = dragCurX - dragStartX;
+        if (Math.abs(dx) > 55) {
+          goTo(active + (dx < 0 ? 1 : -1));
+        } else {
+          render(false);
+        }
+        startTimer();
+      }
+
+      /* mouse */
+      stage.addEventListener('mousedown', function (e) { onDragStart(e.clientX); });
+      window.addEventListener('mousemove', function (e) { onDragMove(e.clientX); });
+      window.addEventListener('mouseup', onDragEnd);
+      /* touch */
+      stage.addEventListener('touchstart', function (e) { onDragStart(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchmove', function (e) { onDragMove(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchend', onDragEnd);
+      /* pause auto-play on hover */
+      stage.addEventListener('mouseenter', function () { clearInterval(timer); });
+      stage.addEventListener('mouseleave', function () { startTimer(); });
+
+      /* ── Init ── */
+      render(true);
+      startTimer();
+    }());
+  </script>
+
+</body>
+
+</html>
+
+<!-- ═══════════════════════════════════════════
        BOOKING FORM LOGIC
        Runs after full DOM — no DOMContentLoaded needed
   ═══════════════════════════════════════════ -->
-  <script>
+<script>
+  (function () {
+    'use strict';
+
+    /* ── Helpers ── */
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function todayStr() {
+      var d = new Date();
+      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+    function ymdUTC(d) {
+      return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+    }
+    function fmtDisplay(ymd) {
+      if (!ymd) return '';
+      var p = ymd.split('-'), months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return months[+p[1] - 1] + ' ' + +p[2] + ', ' + p[0];
+    }
+
+    /* ── Toast ── */
+    function showToast(msg, type, ms) {
+      var stack = document.getElementById('toastStack');
+      if (!stack) return;
+      var t = document.createElement('div');
+      t.className = 'toast ' + (type || 'info');
+      t.textContent = msg;
+      stack.appendChild(t);
+      setTimeout(function () {
+        t.classList.add('fading');
+        setTimeout(function () { t.parentNode && t.parentNode.removeChild(t); }, 400);
+      }, ms || 3500);
+    }
+
+    /* ── iCal fetch via Netlify Function (runs server-side – no CORS) ── */
+    var blocked = { greenville: null, pendleton: null }; // null = not loaded yet
+
+    function fetchBlocked(property, cb) {
+      if (blocked[property]) { cb(blocked[property]); return; }
+      fetch('/.netlify/functions/ical-proxy?property=' + property)
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.text();
+        })
+        .then(function (text) {
+          blocked[property] = parseICalToSet(text);
+          cb(blocked[property]);
+        })
+        .catch(function (err) {
+          console.warn('iCal fetch failed for', property, err);
+          blocked[property] = new Set(); // empty — treat all dates as available
+          cb(blocked[property]);
+        });
+    }
+
+    function parseICalToSet(text) {
+      var set = new Set();
+      var lines = text.replace(/\r\n[ \t]/g, '').split(/\r?\n/);
+      var inEvent = false, dtstart = null, dtend = null;
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        if (line === 'BEGIN:VEVENT') { inEvent = true; dtstart = null; dtend = null; continue; }
+        if (line === 'END:VEVENT') {
+          if (dtstart && dtend) {
+            var cur = new Date(dtstart.getTime());
+            while (cur < dtend) { set.add(ymdUTC(cur)); cur.setUTCDate(cur.getUTCDate() + 1); }
+          }
+          inEvent = false; continue;
+        }
+        if (!inEvent) continue;
+        var col = line.indexOf(':');
+        if (col < 0) continue;
+        var key = line.slice(0, col), val = line.slice(col + 1);
+        var m = val.match(/^(\d{4})(\d{2})(\d{2})/);
+        if (!m) continue;
+        var dt = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+        if (key.indexOf('DTSTART') === 0) dtstart = dt;
+        else if (key.indexOf('DTEND') === 0) dtend = dt;
+      }
+      return set;
+    }
+
+    /* ── Picker state ── */
+    var state = {
+      kind: null,        // 'checkin' | 'checkout'
+      property: '',
+      viewYear: 0,
+      viewMonth: 0,
+      checkIn: null,
+      checkOut: null
+    };
+
+    function isBooked(dateStr) {
+      var set = blocked[state.property];
+      return set ? set.has(dateStr) : false;
+    }
+
+    function rangeHasBooked(from, to) {
+      var cur = new Date(from + 'T00:00:00Z');
+      var stop = new Date(to + 'T00:00:00Z');
+      while (cur < stop) {
+        if (isBooked(ymdUTC(cur))) return true;
+        cur.setUTCDate(cur.getUTCDate() + 1);
+      }
+      return false;
+    }
+
+    /* ── Calendar render ── */
+    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'];
+
+    function renderCal() {
+      document.getElementById('calTitle').textContent = MONTHS[state.viewMonth] + ' ' + state.viewYear;
+      var today = todayStr();
+      var grid = document.getElementById('calGrid');
+      grid.innerHTML = '';
+
+      var firstDow = new Date(state.viewYear, state.viewMonth, 1).getDay();
+      var daysInMon = new Date(state.viewYear, state.viewMonth + 1, 0).getDate();
+
+      /* empty leading cells */
+      for (var e = 0; e < firstDow; e++) {
+        var blank = document.createElement('div');
+        blank.className = 'cal-day empty';
+        grid.appendChild(blank);
+      }
+
+      for (var d = 1; d <= daysInMon; d++) {
+        var dateStr = state.viewYear + '-' + pad(state.viewMonth + 1) + '-' + pad(d);
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cal-day';
+        btn.textContent = d;
+        btn.dataset.date = dateStr;
+
+        var isPast = dateStr < today;
+        var isBooked_ = isBooked(dateStr);
+        var beforeCi = state.kind === 'checkout' && state.checkIn && dateStr <= state.checkIn;
+
+        if (dateStr === today) btn.classList.add('today');
+
+        if (isPast || beforeCi) {
+          btn.classList.add('past');
+        } else if (isBooked_) {
+          btn.classList.add('booked');
+          btn.title = 'Not available';
+        } else {
+          btn.classList.add('available');
+          btn.addEventListener('click', onDayClick);
+        }
+
+        /* range highlights */
+        if (state.checkIn && state.checkOut) {
+          if (dateStr === state.checkIn) btn.classList.add('range-start');
+          else if (dateStr === state.checkOut) btn.classList.add('range-end');
+          else if (dateStr > state.checkIn && dateStr < state.checkOut) btn.classList.add('in-range');
+        } else if (state.checkIn && dateStr === state.checkIn) {
+          btn.classList.add('range-start');
+        }
+
+        grid.appendChild(btn);
+      }
+
+      /* disable prev if already at current month */
+      var now = new Date();
+      document.getElementById('calPrev').disabled =
+        state.viewYear < now.getFullYear() ||
+        (state.viewYear === now.getFullYear() && state.viewMonth <= now.getMonth());
+    }
+
+    function onDayClick() {
+      var dateStr = this.dataset.date;
+      if (state.kind === 'checkin') {
+        state.checkIn = dateStr;
+        if (state.checkOut && state.checkOut <= dateStr) state.checkOut = null;
+        if (state.checkOut && rangeHasBooked(dateStr, state.checkOut)) state.checkOut = null;
+        syncTriggers();
+        closeCal();
+        if (!state.checkOut) { setTimeout(function () { openCal('checkout'); }, 220); }
+      } else {
+        if (dateStr <= state.checkIn) { showToast('Check-out must be after check-in.', 'error'); return; }
+        if (rangeHasBooked(state.checkIn, dateStr)) { showToast('Some nights in this range are booked. Please pick an earlier date.', 'error'); return; }
+        state.checkOut = dateStr;
+        syncTriggers();
+        closeCal();
+      }
+      clearErr(document.getElementById('checkInBtn'));
+      clearErr(document.getElementById('checkOutBtn'));
+    }
+
+    /* ── Open / close ── */
+    function openCal(kind) {
+      var prop = document.getElementById('propertySelect').value;
+      if (!prop) { showToast('Please select a home first.', 'error'); return; }
+
+      state.kind = kind;
+      state.property = prop;
+
+      var ref = (kind === 'checkin' && state.checkIn) ? state.checkIn
+        : (kind === 'checkout' && state.checkOut) ? state.checkOut
+          : (kind === 'checkout' && state.checkIn) ? state.checkIn
+            : null;
+      var base = ref ? new Date(ref + 'T00:00:00') : new Date();
+      state.viewYear = base.getFullYear();
+      state.viewMonth = base.getMonth();
+
+      /* fetch calendar for this property first, then show */
+      fetchBlocked(prop, function () {
+        renderCal();
+        document.getElementById('calModal').classList.add('open');
+      });
+    }
+
+    function closeCal() {
+      document.getElementById('calModal').classList.remove('open');
+    }
+
+    /* ── Sync button labels ── */
+    function syncTriggers() {
+      var ciBtn = document.getElementById('checkInBtn');
+      var coBtn = document.getElementById('checkOutBtn');
+      var ciVal = document.getElementById('checkInValue');
+      var coVal = document.getElementById('checkOutValue');
+      if (state.checkIn) {
+        ciBtn.querySelector('.date-trigger-text').textContent = fmtDisplay(state.checkIn);
+        ciBtn.classList.add('has-value'); ciVal.value = state.checkIn;
+      } else {
+        ciBtn.querySelector('.date-trigger-text').textContent = 'Pick a date';
+        ciBtn.classList.remove('has-value'); ciVal.value = '';
+      }
+      if (state.checkOut) {
+        coBtn.querySelector('.date-trigger-text').textContent = fmtDisplay(state.checkOut);
+        coBtn.classList.add('has-value'); coVal.value = state.checkOut;
+      } else {
+        coBtn.querySelector('.date-trigger-text').textContent = 'Pick a date';
+        coBtn.classList.remove('has-value'); coVal.value = '';
+      }
+    }
+
+    function setDatesEnabled(on) {
+      var ci = document.getElementById('checkInBtn');
+      var co = document.getElementById('checkOutBtn');
+      [ci, co].forEach(function (b) {
+        b.disabled = !on;
+        if (!on) b.querySelector('.date-trigger-text').textContent = 'Select a home first';
+        else if (!b.classList.contains('has-value')) b.querySelector('.date-trigger-text').textContent = 'Pick a date';
+      });
+    }
+
+    /* ── Validation ── */
+    function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }
+
+    function clearErr(el) {
+      if (!el) return;
+      el.classList.remove('field-error');
+      var m = document.querySelector('.req-mark[data-for="' + el.id + '"]');
+      if (m) m.classList.remove('show');
+    }
+
+    function markErr(el) {
+      if (!el) return;
+      el.classList.add('field-error');
+      var m = document.querySelector('.req-mark[data-for="' + el.id + '"]');
+      if (m) m.classList.add('show');
+    }
+
+    function validateAll() {
+      var checks = [
+        { id: 'propertySelect', ok: function (v) { return !!v; } },
+        { id: 'fullNameInput', ok: function (v) { return v.trim().length >= 2; } },
+        { id: 'phoneInput', ok: function (v) { return v.trim().length >= 5; } },
+        { id: 'emailInput', ok: function (v) { return isValidEmail(v); }, isEmail: true },
+        { id: 'checkInBtn', ok: function () { return !!state.checkIn; }, useState: true },
+        { id: 'checkOutBtn', ok: function () { return !!state.checkOut; }, useState: true }
+      ];
+      var first = null, valid = true, badEmail = false, missing = 0;
+      checks.forEach(function (c) {
+        var el = document.getElementById(c.id);
+        if (!el) return;
+        var ok = c.useState ? c.ok() : c.ok(el.value || '');
+        if (!ok) {
+          markErr(el);
+          if (!first) first = el;
+          if (c.isEmail && el.value.trim()) badEmail = true;
+          else missing++;
+          valid = false;
+        } else { clearErr(el); }
+      });
+      return { valid: valid, first: first, badEmail: badEmail, missing: missing };
+    }
+
+    /* ── Guests stepper ── */
     (function () {
-      'use strict';
+      var countEl = document.getElementById('guestsCount');
+      var labelEl = countEl ? countEl.nextElementSibling : null;
+      var inputEl = document.getElementById('guestsInput');
+      var minusBtn = document.getElementById('guestsMinus');
+      var plusBtn = document.getElementById('guestsPlus');
+      var propSel = document.getElementById('propertySelect');
+      var count = 1;
 
-      /* ── Helpers ── */
-      function pad(n) { return n < 10 ? '0' + n : '' + n; }
-      function todayStr() {
-        var d = new Date();
-        return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-      }
-      function ymdUTC(d) {
-        return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
-      }
-      function fmtDisplay(ymd) {
-        if (!ymd) return '';
-        var p = ymd.split('-'), months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        return months[+p[1] - 1] + ' ' + +p[2] + ', ' + p[0];
+      function maxGuests() {
+        if (!propSel) return 10;
+        return propSel.value === 'greenville' ? 6 : propSel.value === 'pendleton' ? 10 : 10;
       }
 
-      /* ── Toast ── */
-      function showToast(msg, type, ms) {
-        var stack = document.getElementById('toastStack');
-        if (!stack) return;
-        var t = document.createElement('div');
-        t.className = 'toast ' + (type || 'info');
-        t.textContent = msg;
-        stack.appendChild(t);
-        setTimeout(function () {
-          t.classList.add('fading');
-          setTimeout(function () { t.parentNode && t.parentNode.removeChild(t); }, 400);
-        }, ms || 3500);
+      function update() {
+        if (!countEl) return;
+        countEl.textContent = count;
+        if (labelEl) labelEl.textContent = count === 1 ? 'guest' : 'guests';
+        if (inputEl) inputEl.value = count;
+        if (minusBtn) minusBtn.disabled = count <= 1;
+        if (plusBtn) plusBtn.disabled = count >= maxGuests();
       }
 
-      /* ── iCal fetch via Netlify Function (runs server-side – no CORS) ── */
-      var blocked = { greenville: null, pendleton: null }; // null = not loaded yet
-
-      function fetchBlocked(property, cb) {
-        if (blocked[property]) { cb(blocked[property]); return; }
-        fetch('/.netlify/functions/ical-proxy?property=' + property)
-          .then(function (r) {
-            if (!r.ok) throw new Error('HTTP ' + r.status);
-            return r.text();
-          })
-          .then(function (text) {
-            blocked[property] = parseICalToSet(text);
-            cb(blocked[property]);
-          })
-          .catch(function (err) {
-            console.warn('iCal fetch failed for', property, err);
-            blocked[property] = new Set(); // empty — treat all dates as available
-            cb(blocked[property]);
-          });
-      }
-
-      function parseICalToSet(text) {
-        var set = new Set();
-        var lines = text.replace(/\r\n[ \t]/g, '').split(/\r?\n/);
-        var inEvent = false, dtstart = null, dtend = null;
-        for (var i = 0; i < lines.length; i++) {
-          var line = lines[i];
-          if (line === 'BEGIN:VEVENT') { inEvent = true; dtstart = null; dtend = null; continue; }
-          if (line === 'END:VEVENT') {
-            if (dtstart && dtend) {
-              var cur = new Date(dtstart.getTime());
-              while (cur < dtend) { set.add(ymdUTC(cur)); cur.setUTCDate(cur.getUTCDate() + 1); }
-            }
-            inEvent = false; continue;
-          }
-          if (!inEvent) continue;
-          var col = line.indexOf(':');
-          if (col < 0) continue;
-          var key = line.slice(0, col), val = line.slice(col + 1);
-          var m = val.match(/^(\d{4})(\d{2})(\d{2})/);
-          if (!m) continue;
-          var dt = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
-          if (key.indexOf('DTSTART') === 0) dtstart = dt;
-          else if (key.indexOf('DTEND') === 0) dtend = dt;
-        }
-        return set;
-      }
-
-      /* ── Picker state ── */
-      var state = {
-        kind: null,        // 'checkin' | 'checkout'
-        property: '',
-        viewYear: 0,
-        viewMonth: 0,
-        checkIn: null,
-        checkOut: null
-      };
-
-      function isBooked(dateStr) {
-        var set = blocked[state.property];
-        return set ? set.has(dateStr) : false;
-      }
-
-      function rangeHasBooked(from, to) {
-        var cur = new Date(from + 'T00:00:00Z');
-        var stop = new Date(to + 'T00:00:00Z');
-        while (cur < stop) {
-          if (isBooked(ymdUTC(cur))) return true;
-          cur.setUTCDate(cur.getUTCDate() + 1);
-        }
-        return false;
-      }
-
-      /* ── Calendar render ── */
-      var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'];
-
-      function renderCal() {
-        document.getElementById('calTitle').textContent = MONTHS[state.viewMonth] + ' ' + state.viewYear;
-        var today = todayStr();
-        var grid = document.getElementById('calGrid');
-        grid.innerHTML = '';
-
-        var firstDow = new Date(state.viewYear, state.viewMonth, 1).getDay();
-        var daysInMon = new Date(state.viewYear, state.viewMonth + 1, 0).getDate();
-
-        /* empty leading cells */
-        for (var e = 0; e < firstDow; e++) {
-          var blank = document.createElement('div');
-          blank.className = 'cal-day empty';
-          grid.appendChild(blank);
-        }
-
-        for (var d = 1; d <= daysInMon; d++) {
-          var dateStr = state.viewYear + '-' + pad(state.viewMonth + 1) + '-' + pad(d);
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'cal-day';
-          btn.textContent = d;
-          btn.dataset.date = dateStr;
-
-          var isPast = dateStr < today;
-          var isBooked_ = isBooked(dateStr);
-          var beforeCi = state.kind === 'checkout' && state.checkIn && dateStr <= state.checkIn;
-
-          if (dateStr === today) btn.classList.add('today');
-
-          if (isPast || beforeCi) {
-            btn.classList.add('past');
-          } else if (isBooked_) {
-            btn.classList.add('booked');
-            btn.title = 'Not available';
-          } else {
-            btn.classList.add('available');
-            btn.addEventListener('click', onDayClick);
-          }
-
-          /* range highlights */
-          if (state.checkIn && state.checkOut) {
-            if (dateStr === state.checkIn) btn.classList.add('range-start');
-            else if (dateStr === state.checkOut) btn.classList.add('range-end');
-            else if (dateStr > state.checkIn && dateStr < state.checkOut) btn.classList.add('in-range');
-          } else if (state.checkIn && dateStr === state.checkIn) {
-            btn.classList.add('range-start');
-          }
-
-          grid.appendChild(btn);
-        }
-
-        /* disable prev if already at current month */
-        var now = new Date();
-        document.getElementById('calPrev').disabled =
-          state.viewYear < now.getFullYear() ||
-          (state.viewYear === now.getFullYear() && state.viewMonth <= now.getMonth());
-      }
-
-      function onDayClick() {
-        var dateStr = this.dataset.date;
-        if (state.kind === 'checkin') {
-          state.checkIn = dateStr;
-          if (state.checkOut && state.checkOut <= dateStr) state.checkOut = null;
-          if (state.checkOut && rangeHasBooked(dateStr, state.checkOut)) state.checkOut = null;
-          syncTriggers();
-          closeCal();
-          if (!state.checkOut) { setTimeout(function () { openCal('checkout'); }, 220); }
-        } else {
-          if (dateStr <= state.checkIn) { showToast('Check-out must be after check-in.', 'error'); return; }
-          if (rangeHasBooked(state.checkIn, dateStr)) { showToast('Some nights in this range are booked. Please pick an earlier date.', 'error'); return; }
-          state.checkOut = dateStr;
-          syncTriggers();
-          closeCal();
-        }
-        clearErr(document.getElementById('checkInBtn'));
-        clearErr(document.getElementById('checkOutBtn'));
-      }
-
-      /* ── Open / close ── */
-      function openCal(kind) {
-        var prop = document.getElementById('propertySelect').value;
-        if (!prop) { showToast('Please select a home first.', 'error'); return; }
-
-        state.kind = kind;
-        state.property = prop;
-
-        var ref = (kind === 'checkin' && state.checkIn) ? state.checkIn
-          : (kind === 'checkout' && state.checkOut) ? state.checkOut
-            : (kind === 'checkout' && state.checkIn) ? state.checkIn
-              : null;
-        var base = ref ? new Date(ref + 'T00:00:00') : new Date();
-        state.viewYear = base.getFullYear();
-        state.viewMonth = base.getMonth();
-
-        /* fetch calendar for this property first, then show */
-        fetchBlocked(prop, function () {
-          renderCal();
-          document.getElementById('calModal').classList.add('open');
-        });
-      }
-
-      function closeCal() {
-        document.getElementById('calModal').classList.remove('open');
-      }
-
-      /* ── Sync button labels ── */
-      function syncTriggers() {
-        var ciBtn = document.getElementById('checkInBtn');
-        var coBtn = document.getElementById('checkOutBtn');
-        var ciVal = document.getElementById('checkInValue');
-        var coVal = document.getElementById('checkOutValue');
-        if (state.checkIn) {
-          ciBtn.querySelector('.date-trigger-text').textContent = fmtDisplay(state.checkIn);
-          ciBtn.classList.add('has-value'); ciVal.value = state.checkIn;
-        } else {
-          ciBtn.querySelector('.date-trigger-text').textContent = 'Pick a date';
-          ciBtn.classList.remove('has-value'); ciVal.value = '';
-        }
-        if (state.checkOut) {
-          coBtn.querySelector('.date-trigger-text').textContent = fmtDisplay(state.checkOut);
-          coBtn.classList.add('has-value'); coVal.value = state.checkOut;
-        } else {
-          coBtn.querySelector('.date-trigger-text').textContent = 'Pick a date';
-          coBtn.classList.remove('has-value'); coVal.value = '';
-        }
-      }
-
-      function setDatesEnabled(on) {
-        var ci = document.getElementById('checkInBtn');
-        var co = document.getElementById('checkOutBtn');
-        [ci, co].forEach(function (b) {
-          b.disabled = !on;
-          if (!on) b.querySelector('.date-trigger-text').textContent = 'Select a home first';
-          else if (!b.classList.contains('has-value')) b.querySelector('.date-trigger-text').textContent = 'Pick a date';
-        });
-      }
-
-      /* ── Validation ── */
-      function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }
-
-      function clearErr(el) {
-        if (!el) return;
-        el.classList.remove('field-error');
-        var m = document.querySelector('.req-mark[data-for="' + el.id + '"]');
-        if (m) m.classList.remove('show');
-      }
-
-      function markErr(el) {
-        if (!el) return;
-        el.classList.add('field-error');
-        var m = document.querySelector('.req-mark[data-for="' + el.id + '"]');
-        if (m) m.classList.add('show');
-      }
-
-      function validateAll() {
-        var checks = [
-          { id: 'propertySelect', ok: function (v) { return !!v; } },
-          { id: 'fullNameInput', ok: function (v) { return v.trim().length >= 2; } },
-          { id: 'phoneInput', ok: function (v) { return v.trim().length >= 5; } },
-          { id: 'emailInput', ok: function (v) { return isValidEmail(v); }, isEmail: true },
-          { id: 'checkInBtn', ok: function () { return !!state.checkIn; }, useState: true },
-          { id: 'checkOutBtn', ok: function () { return !!state.checkOut; }, useState: true }
-        ];
-        var first = null, valid = true, badEmail = false, missing = 0;
-        checks.forEach(function (c) {
-          var el = document.getElementById(c.id);
-          if (!el) return;
-          var ok = c.useState ? c.ok() : c.ok(el.value || '');
-          if (!ok) {
-            markErr(el);
-            if (!first) first = el;
-            if (c.isEmail && el.value.trim()) badEmail = true;
-            else missing++;
-            valid = false;
-          } else { clearErr(el); }
-        });
-        return { valid: valid, first: first, badEmail: badEmail, missing: missing };
-      }
-
-      /* ── Wire up everything ── */
-      /* Property select */
-      document.getElementById('propertySelect').addEventListener('change', function () {
-        var prop = this.value;
-        clearErr(this);
-        if (!prop) {
-          state.checkIn = state.checkOut = null;
-          state.property = '';
-          syncTriggers();
-          setDatesEnabled(false);
-          return;
-        }
-        /* if property changed and old dates are now blocked, clear them */
-        if (state.property && state.property !== prop) {
-          state.property = prop;
-          fetchBlocked(prop, function (set) {
-            if (state.checkIn && set.has(state.checkIn)) {
-              state.checkIn = state.checkOut = null;
-              showToast('Dates cleared — not available for this home.', 'info');
-            } else if (state.checkIn && state.checkOut && rangeHasBooked(state.checkIn, state.checkOut)) {
-              state.checkOut = null;
-              showToast('Check-out cleared — some nights unavailable for this home.', 'info');
-            }
-            syncTriggers();
-          });
-        } else {
-          state.property = prop;
-          fetchBlocked(prop, function () { }); /* pre-fetch silently */
-        }
-        setDatesEnabled(true);
+      if (minusBtn) minusBtn.addEventListener('click', function () { if (count > 1) { count--; update(); } });
+      if (plusBtn) plusBtn.addEventListener('click', function () { if (count < maxGuests()) { count++; update(); } });
+      if (propSel) propSel.addEventListener('change', function () {
+        if (count > maxGuests()) { count = maxGuests(); update(); }
+        else update();
       });
-
-      /* Text / email inputs clear their own error on change */
-      ['fullNameInput', 'phoneInput', 'emailInput'].forEach(function (id) {
-        var el = document.getElementById(id);
-        if (el) el.addEventListener('input', function () { clearErr(el); });
-      });
-
-      /* Date trigger buttons */
-      document.getElementById('checkInBtn').addEventListener('click', function () {
-        if (!this.disabled) openCal('checkin');
-      });
-      document.getElementById('checkOutBtn').addEventListener('click', function () {
-        if (this.disabled) return;
-        if (!state.checkIn) { showToast('Please select a check-in date first.', 'info'); openCal('checkin'); return; }
-        openCal('checkout');
-      });
-
-      /* Calendar nav */
-      document.getElementById('calPrev').addEventListener('click', function () {
-        if (state.viewMonth === 0) { state.viewMonth = 11; state.viewYear--; }
-        else { state.viewMonth--; }
-        renderCal();
-      });
-      document.getElementById('calNext').addEventListener('click', function () {
-        if (state.viewMonth === 11) { state.viewMonth = 0; state.viewYear++; }
-        else { state.viewMonth++; }
-        renderCal();
-      });
-
-      /* Close calendar */
-      document.getElementById('calClose').addEventListener('click', closeCal);
-      document.getElementById('calBackdrop').addEventListener('click', closeCal);
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCal(); });
-
-      /* Form submit */
-      window.submitForm = function (e) {
-        e.preventDefault();
-        var res = validateAll();
-        if (!res.valid) {
-          showToast(res.badEmail ? 'Please enter a valid email address.'
-            : res.missing > 1 ? 'Please fill in all required fields.'
-              : 'Please fill in the highlighted field.', 'error');
-          if (res.first) {
-            res.first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(function () { try { res.first.focus(); } catch (_) { } }, 300);
-          }
-          return;
-        }
-        var btn = document.getElementById('formSubmitBtn');
-        btn.textContent = '✓ Request Received! We\'ll be in touch shortly';
-        btn.style.background = '#1e3a5f';
-        showToast('Request received! We\'ll be in touch within 1 hour.', 'success', 5000);
-        setTimeout(function () {
-          btn.textContent = 'Get 10% Off → Send Request';
-          btn.style.background = '';
-          document.getElementById('bookingForm').reset();
-          state.checkIn = state.checkOut = null;
-          state.property = '';
-          syncTriggers();
-          setDatesEnabled(false);
-        }, 5000);
-      };
-
+      update();
     }());
-  </script>
+    /* Property select */
+    document.getElementById('propertySelect').addEventListener('change', function () {
+      var prop = this.value;
+      clearErr(this);
+      if (!prop) {
+        state.checkIn = state.checkOut = null;
+        state.property = '';
+        syncTriggers();
+        setDatesEnabled(false);
+        return;
+      }
+      /* if property changed and old dates are now blocked, clear them */
+      if (state.property && state.property !== prop) {
+        state.property = prop;
+        fetchBlocked(prop, function (set) {
+          if (state.checkIn && set.has(state.checkIn)) {
+            state.checkIn = state.checkOut = null;
+            showToast('Dates cleared — not available for this home.', 'info');
+          } else if (state.checkIn && state.checkOut && rangeHasBooked(state.checkIn, state.checkOut)) {
+            state.checkOut = null;
+            showToast('Check-out cleared — some nights unavailable for this home.', 'info');
+          }
+          syncTriggers();
+        });
+      } else {
+        state.property = prop;
+        fetchBlocked(prop, function () { }); /* pre-fetch silently */
+      }
+      setDatesEnabled(true);
+    });
+
+    /* Text / email inputs clear their own error on change */
+    ['fullNameInput', 'phoneInput', 'emailInput'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', function () { clearErr(el); });
+    });
+
+    /* Date trigger buttons */
+    document.getElementById('checkInBtn').addEventListener('click', function () {
+      if (!this.disabled) openCal('checkin');
+    });
+    document.getElementById('checkOutBtn').addEventListener('click', function () {
+      if (this.disabled) return;
+      if (!state.checkIn) { showToast('Please select a check-in date first.', 'info'); openCal('checkin'); return; }
+      openCal('checkout');
+    });
+
+    /* Calendar nav */
+    document.getElementById('calPrev').addEventListener('click', function () {
+      if (state.viewMonth === 0) { state.viewMonth = 11; state.viewYear--; }
+      else { state.viewMonth--; }
+      renderCal();
+    });
+    document.getElementById('calNext').addEventListener('click', function () {
+      if (state.viewMonth === 11) { state.viewMonth = 0; state.viewYear++; }
+      else { state.viewMonth++; }
+      renderCal();
+    });
+
+    /* Close calendar */
+    document.getElementById('calClose').addEventListener('click', closeCal);
+    document.getElementById('calBackdrop').addEventListener('click', closeCal);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCal(); });
+
+    /* Form submit */
+    window.submitForm = function (e) {
+      e.preventDefault();
+      var res = validateAll();
+      if (!res.valid) {
+        showToast(res.badEmail ? 'Please enter a valid email address.'
+          : res.missing > 1 ? 'Please fill in all required fields.'
+            : 'Please fill in the highlighted field.', 'error');
+        if (res.first) {
+          res.first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(function () { try { res.first.focus(); } catch (_) { } }, 300);
+        }
+        return;
+      }
+      var btn = document.getElementById('formSubmitBtn');
+      btn.textContent = '✓ Request Received! We\'ll be in touch shortly';
+      btn.style.background = '#1e3a5f';
+      showToast('Request received! We\'ll be in touch within 1 hour.', 'success', 5000);
+      setTimeout(function () {
+        btn.textContent = 'Get 10% Off → Send Request';
+        btn.style.background = '';
+        document.getElementById('bookingForm').reset();
+        state.checkIn = state.checkOut = null;
+        state.property = '';
+        syncTriggers();
+        setDatesEnabled(false);
+      }, 5000);
+    };
+
+  }());
+</script>
 
 </body>
 
