@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[plugins]]
+
+[build.environment]
+  NODE_VERSION = "18"
