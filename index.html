@@ -1248,7 +1248,7 @@
     .prop-features {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: 12px;
       margin-bottom: 36px;
       max-width: 520px
     }
@@ -1258,19 +1258,26 @@
       align-items: center;
       gap: 10px;
       font-size: 13px;
-      color: var(--navy);
-      padding: 12px 16px;
-      background: var(--white);
-      border: 1px solid rgba(74, 127, 168, .15);
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(30, 58, 95, .04)
+      font-weight: 500;
+      color: #1d1d1f;
+      padding: 14px 16px;
+      background: #fff;
+      border: none;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, .08), 0 0 0 1px rgba(0, 0, 0, .04);
+      letter-spacing: -.1px;
+      transition: box-shadow .2s
+    }
+
+    .feature:hover {
+      box-shadow: 0 4px 24px rgba(0, 0, 0, .14), 0 0 0 1px rgba(0, 0, 0, .06)
     }
 
     .feature::before {
       content: '';
       width: 6px;
       height: 6px;
-      background: var(--gold);
+      background: #1d1d1f;
       border-radius: 50%;
       flex-shrink: 0
     }
@@ -1695,55 +1702,26 @@
     }
 
     .host-photo-placeholder {
-      width: 240px;
-      height: 240px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+      background: #111;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto;
       position: relative;
       border: 2px solid rgba(212, 175, 55, 0.4);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(212, 175, 55, 0.05)
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      overflow: hidden
     }
 
-    .host-initial {
-      font-family: 'Fraunces', serif;
-      font-size: 110px;
-      color: var(--gold);
-      font-style: italic;
-      font-weight: 600;
-      text-shadow: 0 0 40px rgba(212, 175, 55, 0.3)
-    }
-
-    .host-superhost-badge {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, #d4af37 0%, #e8c97a 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 3px solid #0a0a0a;
-      box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4)
-    }
-
-    .host-badge-icon {
-      color: #0a0a0a;
-      font-size: 22px;
-      font-weight: bold
-    }
-
-    .host-photo-note {
-      margin-top: 16px;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.4)
+    .host-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%
     }
 
     .host-section .section-label {
@@ -2961,8 +2939,8 @@
       }
 
       .host-photo-placeholder {
-        width: 180px;
-        height: 180px
+        width: 160px;
+        height: 160px
       }
 
       .host-initial {
@@ -3051,7 +3029,7 @@
 
     .partners-section {
       background: var(--apple-bg);
-      padding: 60px
+      padding: 50px 30px
     }
 
     .partners-inner {
@@ -3073,8 +3051,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 60px;
-      flex-wrap: wrap
+      gap: 40px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none
+    }
+
+    .partners-logos::-webkit-scrollbar {
+      display: none
     }
 
     .partner-logo-link {
@@ -3213,6 +3199,30 @@
     .a11y-toggle input:checked+.a11y-slider:before {
       transform: translateX(16px)
     }
+
+    .wide-photo-section {
+      width: 100%;
+      height: 70vh;
+      min-height: 400px;
+      max-height: 700px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .wide-photo-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block
+    }
+
+    @media(max-width:600px) {
+      .wide-photo-section {
+        height: 55vw;
+        min-height: 260px
+      }
+    }
   </style>
 </head>
 
@@ -3241,7 +3251,8 @@
           </pattern>
         </defs>
         <g> <text class="t-stroke" data-line="BH &amp; CO" x="800" y="370" text-anchor="middle" font-size="220"></text>
-          <text class="t-stroke" data-line="RENTALS" x="800" y="600" text-anchor="middle" font-size="220"></text> </g>
+          <text class="t-stroke" data-line="RENTALS" x="800" y="600" text-anchor="middle" font-size="220"></text>
+        </g>
         <g class="cinema-fill-group"> <text class="t-fill" x="800" y="370" text-anchor="middle" font-size="220">BH &amp;
             CO</text> <text class="t-fill" x="800" y="600" text-anchor="middle" font-size="220">RENTALS</text> </g>
       </svg>
@@ -3267,10 +3278,10 @@
   <section class="section host-section" id="host">
     <div class="host-card">
       <div class="host-photo-wrap">
-        <div class="host-photo-placeholder"> <span class="host-initial">R</span>
-          <div class="host-superhost-badge"> <span class="host-badge-icon">✓</span> </div>
+        <div class="host-photo-placeholder">
+          <img src="/images/host.jpeg" alt="Rotem" class="host-photo-img">
+
         </div>
-        <p class="host-photo-note">Photo coming soon</p>
       </div>
       <div class="host-content">
         <p class="section-label" style="margin-bottom:12px">Meet Your Host</p>
@@ -3346,12 +3357,11 @@
             <div class="feature">Private Pool</div>
             <div class="feature">3 Bedrooms · Sleeps 6</div>
             <div class="feature">2 Bathrooms · 4 Beds</div>
-            <div class="feature">Master Suite + Massage Chair</div>
+            <div class="feature">Master Suite</div>
             <div class="feature">Fully Equipped Kitchen</div>
             <div class="feature">Self Check-in</div>
             <div class="feature">Pet Friendly</div>
-            <div class="feature">Outdoor Grill & Game Table</div>
-            <div class="feature">Dedicated Work Desk</div>
+            <div class="feature">Outdoor Grill</div>
           </div>
           <div class="prop-bottom">
             <div class="prop-price">
@@ -3396,7 +3406,6 @@
             <div class="feature">Game Area</div>
             <div class="feature">Self Check-in</div>
             <div class="feature">Pet Friendly</div>
-            <div class="feature">12min to Clemson University</div>
           </div>
           <div class="prop-bottom">
             <div class="prop-price">
@@ -3410,6 +3419,7 @@
       </div>
     </div>
   </section>
+  <section class="wide-photo-section"><img src="/images/greenvile.jpg" alt="BH & CO Rentals property"></section>
   <section class="section reviews-section" id="reviews">
     <div class="section-head">
       <div>
@@ -3699,79 +3709,118 @@
       </div>
       <div class="faq-list">
         <details class="faq-item">
-          <summary class="faq-question"> <span>Where exactly are your homes located?</span> <span
-              class="faq-icon">+</span> </summary>
+          <summary class="faq-question"><span>Where exactly are your homes located?</span><span
+              class="faq-icon">+</span></summary>
           <div class="faq-answer">
             <p>We have two homes in South Carolina: one in <strong>Greenville</strong> (just 20 minutes from Downtown
               Greenville and GSP Airport), and one in <strong>Pendleton</strong> (just 12 minutes from Clemson
               University). Exact addresses are shared after booking confirmation.</p>
           </div>
         </details>
+
         <details class="faq-item">
-          <summary class="faq-question"> <span>How do I check in? Do I need to meet someone?</span> <span
-              class="faq-icon">+</span> </summary>
+          <summary class="faq-question"><span>What are the check-in and check-out times?</span><span
+              class="faq-icon">+</span></summary>
           <div class="faq-answer">
-            <p>Both homes feature <strong>self check-in</strong> with smart locks, so you can arrive anytime that works
-              for you — no need to coordinate a meeting. You'll receive your unique entry code 24 hours before check-in.
+            <p><strong>Check-in: 3:00 PM</strong> — your access code goes into effect at this
+              time.<br><br><strong>Check-out: 11:00 AM</strong> — your code will deactivate at this time unless prior
+              arrangements have been made. Our cleaning team arrives shortly after, so we appreciate your cooperation
+              with on-time departure.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question"><span>How do I check in? Do I need to meet someone?</span><span
+              class="faq-icon">+</span></summary>
+          <div class="faq-answer">
+            <p>Both homes feature <strong>self check-in</strong> with smart locks — no need to coordinate a meeting.
+              Your unique access code will be sent to you on the day of check-in. A signed rental agreement is required
+              before codes can be assigned.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question"><span>Is there a rental agreement?</span><span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Yes. After booking, please provide a <strong>photo ID</strong> and your email address so we can send you
+              our Rental Agreement for e-signature. Your signature is required <strong>at least 48 hours before
+                check-in</strong>. We cannot approve your reservation or provide access codes without completing this
+              step.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question"><span>Are pets allowed?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer">
+            <p>Yes! Both homes are <strong>pet friendly</strong>. A non-refundable pet fee of <strong>$150</strong> is
+              required for up to 2 dogs (automatically added at Airbnb checkout). If you didn't select pets during
+              booking but plan to bring your dog(s), please let us know — we'll send a fee request. Pets are not allowed
+              without prior approval, and we ask that pets stay off furniture and beds.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question"><span>What's the maximum number of guests?</span><span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>The <strong>Greenville home</strong> hosts up to <strong>6 guests</strong> with 3 bedrooms and 4 beds.
+              The <strong>Clemson Pendleton Retreat</strong> hosts up to <strong>10 guests</strong> with 4 bedrooms, 8
+              beds, and 2.5 bathrooms — perfect for larger groups.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question"><span>What towels and toiletries are provided?</span><span
+              class="faq-icon">+</span></summary>
+          <div class="faq-answer">
+            <p>We provide <strong>one towel set per guest</strong> — body towels, face towels, and separate pool towels.
+              Toiletries include shampoo, conditioner, travel-size toothbrush and toothpaste. If you need extra linens,
+              just ask!</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question"><span>What's in the kitchen?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer">
+            <p>The kitchen is fully equipped with utensils, dinnerware, glasses, pots, pans, mixing bowls, and cooking
+              utensils. We also provide <strong>spices, a toaster, and a coffee set</strong>. The Clemson home also
+              includes a <strong>gas grill with one propane tank</strong>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question"><span>Is a baby crib or high chair available?</span><span
+              class="faq-icon">+</span></summary>
+          <div class="faq-answer">
+            <p>Yes! A <strong>Pack and Play</strong> and a <strong>high chair</strong> are available at the property.
+              Please note that crib sheets are not provided — if a Pack and Play is a necessity, bring your own sheet.
             </p>
           </div>
         </details>
+
         <details class="faq-item">
-          <summary class="faq-question"> <span>Are pets allowed?</span> <span class="faq-icon">+</span> </summary>
+          <summary class="faq-question"><span>Is there really a 10% discount for booking direct?</span><span
+              class="faq-icon">+</span></summary>
           <div class="faq-answer">
-            <p>Yes! Both homes are <strong>pet friendly</strong>. We do require a non-refundable pet fee of $150 for up
-              to 2 dogs. Service animals are welcomed at no additional charge — just please show valid ID before
-              arrival. We kindly ask that pets stay off furniture and beds during your stay.</p>
+            <p>Absolutely. Booking directly saves you Airbnb's service fees, and we pass those savings to you as a
+              <strong>10% discount</strong>. You'll also get a free welcome basket on arrival, late checkout when
+              available, and dedicated host support.
+            </p>
           </div>
         </details>
+
         <details class="faq-item">
-          <summary class="faq-question"> <span>What's the maximum number of guests?</span> <span
-              class="faq-icon">+</span> </summary>
-          <div class="faq-answer">
-            <p>The <strong>Greenville home</strong> comfortably hosts up to 6 guests with 3 bedrooms and 4 beds. The
-              <strong>Clemson Pendleton retreat</strong> hosts up to 10 guests with 4 bedrooms, 8 beds, and 2.5
-              bathrooms — perfect for larger groups and game-day weekends.</p>
-          </div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question"> <span>Is there really a 10% discount for booking direct?</span> <span
-              class="faq-icon">+</span> </summary>
-          <div class="faq-answer">
-            <p>Absolutely. Booking direct through our site saves you Airbnb's service fees, and we pass those savings to
-              you as a <strong>10% discount</strong>. Plus, you'll get a free welcome basket on arrival, late checkout
-              when available, and dedicated host support.</p>
-          </div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question"> <span>What's near the homes? What can we do in the area?</span> <span
-              class="faq-icon">+</span> </summary>
-          <div class="faq-answer">
-            <p><strong>Greenville home:</strong> 20 minutes from Downtown Greenville (Falls Park, Liberty Bridge,
-              restaurants, breweries) and GSP Airport.<br><br><strong>Pendleton home:</strong> 12 minutes from Clemson
-              University — ideal for football games, campus visits, and exploring Lake Hartwell. The home features a
-              private pool, fenced yard, trampoline, BBQ grill, and outdoor fireplace.</p>
-          </div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question"> <span>What's your cancellation policy?</span> <span class="faq-icon">+</span>
+          <summary class="faq-question"><span>What's your cancellation policy?</span><span class="faq-icon">+</span>
           </summary>
           <div class="faq-answer">
             <p>We offer flexible cancellation. For exact terms based on your booking dates, please reach out via the
-              Check Availability form or message us through Airbnb. As a Superhost with 4.97★ rating, we're committed to
+              Check Availability form or message us directly. As a Superhost with a 4.97★ rating, we're committed to
               working with you on any changes.</p>
           </div>
         </details>
-        <details class="faq-item">
-          <summary class="faq-question"> <span>Do you provide essentials like towels, sheets, and toiletries?</span>
-            <span class="faq-icon">+</span> </summary>
-          <div class="faq-answer">
-            <p>Yes, both homes are fully stocked. You'll find <strong>premium hotel-quality linens</strong>, body
-              towels, face towels, makeup towels, and pampering products including hairdryer, straightener, makeup
-              wipes, cotton swabs, and travel-sized toothbrushes and toothpaste. The kitchen has spices, coffee station,
-              cookbooks, and basic cooking essentials.</p>
-          </div>
-        </details>
       </div>
+    </div>
     </div>
   </section>
   <footer>
@@ -4055,7 +4104,8 @@
         <div class="cal-title" id="calTitle"></div> <button type="button" class="cal-nav" id="calNext">&#8250;</button>
       </div>
       <div class="cal-weekdays"> <span>Su</span><span>Mo</span><span>Tu</span><span>We</span>
-        <span>Th</span><span>Fr</span><span>Sa</span> </div>
+        <span>Th</span><span>Fr</span><span>Sa</span>
+      </div>
       <div class="cal-grid" id="calGrid"></div>
       <div class="cal-legend"> <span class="legend-item"><span
             class="legend-dot legend-available"></span>Available</span> <span class="legend-item"><span
@@ -4201,432 +4251,6 @@
       });
     }());
   </script>
-</body>
-
-</html>
-<script>(function () {
-    'use strict';
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
-    function todayStr() {
-      var d = new Date();
-      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-    }
-    function ymdUTC(d) {
-      return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
-    }
-    function fmtDisplay(ymd) {
-      if (!ymd) return '';
-      var p = ymd.split('-'), months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      return months[+p[1] - 1] + ' ' + +p[2] + ', ' + p[0];
-    }
-    function showToast(msg, type, ms) {
-      var stack = document.getElementById('toastStack');
-      if (!stack) return;
-      var t = document.createElement('div');
-      t.className = 'toast ' + (type || 'info');
-      t.textContent = msg;
-      stack.appendChild(t);
-      setTimeout(function () {
-        t.classList.add('fading');
-        setTimeout(function () { t.parentNode && t.parentNode.removeChild(t); }, 400);
-      }, ms || 3500);
-    }
-    var blocked = { greenville: null, pendleton: null };
-    function fetchBlocked(property, cb) {
-      if (blocked[property]) { cb(blocked[property]); return; }
-      fetch('/.netlify/functions/ical-proxy?property=' + property)
-        .then(function (r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          return r.text();
-        })
-        .then(function (text) {
-          blocked[property] = parseICalToSet(text);
-          cb(blocked[property]);
-        })
-        .catch(function (err) {
-          console.warn('iCal fetch failed for', property, err);
-          blocked[property] = new Set();
-          cb(blocked[property]);
-        });
-    }
-    function parseICalToSet(text) {
-      var set = new Set();
-      var lines = text.replace(/\r\n[ \t]/g, '').split(/\r?\n/);
-      var inEvent = false, dtstart = null, dtend = null;
-      for (var i = 0; i < lines.length; i++) {
-        var line = lines[i];
-        if (line === 'BEGIN:VEVENT') { inEvent = true; dtstart = null; dtend = null; continue; }
-        if (line === 'END:VEVENT') {
-          if (dtstart && dtend) {
-            var cur = new Date(dtstart.getTime());
-            while (cur < dtend) { set.add(ymdUTC(cur)); cur.setUTCDate(cur.getUTCDate() + 1); }
-          }
-          inEvent = false; continue;
-        }
-        if (!inEvent) continue;
-        var col = line.indexOf(':');
-        if (col < 0) continue;
-        var key = line.slice(0, col), val = line.slice(col + 1);
-        var m = val.match(/^(\d{4})(\d{2})(\d{2})/);
-        if (!m) continue;
-        var dt = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
-        if (key.indexOf('DTSTART') === 0) dtstart = dt;
-        else if (key.indexOf('DTEND') === 0) dtend = dt;
-      }
-      return set;
-    }
-    var state = {
-      kind: null,
-      property: '',
-      viewYear: 0,
-      viewMonth: 0,
-      checkIn: null,
-      checkOut: null
-    };
-    function isBooked(dateStr) {
-      var set = blocked[state.property];
-      return set ? set.has(dateStr) : false;
-    }
-    function rangeHasBooked(from, to) {
-      var cur = new Date(from + 'T00:00:00Z');
-      var stop = new Date(to + 'T00:00:00Z');
-      while (cur < stop) {
-        if (isBooked(ymdUTC(cur))) return true;
-        cur.setUTCDate(cur.getUTCDate() + 1);
-      }
-      return false;
-    }
-    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'];
-    function renderCal() {
-      document.getElementById('calTitle').textContent = MONTHS[state.viewMonth] + ' ' + state.viewYear;
-      var today = todayStr();
-      var grid = document.getElementById('calGrid');
-      grid.innerHTML = '';
-      var firstDow = new Date(state.viewYear, state.viewMonth, 1).getDay();
-      var daysInMon = new Date(state.viewYear, state.viewMonth + 1, 0).getDate();
-      for (var e = 0; e < firstDow; e++) {
-        var blank = document.createElement('div');
-        blank.className = 'cal-day empty';
-        grid.appendChild(blank);
-      }
-      for (var d = 1; d <= daysInMon; d++) {
-        var dateStr = state.viewYear + '-' + pad(state.viewMonth + 1) + '-' + pad(d);
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'cal-day';
-        btn.textContent = d;
-        btn.dataset.date = dateStr;
-        var isPast = dateStr < today;
-        var isBooked_ = isBooked(dateStr);
-        var beforeCi = state.kind === 'checkout' && state.checkIn && dateStr <= state.checkIn;
-        if (dateStr === today) btn.classList.add('today');
-        if (isPast || beforeCi) {
-          btn.classList.add('past');
-        } else if (isBooked_) {
-          btn.classList.add('booked');
-          btn.title = 'Not available';
-        } else {
-          btn.classList.add('available');
-          btn.addEventListener('click', onDayClick);
-        }
-        if (state.checkIn && state.checkOut) {
-          if (dateStr === state.checkIn) btn.classList.add('range-start');
-          else if (dateStr === state.checkOut) btn.classList.add('range-end');
-          else if (dateStr > state.checkIn && dateStr < state.checkOut) btn.classList.add('in-range');
-        } else if (state.checkIn && dateStr === state.checkIn) {
-          btn.classList.add('range-start');
-        }
-        grid.appendChild(btn);
-      }
-      var now = new Date();
-      document.getElementById('calPrev').disabled =
-        state.viewYear < now.getFullYear() ||
-        (state.viewYear === now.getFullYear() && state.viewMonth <= now.getMonth());
-    }
-    function onDayClick() {
-      var dateStr = this.dataset.date;
-      if (state.kind === 'checkin') {
-        state.checkIn = dateStr;
-        if (state.checkOut && state.checkOut <= dateStr) state.checkOut = null;
-        if (state.checkOut && rangeHasBooked(dateStr, state.checkOut)) state.checkOut = null;
-        syncTriggers();
-        closeCal();
-        if (!state.checkOut) { setTimeout(function () { openCal('checkout'); }, 220); }
-      } else {
-        if (dateStr <= state.checkIn) { showToast('Check-out must be after check-in.', 'error'); return; }
-        if (rangeHasBooked(state.checkIn, dateStr)) { showToast('Some nights in this range are booked. Please pick an earlier date.', 'error'); return; }
-        state.checkOut = dateStr;
-        syncTriggers();
-        closeCal();
-      }
-      clearErr(document.getElementById('checkInBtn'));
-      clearErr(document.getElementById('checkOutBtn'));
-    }
-    function openCal(kind) {
-      var prop = document.getElementById('propertySelect').value;
-      if (!prop) { showToast('Please select a home first.', 'error'); return; }
-      state.kind = kind;
-      state.property = prop;
-      var ref = (kind === 'checkin' && state.checkIn) ? state.checkIn
-        : (kind === 'checkout' && state.checkOut) ? state.checkOut
-          : (kind === 'checkout' && state.checkIn) ? state.checkIn
-            : null;
-      var base = ref ? new Date(ref + 'T00:00:00') : new Date();
-      state.viewYear = base.getFullYear();
-      state.viewMonth = base.getMonth();
-      fetchBlocked(prop, function () {
-        renderCal();
-        document.getElementById('calModal').classList.add('open');
-      });
-    }
-    function closeCal() {
-      document.getElementById('calModal').classList.remove('open');
-    }
-    function syncTriggers() {
-      var ciBtn = document.getElementById('checkInBtn');
-      var coBtn = document.getElementById('checkOutBtn');
-      var ciVal = document.getElementById('checkInValue');
-      var coVal = document.getElementById('checkOutValue');
-      if (state.checkIn) {
-        ciBtn.querySelector('.date-trigger-text').textContent = fmtDisplay(state.checkIn);
-        ciBtn.classList.add('has-value'); ciVal.value = state.checkIn;
-      } else {
-        ciBtn.querySelector('.date-trigger-text').textContent = 'Pick a date';
-        ciBtn.classList.remove('has-value'); ciVal.value = '';
-      }
-      if (state.checkOut) {
-        coBtn.querySelector('.date-trigger-text').textContent = fmtDisplay(state.checkOut);
-        coBtn.classList.add('has-value'); coVal.value = state.checkOut;
-      } else {
-        coBtn.querySelector('.date-trigger-text').textContent = 'Pick a date';
-        coBtn.classList.remove('has-value'); coVal.value = '';
-      }
-    }
-    function setDatesEnabled(on) {
-      var ci = document.getElementById('checkInBtn');
-      var co = document.getElementById('checkOutBtn');
-      [ci, co].forEach(function (b) {
-        b.disabled = !on;
-        if (!on) b.querySelector('.date-trigger-text').textContent = 'Select a home first';
-        else if (!b.classList.contains('has-value')) b.querySelector('.date-trigger-text').textContent = 'Pick a date';
-      });
-    }
-    function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }
-    function clearErr(el) {
-      if (!el) return;
-      el.classList.remove('field-error');
-      var m = document.querySelector('.req-mark[data-for="' + el.id + '"]');
-      if (m) m.classList.remove('show');
-    }
-    function markErr(el) {
-      if (!el) return;
-      el.classList.add('field-error');
-      var m = document.querySelector('.req-mark[data-for="' + el.id + '"]');
-      if (m) m.classList.add('show');
-    }
-    function validateAll() {
-      var checks = [
-        { id: 'propertySelect', ok: function (v) { return !!v; } },
-        { id: 'fullNameInput', ok: function (v) { return v.trim().length >= 2; } },
-        { id: 'phoneInput', ok: function (v) { return v.trim().length >= 5; } },
-        { id: 'emailInput', ok: function (v) { return isValidEmail(v); }, isEmail: true },
-        { id: 'checkInBtn', ok: function () { return !!state.checkIn; }, useState: true },
-        { id: 'checkOutBtn', ok: function () { return !!state.checkOut; }, useState: true }
-      ];
-      var first = null, valid = true, badEmail = false, missing = 0;
-      checks.forEach(function (c) {
-        var el = document.getElementById(c.id);
-        if (!el) return;
-        var ok = c.useState ? c.ok() : c.ok(el.value || '');
-        if (!ok) {
-          markErr(el);
-          if (!first) first = el;
-          if (c.isEmail && el.value.trim()) badEmail = true;
-          else missing++;
-          valid = false;
-        } else { clearErr(el); }
-      });
-      return { valid: valid, first: first, badEmail: badEmail, missing: missing };
-    }
-    (function () {
-      var countEl = document.getElementById('guestsCount');
-      var labelEl = countEl ? countEl.nextElementSibling : null;
-      var inputEl = document.getElementById('guestsInput');
-      var minusBtn = document.getElementById('guestsMinus');
-      var plusBtn = document.getElementById('guestsPlus');
-      var propSel = document.getElementById('propertySelect');
-      var count = 1;
-      function maxGuests() {
-        if (!propSel) return 10;
-        return propSel.value === 'greenville' ? 6 : propSel.value === 'pendleton' ? 10 : 10;
-      }
-      function update() {
-        if (!countEl) return;
-        countEl.textContent = count;
-        if (labelEl) labelEl.textContent = count === 1 ? 'guest' : 'guests';
-        if (inputEl) inputEl.value = count;
-        if (minusBtn) minusBtn.disabled = count <= 1;
-        if (plusBtn) plusBtn.disabled = count >= maxGuests();
-      }
-      if (minusBtn) minusBtn.addEventListener('click', function () { if (count > 1) { count--; update(); } });
-      if (plusBtn) plusBtn.addEventListener('click', function () { if (count < maxGuests()) { count++; update(); } });
-      if (propSel) propSel.addEventListener('change', function () {
-        if (count > maxGuests()) { count = maxGuests(); update(); }
-        else update();
-      });
-      update();
-    }());
-    document.getElementById('propertySelect').addEventListener('change', function () {
-      var prop = this.value;
-      clearErr(this);
-      if (!prop) {
-        state.checkIn = state.checkOut = null;
-        state.property = '';
-        syncTriggers();
-        setDatesEnabled(false);
-        return;
-      }
-      if (state.property && state.property !== prop) {
-        state.property = prop;
-        fetchBlocked(prop, function (set) {
-          if (state.checkIn && set.has(state.checkIn)) {
-            state.checkIn = state.checkOut = null;
-            showToast('Dates cleared — not available for this home.', 'info');
-          } else if (state.checkIn && state.checkOut && rangeHasBooked(state.checkIn, state.checkOut)) {
-            state.checkOut = null;
-            showToast('Check-out cleared — some nights unavailable for this home.', 'info');
-          }
-          syncTriggers();
-        });
-      } else {
-        state.property = prop;
-        fetchBlocked(prop, function () { });
-      }
-      setDatesEnabled(true);
-    });
-    ['fullNameInput', 'phoneInput', 'emailInput'].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) el.addEventListener('input', function () { clearErr(el); });
-    });
-    document.getElementById('checkInBtn').addEventListener('click', function () {
-      if (!this.disabled) openCal('checkin');
-    });
-    document.getElementById('checkOutBtn').addEventListener('click', function () {
-      if (this.disabled) return;
-      if (!state.checkIn) { showToast('Please select a check-in date first.', 'info'); openCal('checkin'); return; }
-      openCal('checkout');
-    });
-    document.getElementById('calPrev').addEventListener('click', function () {
-      if (state.viewMonth === 0) { state.viewMonth = 11; state.viewYear--; }
-      else { state.viewMonth--; }
-      renderCal();
-    });
-    document.getElementById('calNext').addEventListener('click', function () {
-      if (state.viewMonth === 11) { state.viewMonth = 0; state.viewYear++; }
-      else { state.viewMonth++; }
-      renderCal();
-    });
-    document.getElementById('calClose').addEventListener('click', closeCal);
-    document.getElementById('calBackdrop').addEventListener('click', closeCal);
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCal(); });
-    window.submitForm = function (e) {
-      e.preventDefault();
-      var res = validateAll();
-      if (!res.valid) {
-        showToast(res.badEmail ? 'Please enter a valid email address.'
-          : res.missing > 1 ? 'Please fill in all required fields.'
-            : 'Please fill in the highlighted field.', 'error');
-        if (res.first) {
-          res.first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          setTimeout(function () { try { res.first.focus(); } catch (_) { } }, 300);
-        }
-        return;
-      }
-      var btn = document.getElementById('formSubmitBtn');
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      /* ── שליחה ל-Netlify Forms ── */
-      var propNames = { greenville: 'Greenville Pool Home', pendleton: 'Clemson Pendleton Retreat' };
-      var prop = document.getElementById('propertySelect').value;
-      var guestName = document.getElementById('fullNameInput').value;
-      var phone = document.getElementById('phoneInput').value;
-      var email = document.getElementById('emailInput').value;
-      var checkin = document.getElementById('checkInValue').value || 'Not selected';
-      var checkout = document.getElementById('checkOutValue').value || 'Not selected';
-      var guests = document.getElementById('guestsInput').value;
-      var formData = new FormData();
-      formData.append('form-name', 'booking-request');
-      formData.append('property', propNames[prop] || prop);
-      formData.append('name', guestName);
-      formData.append('phone', phone);
-      formData.append('email', email);
-      formData.append('checkin', checkin);
-      formData.append('checkout', checkout);
-      formData.append('guests', guests);
-      fetch('/', { method: 'POST', body: formData })
-        .then(function () {
-          btn.textContent = '✓ Request Received!';
-          btn.style.background = '#1e3a5f';
-          showToast('✓ Request sent! We\'ll be in touch within 1 hour.', 'success', 6000);
-          setTimeout(function () {
-            btn.textContent = 'Get 10% Off → Send Request';
-            btn.style.background = '';
-            btn.disabled = false;
-            document.getElementById('bookingForm').reset();
-            state.checkIn = state.checkOut = null;
-            state.property = '';
-            syncTriggers();
-            setDatesEnabled(false);
-          }, 5000);
-        })
-        .catch(function () {
-          btn.textContent = 'Get 10% Off → Send Request';
-          btn.style.background = '';
-          btn.disabled = false;
-          showToast('Something went wrong. Please try WhatsApp or email.', 'error', 5000);
-        });
-    };
-  }());</script>
-<button class="a11y-btn" id="a11yBtn" aria-label="Accessibility options" title="Accessibility">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="4" r="2" />
-    <path d="M19 7H5a1 1 0 000 2h5.5l-1.8 9H5a1 1 0 000 2h4l.5-2.5h5L15 20h4a1 1 0 000-2h-3.7L13.5 9H19a1 1 0 000-2z" />
-  </svg>
-</button>
-<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Accessibility settings">
-  <div class="a11y-panel-title">Accessibility</div>
-  <div class="a11y-row"><label for="a11yBigText">Larger text</label><label class="a11y-toggle"><input type="checkbox"
-        id="a11yBigText"><span class="a11y-slider"></span></label></div>
-  <div class="a11y-row"><label for="a11yContrast">High contrast</label><label class="a11y-toggle"><input type="checkbox"
-        id="a11yContrast"><span class="a11y-slider"></span></label></div>
-  <div class="a11y-row"><label for="a11yNoAnim">Reduce motion</label><label class="a11y-toggle"><input type="checkbox"
-        id="a11yNoAnim"><span class="a11y-slider"></span></label></div>
-  <div class="a11y-row"><label for="a11yLinks">Highlight links</label><label class="a11y-toggle"><input type="checkbox"
-        id="a11yLinks"><span class="a11y-slider"></span></label></div>
-</div>
-<script>
-  (function () {
-    var btn = document.getElementById('a11yBtn');
-    var panel = document.getElementById('a11yPanel');
-    var root = document.documentElement;
-    btn.addEventListener('click', function (e) { e.stopPropagation(); panel.classList.toggle('open'); });
-    document.addEventListener('click', function (e) { if (!panel.contains(e.target) && e.target !== btn) panel.classList.remove('open'); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') panel.classList.remove('open'); });
-    document.getElementById('a11yBigText').addEventListener('change', function () { root.style.fontSize = this.checked ? '120%' : ''; });
-    document.getElementById('a11yContrast').addEventListener('change', function () { root.style.filter = this.checked ? 'contrast(1.35)' : ''; });
-    document.getElementById('a11yNoAnim').addEventListener('change', function () {
-      var s = document.getElementById('a11yNoAnimStyle');
-      if (this.checked) { if (!s) { s = document.createElement('style'); s.id = 'a11yNoAnimStyle'; s.textContent = '*{animation:none!important;transition:none!important}'; document.head.appendChild(s); } }
-      else { if (s) s.remove(); }
-    });
-    document.getElementById('a11yLinks').addEventListener('change', function () {
-      var s = document.getElementById('a11yLinksStyle');
-      if (this.checked) { if (!s) { s = document.createElement('style'); s.id = 'a11yLinksStyle'; s.textContent = 'a{outline:2px solid #0066cc!important;text-decoration:underline!important}'; document.head.appendChild(s); } }
-      else { if (s) s.remove(); }
-    });
-  }());
-</script>
 </body>
 
 </html>
