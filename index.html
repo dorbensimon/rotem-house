@@ -444,12 +444,12 @@
     .cinema {
       position: relative;
       width: 100%;
-      height: 420vh;
+      height: 100vh;
       background: linear-gradient(180deg, #6a9bbf 0%, #8ec0db 60%, #cce4ef 100%)
     }
 
     .cinema-stage {
-      position: sticky;
+      position: relative;
       top: 0;
       height: 100vh;
       width: 100%;
@@ -509,8 +509,19 @@
       height: 100%;
       z-index: 4;
       pointer-events: none;
-      opacity: 0;
+      opacity: 1;
+      animation: svgFadeIn 1s ease 0.1s both;
       will-change: opacity
+    }
+
+    @keyframes svgFadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
     }
 
     .cinema-svg .t-stroke {
@@ -551,12 +562,25 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 73%;
+      top: 70%;
       text-align: center;
       z-index: 5;
       padding: 0 6vw;
-      opacity: 0;
-      will-change: opacity, transform
+      opacity: 1;
+      will-change: opacity, transform;
+      animation: subFadeIn 0.8s ease 0.3s both
+    }
+
+    @keyframes subFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
     }
 
     .cinema-sub-wrap p {
@@ -618,12 +642,12 @@
       }
 
       .cinema-svg {
-        top: -25%;
+        top: -15%;
         height: 100%
       }
 
       .cinema-sub-wrap {
-        top: 60%;
+        top: 66%;
         padding: 0 8vw
       }
 
@@ -2133,7 +2157,8 @@
       box-shadow: 0 8px 40px rgba(0, 0, 0, .25);
       transition: box-shadow .2s, transform .2s;
       border: none;
-      text-align: left
+      text-align: left;
+      margin: 0 auto
     }
 
     .hero-search:hover {
@@ -3250,11 +3275,11 @@
               preserveAspectRatio="xMidYMid slice" />
           </pattern>
         </defs>
-        <g> <text class="t-stroke" data-line="BH &amp; CO" x="800" y="370" text-anchor="middle" font-size="220"></text>
-          <text class="t-stroke" data-line="RENTALS" x="800" y="600" text-anchor="middle" font-size="220"></text>
+        <g> <text class="t-stroke" data-line="BH &amp; CO" x="800" y="260" text-anchor="middle" font-size="220"></text>
+          <text class="t-stroke" data-line="RENTALS" x="800" y="480" text-anchor="middle" font-size="220"></text>
         </g>
-        <g class="cinema-fill-group"> <text class="t-fill" x="800" y="370" text-anchor="middle" font-size="220">BH &amp;
-            CO</text> <text class="t-fill" x="800" y="600" text-anchor="middle" font-size="220">RENTALS</text> </g>
+        <g class="cinema-fill-group"> <text class="t-fill" x="800" y="260" text-anchor="middle" font-size="220">BH &amp;
+            CO</text> <text class="t-fill" x="800" y="480" text-anchor="middle" font-size="220">RENTALS</text> </g>
       </svg>
       <div class="cinema-sub-wrap" id="cinemaSubWrap">
         <p>Luxury vacation homes in South Carolina · Find what moves you.</p> <button class="hero-search"
@@ -3962,9 +3987,9 @@
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
       function apply(p) {
         houseCard.style.opacity = '1';
-        const svgFade = smooth(clamp((p - 0.12) / 0.12, 0, 1));
-        svg.style.opacity = svgFade.toFixed(3);
-        const writeP = clamp((p - 0.15) / 0.55, 0, 1);
+        const svgFade = 1;
+        svg.style.opacity = '1';
+        const writeP = 1;
         const n = letterEls.length;
         const overlap = 0.4;
         letterEls.forEach((el, i) => {
@@ -3974,11 +3999,11 @@
           const eased = local * local * (3 - 2 * local);
           el.style.strokeDashoffset = (DASH * (1 - eased)).toFixed(1);
         });
-        if (p > 0.7) svg.classList.add('is-filled'); else svg.classList.remove('is-filled');
+        svg.classList.add('is-filled');
         const parP = smooth(clamp((p - 0.7) / 0.25, 0, 1));
         const patY = lerp(-200, -700, parP);
         housePatternImg.setAttribute('y', patY.toFixed(0));
-        const cloudP = clamp((p - 0.5) / 0.32, 0, 1);
+        const cloudP = 0; // no cloud animation
         puffEls.forEach((el, i) => {
           const delay = parseFloat(el.dataset.delay);
           const driftX = parseFloat(el.dataset.driftX);
@@ -3991,15 +4016,13 @@
           el.style.transform = 'translate(' + tx + 'vw, ' + ty + 'px) rotate(' + el.dataset.rot + 'deg)';
           el.style.opacity = op.toFixed(3);
         });
-        const subP = smooth(clamp((p - 0.88) / 0.10, 0, 1));
-        subWrap.style.opacity = subP.toFixed(3);
-        subWrap.style.transform = 'translateY(' + ((1 - subP) * 24).toFixed(1) + 'px)';
+        // subWrap always visible — controlled by CSS animation
+        subWrap.style.opacity = '1';
+        subWrap.style.transform = 'translateY(0)';
       }
       function onScroll() {
-        const rect = cinema.getBoundingClientRect();
-        const total = cinema.offsetHeight - window.innerHeight;
-        const p = clamp(-rect.top / total, 0, 1);
-        apply(p);
+        // No scroll animation — cinema is fixed height 100vh
+        apply(1);
       }
       const INTRO_KEY = 'rotemHouseIntroLastSeen';
       const FIVE_MINUTES = 5 * 60 * 1000;
