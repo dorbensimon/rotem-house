@@ -472,7 +472,8 @@
       overflow: hidden
     }
 
-    .cinema-house-card img {
+    .cinema-house-card img,
+    .cinema-house-card video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -540,14 +541,15 @@
     }
 
     .cinema-svg .t-fill {
-      fill: url(#housePattern);
+      fill: rgba(255, 255, 255, 0.95);
       stroke: rgba(255, 255, 255, .55);
       stroke-width: .6;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
       letter-spacing: -2px;
       opacity: 0;
-      transition: opacity .25s ease
+      transition: opacity .25s ease;
+      filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.3))
     }
 
     .cinema-svg.is-filled .t-fill {
@@ -633,7 +635,8 @@
         background: #1a2640
       }
 
-      .cinema-house-card img {
+      .cinema-house-card img,
+      .cinema-house-card video {
         object-fit: cover;
         object-position: center 40%;
         transform: scale(1);
@@ -2864,7 +2867,14 @@
       }
 
       .prop-slider {
-        height: 380px
+        width: min(340px, calc(100vw - 100px));
+        height: auto;
+        aspect-ratio: 420 / 500;
+        border-radius: 50vw 50vw 0 0;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block
       }
 
       .prop-name {
@@ -3088,24 +3098,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 40px;
+      gap: clamp(16px, 5vw, 48px);
       flex-wrap: nowrap;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none
-    }
-
-    .partners-logos::-webkit-scrollbar {
-      display: none
+      width: 100%
     }
 
     .partner-logo-link {
       display: flex;
       align-items: center;
+      justify-content: center;
       opacity: .7;
       transition: opacity .2s, transform .2s;
-      text-decoration: none
+      text-decoration: none;
+      flex: 0 1 auto;
+      min-width: 0
     }
 
     .partner-logo-link:hover {
@@ -3114,8 +3120,20 @@
     }
 
     .partner-svg {
-      height: 44px;
-      width: auto
+      height: clamp(22px, 6vw, 32px);
+      width: auto;
+      max-width: 100%;
+      display: block
+    }
+
+    @media (max-width:480px) {
+      .partners-section {
+        padding: 40px 16px
+      }
+
+      .partner-svg {
+        height: 20px
+      }
     }
 
     .a11y-btn {
@@ -3340,9 +3358,12 @@
       Airbnb</h1>
     <div class="cinema-stage">
       <div class="cinema-sky"></div>
-      <div class="cinema-house-card" id="houseCard"> <img src="/images/house.jpg.jpg"
-          alt="BH & CO Rentals luxury vacation home with private pool in Greenville, South Carolina"> </div> <svg
-        class="cinema-svg" id="cinemaSvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
+      <div class="cinema-house-card" id="houseCard">
+        <video src="/videos/video hero.mp4" autoplay muted loop playsinline preload="auto"
+          poster="/images/greenville-pool-aerial.jpg"
+          aria-label="BH & CO Rentals luxury vacation home with private pool in Greenville, South Carolina">
+        </video>
+      </div> <svg class="cinema-svg" id="cinemaSvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
         <defs>
           <pattern id="housePattern" patternUnits="userSpaceOnUse" x="0" y="0" width="1600" height="2400">
             <image id="housePatternImg" href="/images/house.jpg.jpg" width="1600" height="2400"
@@ -3784,22 +3805,33 @@
   <section class="section partners-section" id="amenities">
     <div class="partners-inner">
       <p class="partners-label">Trusted By Our Partners</p>
-      <div class="partners-logos"> <a
-          href="https://www.airbnb.com/users/profile/1470465510507064274?previous_page_name=PdpHomeMarketplace"
-          target="_blank" class="partner-logo-link" aria-label="Airbnb"><svg viewBox="0 0 130 44"
-            xmlns="http://www.w3.org/2000/svg" class="partner-svg">
+      <div class="partners-logos">
+        <a href="https://www.airbnb.com/users/profile/1470465510507064274?previous_page_name=PdpHomeMarketplace"
+          target="_blank" class="partner-logo-link" aria-label="Airbnb">
+          <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg" class="partner-svg">
             <path
-              d="M22 6c-1.1 0-2.1.4-2.9 1.2-.7.7-1.2 1.7-1.4 2.8-.4 2.7.8 6.4 2.9 9.8.4.7.9 1.4 1.4 2 .5-.6 1-1.3 1.4-2 2.1-3.4 3.3-7.1 2.9-9.8-.2-1.1-.7-2.1-1.4-2.8C24.1 6.4 23.1 6 22 6zm0 17.5c-.7-.7-1.3-1.5-1.9-2.3-2.4-3.8-3.8-8-3.3-11.3.3-1.6 1-3 2.1-4C19.9 4.7 21 4.2 22 4.2s2.1.5 3.1 1.7c1.1 1 1.8 2.4 2.1 4 .5 3.3-.9 7.5-3.3 11.3-.6.8-1.2 1.6-1.9 2.3z"
-              fill="#FF5A5F" /><text x="32" y="28" font-family="Arial,sans-serif" font-size="20" font-weight="700"
-              fill="#FF5A5F">airbnb</text>
-          </svg></a> <a href="https://www.booking.com/Share-MaiiXh" target="_blank" class="partner-logo-link"
-          aria-label="Booking.com"><svg viewBox="0 0 180 44" xmlns="http://www.w3.org/2000/svg"
-            class="partner-svg"><text x="0" y="32" font-family="Arial,sans-serif" font-size="28" font-weight="900"
-              fill="#003580">booking</text><text x="119" y="32" font-family="Arial,sans-serif" font-size="28"
-              font-weight="900" fill="#009FE3">.com</text></svg></a> <a href="https://www.vrbo.com" target="_blank"
-          class="partner-logo-link" aria-label="VRBO"><svg viewBox="0 0 100 44" xmlns="http://www.w3.org/2000/svg"
-            class="partner-svg"><text x="0" y="33" font-family="Arial,sans-serif" font-size="34" font-weight="900"
-              fill="#1F5EBF" letter-spacing="-1">Vrbo</text></svg></a> </div>
+              d="M16 4.5c-.95 0-1.82.34-2.5 1-.6.6-1 1.45-1.2 2.4-.34 2.32.7 5.5 2.5 8.4.34.6.77 1.2 1.2 1.72.43-.52.86-1.12 1.2-1.72 1.8-2.9 2.84-6.08 2.5-8.4-.2-.95-.6-1.8-1.2-2.4-.68-.66-1.55-1-2.5-1zm0 15c-.6-.6-1.12-1.28-1.63-2-2.06-3.26-3.26-6.86-2.83-9.7.26-1.37.86-2.57 1.8-3.43.86-1.03 1.8-1.46 2.66-1.46s1.8.43 2.66 1.46c.94.86 1.54 2.06 1.8 3.43.43 2.84-.77 6.44-2.83 9.7-.51.72-1.03 1.4-1.63 2z"
+              fill="#FF5A5F" />
+            <text x="26" y="22" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#FF5A5F"
+              letter-spacing="-0.5">airbnb</text>
+          </svg>
+        </a>
+        <a href="https://www.booking.com/Share-MaiiXh" target="_blank" class="partner-logo-link"
+          aria-label="Booking.com">
+          <svg viewBox="0 0 140 32" xmlns="http://www.w3.org/2000/svg" class="partner-svg">
+            <text x="0" y="22" font-family="Helvetica,Arial,sans-serif" font-size="20" font-weight="800" fill="#003580"
+              letter-spacing="-0.8">Booking</text>
+            <text x="93" y="22" font-family="Helvetica,Arial,sans-serif" font-size="20" font-weight="800" fill="#009FE3"
+              letter-spacing="-0.8">.com</text>
+          </svg>
+        </a>
+        <a href="https://www.vrbo.com" target="_blank" class="partner-logo-link" aria-label="Vrbo">
+          <svg viewBox="0 0 70 32" xmlns="http://www.w3.org/2000/svg" class="partner-svg">
+            <text x="0" y="22" font-family="Helvetica,Arial,sans-serif" font-size="22" font-weight="800" fill="#1F5EBF"
+              letter-spacing="-1">Vrbo</text>
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
   </section>
@@ -4226,6 +4258,49 @@
       slides[idx].classList.add('active'); dots[idx].classList.add('active');
     }
     ['slider-1', 'slider-2', 'slider-3'].forEach(setupSlider);
+    function attachSwipe(id) {
+      const slider = document.getElementById(id);
+      if (!slider) return;
+      let startX = 0, startY = 0, deltaX = 0, deltaY = 0, isTouching = false;
+      slider.style.touchAction = 'pan-y';
+      slider.style.cursor = 'grab';
+      slider.addEventListener('touchstart', e => {
+        isTouching = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        deltaX = 0; deltaY = 0;
+      }, { passive: true });
+      slider.addEventListener('touchmove', e => {
+        if (!isTouching) return;
+        deltaX = e.touches[0].clientX - startX;
+        deltaY = e.touches[0].clientY - startY;
+      }, { passive: true });
+      slider.addEventListener('touchend', () => {
+        if (!isTouching) return;
+        isTouching = false;
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+          slide(id, deltaX < 0 ? 1 : -1);
+        }
+      });
+      let mDown = false, mStartX = 0, mDeltaX = 0;
+      slider.addEventListener('mousedown', e => {
+        mDown = true; mStartX = e.clientX; mDeltaX = 0;
+        slider.style.cursor = 'grabbing';
+      });
+      slider.addEventListener('mousemove', e => {
+        if (!mDown) return;
+        mDeltaX = e.clientX - mStartX;
+      });
+      const endMouse = () => {
+        if (!mDown) return;
+        mDown = false;
+        slider.style.cursor = 'grab';
+        if (Math.abs(mDeltaX) > 40) slide(id, mDeltaX < 0 ? 1 : -1);
+      };
+      slider.addEventListener('mouseup', endMouse);
+      slider.addEventListener('mouseleave', endMouse);
+    }
+    ['slider-1', 'slider-2', 'slider-3'].forEach(attachSwipe);
     setInterval(() => ['slider-1', 'slider-2', 'slider-3'].forEach(id => slide(id, 1)), 6000);
     const observer = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
