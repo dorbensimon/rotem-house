@@ -636,15 +636,7 @@
     }
 
     .cinema::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 18vh;
-      pointer-events: none;
-      z-index: 4;
-      background: linear-gradient(180deg, rgba(204, 228, 239, 0) 0%, rgba(204, 228, 239, .55) 50%, #cce4ef 100%)
+      content: none
     }
 
     @media (max-width:768px) {
@@ -672,7 +664,7 @@
       }
 
       .cinema-sub-wrap {
-        top: 66%;
+        top: calc(66% - 8px);
         padding: 0 8vw
       }
 
