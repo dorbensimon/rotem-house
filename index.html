@@ -248,6 +248,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="/images/greenville-pool-aerial.jpg" fetchpriority="high">
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
     rel="stylesheet">
@@ -483,6 +484,27 @@
       transform-origin: center 60%
     }
 
+    .cinema-house-card video {
+      opacity: 0;
+      transition: opacity .6s ease-out
+    }
+
+    .cinema-house-card video.is-ready {
+      opacity: 1
+    }
+
+    .cinema-house-card.has-poster::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--poster-url, none);
+      background-size: cover;
+      background-position: center 35%;
+      transform: scale(1.25);
+      transform-origin: center 60%;
+      z-index: 0
+    }
+
     @keyframes houseFloat {
 
       0%,
@@ -625,7 +647,7 @@
       background: linear-gradient(180deg, rgba(204, 228, 239, 0) 0%, rgba(204, 228, 239, .55) 50%, #cce4ef 100%)
     }
 
-    .hero-info-stats .hero-info-stats .hero-info-stats .hero-info-distances .hero-info-distances .hero-info-distances @media (max-width:768px) {
+    @media (max-width:768px) {
       .cinema {
         height: 100vh;
         height: 100svh
@@ -662,8 +684,6 @@
       .cinema-clouds-bottom {
         bottom: -10vh
       }
-
-      .hero-info-stats
     }
 
     .marquee {
@@ -3359,9 +3379,10 @@
     <div class="cinema-stage">
       <div class="cinema-sky"></div>
       <div class="cinema-house-card" id="houseCard">
-        <video src="/videos/video hero.mp4" autoplay muted loop playsinline preload="auto"
+        <video id="heroVideo" autoplay muted loop playsinline preload="metadata"
           poster="/images/greenville-pool-aerial.jpg"
           aria-label="BH & CO Rentals luxury vacation home with private pool in Greenville, South Carolina">
+          <source src="/videos/video hero_compressed.mp4" type="video/mp4">
         </video>
       </div> <svg class="cinema-svg" id="cinemaSvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
         <defs>
@@ -4088,26 +4109,41 @@
       }
     }
     window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
-    window.addEventListener('load', () => {
-      forceTopIfRestored();
-      setTimeout(forceTopIfRestored, 100);
-      setTimeout(forceTopIfRestored, 300);
-      setTimeout(forceTopIfRestored, 600);
-    });
+    window.addEventListener('load', forceTopIfRestored);
     window.addEventListener('pageshow', (e) => {
       if (e.persisted) {
         forceTopIfRestored();
-        setTimeout(forceTopIfRestored, 100);
       }
     });</script>
   <script>(function buildCinema() {
       const cinema = document.getElementById('cinema');
       const houseCard = document.getElementById('houseCard');
+      const heroVideo = document.getElementById('heroVideo');
       const svg = document.getElementById('cinemaSvg');
       const housePatternImg = document.getElementById('housePatternImg');
       const subWrap = document.getElementById('cinemaSubWrap');
       const cloudsBottom = document.getElementById('cloudsBottom');
       if (!cinema) return;
+
+      // Show poster as background immediately while video loads
+      if (heroVideo && houseCard) {
+        const posterUrl = heroVideo.getAttribute('poster');
+        if (posterUrl) {
+          houseCard.style.setProperty('--poster-url', 'url("' + posterUrl + '")');
+          houseCard.classList.add('has-poster');
+        }
+        // Fade in video when it has enough data to play
+        const showVideo = function () {
+          heroVideo.classList.add('is-ready');
+        };
+        if (heroVideo.readyState >= 3) {
+          showVideo();
+        } else {
+          heroVideo.addEventListener('canplay', showVideo, { once: true });
+          heroVideo.addEventListener('playing', showVideo, { once: true });
+          heroVideo.addEventListener('loadeddata', showVideo, { once: true });
+        }
+      }
       const SVG_NS = 'http://www.w3.org/2000/svg';
       const letterEls = [];
       svg.querySelectorAll('.t-stroke').forEach(t => {
