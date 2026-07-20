@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BH &amp; CO Rentals — Luxury Vacation Homes in South Carolina | Greenville &amp; Pendleton</title>
-  <meta name="title" content="BH &amp; CO Rentals — Luxury Vacation Homes in South Carolina | Greenville &amp; Pendleton">
+  <meta name="title"
+    content="BH &amp; CO Rentals — Luxury Vacation Homes in South Carolina | Greenville &amp; Pendleton">
   <meta name="description"
     content="Award-winning vacation rentals in Greenville &amp; Pendleton, SC. Guest Favorite homes with private pools, near Clemson University &amp; Downtown Greenville. Superhost rated 4.97★. Book direct &amp; save 10%.">
   <meta name="keywords"
@@ -13,28 +14,28 @@
   <meta name="author" content="BH &amp; CO Rentals">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="googlebot" content="index, follow">
-  <link rel="canonical" href="https://bhandco-rentals.netlify.app/">
+  <link rel="canonical" href="https://bh-and-co.com/">
   <meta name="geo.region" content="US-SC">
   <meta name="geo.placename" content="Greenville, South Carolina">
   <meta name="geo.position" content="34.8526;-82.3940">
   <meta name="ICBM" content="34.8526, -82.3940">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://bhandco-rentals.netlify.app/">
+  <meta property="og:url" content="https://bh-and-co.com/">
   <meta property="og:title" content="BH &amp; CO Rentals — Luxury Vacation Homes in South Carolina">
   <meta property="og:description"
     content="🏆 Guest Favorite homes with private pools in Greenville &amp; Pendleton, SC. Superhost rated 4.97★. Book direct &amp; save 10%.">
-  <meta property="og:image" content="https://bhandco-rentals.netlify.app/images/house.jpg.jpg">
+  <meta property="og:image" content="https://bh-and-co.com/images/house.jpg.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="BH &amp; CO Rentals - Luxury Vacation Home with Pool in South Carolina">
   <meta property="og:site_name" content="BH &amp; CO Rentals">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://bhandco-rentals.netlify.app/">
+  <meta name="twitter:url" content="https://bh-and-co.com/">
   <meta name="twitter:title" content="BH &amp; CO Rentals — Luxury Vacation Homes in South Carolina">
   <meta name="twitter:description"
     content="🏆 Guest Favorite homes with private pools. Superhost rated 4.97★ across 29 reviews. Book direct &amp; save 10%.">
-  <meta name="twitter:image" content="https://bhandco-rentals.netlify.app/images/house.jpg.jpg">
+  <meta name="twitter:image" content="https://bh-and-co.com/images/house.jpg.jpg">
   <meta name="twitter:image:alt" content="BH &amp; CO Rentals - Luxury Vacation Home with Pool">
   <meta name="theme-color" content="#1d1d1f">
   <meta name="msapplication-TileColor" content="#1d1d1f">
@@ -48,12 +49,12 @@
     "@graph": [
       {
         "@type": "LodgingBusiness",
-        "@id": "https://bhandco-rentals.netlify.app/#organization",
+        "@id": "https://bh-and-co.com/#organization",
         "name": "BH & CO Rentals",
         "alternateName": "BH and CO Rentals",
-        "url": "https://bhandco-rentals.netlify.app/",
-        "logo": "https://bhandco-rentals.netlify.app/images/house.jpg.jpg",
-        "image": "https://bhandco-rentals.netlify.app/images/house.jpg.jpg",
+        "url": "https://bh-and-co.com/",
+        "logo": "https://bh-and-co.com/images/house.jpg.jpg",
+        "image": "https://bh-and-co.com/images/house.jpg.jpg",
         "description": "Award-winning luxury vacation rentals in South Carolina. Two Superhost-rated properties with private pools — one in Greenville and one near Clemson University in Pendleton.",
         "priceRange": "$$$",
         "telephone": "+1-000-000-0000",
@@ -81,11 +82,12 @@
       },
       {
         "@type": "VacationRental",
-        "@id": "https://bhandco-rentals.netlify.app/#greenville-home",
+        "@id": "https://bh-and-co.com/#greenville-home",
+        "identifier": "greenville-pool-home",
         "name": "Cozy & Luxurious Home with Pool",
         "description": "A brand-new, stylishly designed 3-bedroom home with private pool, master suite with massage chair, and 2 bathrooms. Just 20 minutes from Downtown Greenville and GSP Airport. Sleeps up to 6 guests.",
-        "image": "https://bhandco-rentals.netlify.app/images/house.jpg.jpg",
-        "url": "https://www.airbnb.com/rooms/1440955329892654568",
+        "image": "https://bh-and-co.com/images/house.jpg.jpg",
+        "url": "https://bh-and-co.com/#greenville-home",
         "numberOfRooms": "3",
         "occupancy": {
           "@type": "QuantitativeValue",
@@ -93,8 +95,10 @@
         },
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "102 Ketchitan Ct",
           "addressLocality": "Greenville",
           "addressRegion": "SC",
+          "postalCode": "29605",
           "addressCountry": "US"
         },
         "geo": {
@@ -109,21 +113,22 @@
           "bestRating": "5"
         },
         "amenityFeature": [
-          {"@type": "LocationFeatureSpecification", "name": "Private Pool"},
-          {"@type": "LocationFeatureSpecification", "name": "Master Suite with Massage Chair"},
-          {"@type": "LocationFeatureSpecification", "name": "Outdoor Grill"},
-          {"@type": "LocationFeatureSpecification", "name": "Game Table"},
-          {"@type": "LocationFeatureSpecification", "name": "Self Check-in"},
-          {"@type": "LocationFeatureSpecification", "name": "Pet Friendly"}
+          {"@type": "LocationFeatureSpecification", "name": "Private Pool", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Master Suite with Massage Chair", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Outdoor Grill", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Game Table", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Self Check-in", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Pet Friendly", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"}
         ]
       },
       {
         "@type": "VacationRental",
-        "@id": "https://bhandco-rentals.netlify.app/#pendleton-home",
+        "@id": "https://bh-and-co.com/#pendleton-home",
+        "identifier": "clemson-pendleton-retreat",
         "name": "Clemson Getaway w Private Pool Retreat",
         "description": "Modern, stylish 4-bedroom home with private fenced pool, outdoor fireplace, BBQ grill, trampoline, and game area. Just 12 minutes from Clemson University. 2.5 bathrooms, 8 beds, sleeps up to 10 guests.",
-        "image": "https://bhandco-rentals.netlify.app/images/house.jpg.jpg",
-        "url": "https://www.airbnb.com/rooms/1611252745011009724",
+        "image": "https://bh-and-co.com/images/house.jpg.jpg",
+        "url": "https://bh-and-co.com/#pendleton-home",
         "numberOfRooms": "4",
         "occupancy": {
           "@type": "QuantitativeValue",
@@ -131,8 +136,10 @@
         },
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "104 Dogwood Cir",
           "addressLocality": "Pendleton",
           "addressRegion": "SC",
+          "postalCode": "29670",
           "addressCountry": "US"
         },
         "geo": {
@@ -147,18 +154,18 @@
           "bestRating": "5"
         },
         "amenityFeature": [
-          {"@type": "LocationFeatureSpecification", "name": "Private Fenced Pool"},
-          {"@type": "LocationFeatureSpecification", "name": "Outdoor Fireplace"},
-          {"@type": "LocationFeatureSpecification", "name": "BBQ Grill"},
-          {"@type": "LocationFeatureSpecification", "name": "Trampoline"},
-          {"@type": "LocationFeatureSpecification", "name": "Game Area"},
-          {"@type": "LocationFeatureSpecification", "name": "Pet Friendly"},
-          {"@type": "LocationFeatureSpecification", "name": "Near Clemson University"}
+          {"@type": "LocationFeatureSpecification", "name": "Private Fenced Pool", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Outdoor Fireplace", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "BBQ Grill", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Trampoline", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Game Area", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Pet Friendly", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
+          {"@type": "LocationFeatureSpecification", "name": "Near Clemson University", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"}
         ]
       },
       {
         "@type": "Person",
-        "@id": "https://bhandco-rentals.netlify.app/#host",
+        "@id": "https://bh-and-co.com/#host",
         "name": "Rotem",
         "jobTitle": "Superhost",
         "description": "Entrepreneur in retail and real estate with a passion for hospitality and interior design. Superhost on Airbnb with 4.97★ rating across 29 reviews.",
@@ -167,15 +174,15 @@
       },
       {
         "@type": "WebSite",
-        "@id": "https://bhandco-rentals.netlify.app/#website",
-        "url": "https://bhandco-rentals.netlify.app/",
+        "@id": "https://bh-and-co.com/#website",
+        "url": "https://bh-and-co.com/",
         "name": "BH & CO Rentals",
-        "publisher": {"@id": "https://bhandco-rentals.netlify.app/#organization"},
+        "publisher": {"@id": "https://bh-and-co.com/#organization"},
         "inLanguage": "en-US"
       },
       {
         "@type": "FAQPage",
-        "@id": "https://bhandco-rentals.netlify.app/#faq",
+        "@id": "https://bh-and-co.com/#faq",
         "mainEntity": [
           {
             "@type": "Question",
