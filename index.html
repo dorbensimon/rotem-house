@@ -946,7 +946,7 @@
 
     .ts-date {
       font-size: 11px;
-      color: rgba(255, 255, 255, .45);
+      color: rgba(255, 255, 255, .65);
       margin-top: 2px
     }
 
@@ -988,17 +988,29 @@
     }
 
     .ts-dot {
-      width: 6px;
-      height: 6px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       border: none;
       background: rgba(0, 0, 0, .18);
       cursor: pointer;
       transition: all .25s;
-      padding: 0
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center
     }
 
-    .ts-dot.active {
+    .ts-dot::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, .35);
+      transition: all .25s
+    }
+
+    .ts-dot.active::after {
       background: #000;
       transform: scale(1.3)
     }
@@ -2800,7 +2812,7 @@
 
     .foot-copy {
       font-size: 12px;
-      color: rgba(255, 255, 255, .4);
+      color: rgba(255, 255, 255, .65);
       letter-spacing: 1px
     }
 
@@ -3130,7 +3142,7 @@
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: #888;
+      color: #555;
       margin-bottom: 40px
     }
 
@@ -3402,7 +3414,7 @@
         <video id="heroVideo" autoplay muted loop playsinline preload="metadata"
           poster="/images/greenville-pool-aerial.jpg"
           aria-label="BH & CO Rentals luxury vacation home with private pool in Greenville, South Carolina">
-          <source src="/videos/video hero_compressed.mp4" type="video/mp4">
+          <source src="/videos/hero.mp4" type="video/mp4">
         </video>
       </div> <svg class="cinema-svg" id="cinemaSvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
         <defs>
@@ -4096,14 +4108,14 @@
             </svg> </a> </div>
       </div>
       <div class="foot-col">
-        <h4>Properties</h4>
+        <h3>Properties</h3>
         <ul>
           <li><a href="#properties">Greenville Pool Home</a></li>
           <li><a href="#properties">Clemson Pendleton Retreat</a></li>
         </ul>
       </div>
       <div class="foot-col">
-        <h4>Explore</h4>
+        <h3>Explore</h3>
         <ul>
           <li><a href="#host">Meet the Host</a></li>
           <li><a href="#reviews">Reviews</a></li>
@@ -4111,7 +4123,7 @@
         </ul>
       </div>
       <div class="foot-col">
-        <h4>Book Direct</h4>
+        <h3>Book Direct</h3>
         <ul>
           <li><a href="#book">Check Availability</a></li>
           <li><a href="https://wa.me/19175471580" target="_blank">WhatsApp Us</a></li>
