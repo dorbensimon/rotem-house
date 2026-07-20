@@ -452,8 +452,12 @@
       cursor: pointer
     }
 
+    .mobile-menu {
+      display: none
+    }
+
     nav.scrolled .menu-btn {
-      color: var(--navy)
+      color: var(--white)
     }
 
     .cinema {
@@ -3076,35 +3080,128 @@
     }
 
     @media(max-width:768px) {
+      /* Override desktop pill nav to full-width mobile bar */
       nav {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        max-width: calc(100% - 20px);
-        padding: 6px 6px 6px 16px
+        top: 0 !important;
+        left: 0;
+        right: 0;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(255,255,255,.25);
+        padding: 14px 20px;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        box-shadow: none;
+        justify-content: space-between
+      }
+
+      nav.scrolled {
+        background: rgba(255,255,255,.18);
+        backdrop-filter: blur(20px) saturate(160%);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        border-color: rgba(255,255,255,.15)
       }
 
       .logo {
-        font-size: 16px
+        font-size: 16px;
+        display: block
       }
 
-      .nav-links a {
-        padding: 7px 10px;
-        font-size: 10px
+      /* Hide desktop links on mobile */
+      .nav-links, .nav-cta { display: none }
+
+      /* Hamburger button */
+      .menu-btn {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: rgba(0,0,0,.25);
+        border: none;
+        cursor: pointer;
+        padding: 8px 10px;
+        border-radius: 6px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px)
       }
 
-      .nav-cta {
-        padding: 8px 14px;
-        font-size: 10px
+      .menu-btn span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: #fff;
+        transition: all .3s
+      }
+
+      /* Fullscreen menu */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 70%;
+        height: 100%;
+        z-index: 300;
+        background: rgba(10,10,10,.95);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 80px 36px 40px;
+        gap: 0
+      }
+
+      .mobile-menu.open { display: flex }
+
+      .mobile-menu-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        line-height: 1
+      }
+
+      .mobile-menu a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 22px;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 500;
+        letter-spacing: 1px;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255,255,255,.12);
+        display: block;
+        transition: opacity .2s
+      }
+
+      .mobile-menu a:hover { opacity: .6 }
+
+      .mobile-menu-book {
+        margin-top: 28px;
+        font-size: 11px !important;
+        letter-spacing: 4px !important;
+        text-transform: uppercase;
+        text-align: center;
+        border: 1px solid rgba(255,255,255,.4) !important;
+        border-bottom: 1px solid rgba(255,255,255,.4) !important;
+        padding: 16px !important;
+        font-family: 'DM Sans', sans-serif !important
       }
     }
 
     @media(max-width:600px) {
       nav {
-        padding: 5px 5px 5px 14px
+        padding: 12px 16px
       }
 
       .logo {
-        display: none
+        font-size: 14px;
+        display: block
       }
 
       .stats {
@@ -3406,7 +3503,20 @@
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul> <a href="#book" class="nav-cta">Book Direct</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile fullscreen menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose">&#x2715;</button>
+    <a href="#host">Host</a>
+    <a href="#properties">Properties</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <a href="#book" class="mobile-menu-book">Book Direct</a>
+  </div>
   <section class="cinema" id="cinema">
     <h1 class="seo-h1">BH & CO Rentals — Luxury Vacation Homes in Greenville & Pendleton, South Carolina | Superhost on
       Airbnb</h1>
@@ -4305,7 +4415,29 @@
       }
     })();
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
+
+    // Logo click - close menu and scroll to top
+    var logo = document.querySelector('.logo');
+    if (logo) {
+      logo.style.cursor = 'pointer';
+      logo.addEventListener('click', function() {
+        if (mobileMenu) mobileMenu.classList.remove('open');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Mobile menu
+    var menuBtn = document.getElementById('menuBtn');
+    var menuClose = document.getElementById('menuClose');
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', function() { mobileMenu.classList.add('open'); });
+      menuClose && menuClose.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+      mobileMenu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+      });
+    }
     function setupSlider(id) {
       const slider = document.getElementById(id);
       if (!slider) return;
