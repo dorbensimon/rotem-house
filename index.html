@@ -4412,6 +4412,32 @@
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
 
+    // Guest counter
+    var guestsPlus = document.getElementById('guestsPlus');
+    var guestsMinus = document.getElementById('guestsMinus');
+    var guestsCount = document.getElementById('guestsCount');
+    var guestsInput = document.getElementById('guestsInput');
+    var guestsLabel = document.querySelector('.guests-label');
+    var MAX_GUESTS = 10;
+    if (guestsPlus && guestsMinus && guestsCount) {
+      function updateGuests(val) {
+        guestsCount.textContent = val;
+        if (guestsInput) guestsInput.value = val;
+        if (guestsLabel) guestsLabel.textContent = val === 1 ? 'guest' : 'guests';
+        guestsMinus.disabled = val <= 1;
+        guestsPlus.disabled = val >= MAX_GUESTS;
+      }
+      guestsPlus.addEventListener('click', function() {
+        var v = parseInt(guestsCount.textContent) || 1;
+        if (v < MAX_GUESTS) updateGuests(v + 1);
+      });
+      guestsMinus.addEventListener('click', function() {
+        var v = parseInt(guestsCount.textContent) || 1;
+        if (v > 1) updateGuests(v - 1);
+      });
+      updateGuests(1);
+    }
+
     // Logo click - close menu and scroll to top
     var logo = document.querySelector('.logo');
     if (logo) {
