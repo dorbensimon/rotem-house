@@ -300,7 +300,8 @@
     }
 
     html {
-      scroll-behavior: smooth
+      scroll-behavior: smooth;
+      overflow-x: hidden
     }
 
     .seo-h1 {
@@ -329,84 +330,81 @@
 
     nav {
       position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 40px;
-      padding: 10px 12px 10px 28px;
-      background: rgba(255, 255, 255, .12);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, .25);
-      border-radius: 100px;
-      box-shadow: 0 8px 32px rgba(15, 37, 64, .15), inset 0 1px 0 rgba(255, 255, 255, .4), inset 0 -1px 0 rgba(255, 255, 255, .1);
-      transition: all .4s cubic-bezier(.4, 0, .2, 1);
-      width: auto;
-      max-width: calc(100% - 40px)
+      padding: 20px 48px;
+      background: rgba(0,0,0,.25);
+      border-bottom: 1px solid rgba(255,255,255,.3);
+      transition: background .4s ease, backdrop-filter .4s ease;
+      width: 100%;
+      border-radius: 0;
+      box-shadow: none
     }
 
     nav.scrolled {
-      top: 14px;
-      background: rgba(255, 255, 255, .7);
-      border-color: rgba(255, 255, 255, .4);
-      box-shadow: 0 8px 40px rgba(15, 37, 64, .12), inset 0 1px 0 rgba(255, 255, 255, .6)
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border-color: rgba(255,255,255,.15)
     }
 
     .logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: .5px;
       color: var(--white);
-      transition: color .4s;
-      white-space: nowrap
+      text-align: center;
+      line-height: 1.15;
+      white-space: nowrap;
+      cursor: pointer
     }
 
-    .logo span {
-      color: var(--gold);
-      font-style: italic
+    .logo-main {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase
     }
 
-    nav.scrolled .logo {
-      color: var(--navy)
+    .logo-sub {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-weight: 400;
+      opacity: .8
     }
+
+    nav.scrolled .logo { color: var(--white) }
 
     .nav-links {
       display: flex;
-      gap: 8px;
+      gap: 4px;
       list-style: none;
       align-items: center
     }
 
+    .nav-links--left { justify-content: flex-start }
+    .nav-links--right { justify-content: flex-end }
+
     .nav-links a {
       color: var(--white);
       text-decoration: none;
-      font-size: 13px;
-      letter-spacing: .5px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       font-weight: 500;
-      transition: all .3s;
-      padding: 10px 18px;
-      border-radius: 50px;
-      position: relative;
+      transition: opacity .3s;
+      padding: 8px 14px;
       background: transparent
     }
 
-    .nav-links a:hover {
-      background: rgba(255, 255, 255, .15);
-      backdrop-filter: blur(10px)
-    }
+    .nav-links a:hover { opacity: .7 }
 
-    nav.scrolled .nav-links a {
-      color: var(--navy)
-    }
-
-    nav.scrolled .nav-links a:hover {
-      background: rgba(30, 58, 95, .08)
-    }
+    nav.scrolled .nav-links a { color: var(--white) }
+    nav.scrolled .nav-links a:hover { opacity: .7 }
 
     .nav-cta {
       padding: 11px 24px;
@@ -433,8 +431,8 @@
     }
 
     nav.scrolled .nav-cta {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-      border-color: var(--navy);
+      background: linear-gradient(135deg, rgba(255,255,255,.2) 0%, rgba(255,255,255,.08) 100%);
+      border-color: rgba(255,255,255,.4);
       color: var(--white)
     }
 
@@ -550,9 +548,8 @@
       height: 100%;
       z-index: 4;
       pointer-events: none;
-      opacity: 1;
-      animation: svgFadeIn 1s ease 0.1s both;
-      will-change: opacity
+      opacity: 0;
+      display: none
     }
 
     @keyframes svgFadeIn {
@@ -660,7 +657,9 @@
     @media (max-width:768px) {
       .cinema {
         height: 100vh;
-        height: 100svh
+        height: 100svh;
+        overflow: hidden;
+        max-width: 100vw
       }
 
       .cinema-house-card {
@@ -677,8 +676,7 @@
       }
 
       .cinema-svg {
-        top: -15%;
-        height: 100%
+        display: none
       }
 
       .cinema-sub-wrap {
@@ -3092,15 +3090,18 @@
         border: none;
         border-bottom: 1px solid rgba(255,255,255,.25);
         padding: 14px 20px;
-        background: transparent;
+        background: rgba(0,0,0,.25);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
         box-shadow: none;
-        justify-content: space-between
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        grid-template-columns: unset
       }
 
       nav.scrolled {
-        background: rgba(255,255,255,.18);
+        background: rgba(0,0,0,.45);
         backdrop-filter: blur(20px) saturate(160%);
         -webkit-backdrop-filter: blur(20px) saturate(160%);
         border-color: rgba(255,255,255,.15)
@@ -3496,13 +3497,19 @@
 
 <body>
   <nav id="nav">
-    <div class="logo">BH &amp; CO<span>- Rentals</span></div>
-    <ul class="nav-links">
+    <ul class="nav-links nav-links--left">
       <li><a href="#host">Host</a></li>
       <li><a href="#properties">Properties</a></li>
+    </ul>
+    <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div class="logo-main">BH &amp; CO</div>
+      <div class="logo-sub">Vacation Rentals</div>
+    </div>
+    <ul class="nav-links nav-links--right">
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
-    </ul> <a href="#book" class="nav-cta">Book Direct</a>
+      <li><a href="#book" class="nav-cta">Book Direct</a></li>
+    </ul>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -3542,7 +3549,7 @@
             CO</text> <text class="t-fill" x="800" y="480" text-anchor="middle" font-size="220">RENTALS</text> </g>
       </svg>
       <div class="cinema-sub-wrap" id="cinemaSubWrap">
-        <p>Luxury vacation homes in South Carolina · Find what moves you.</p> <button class="hero-search"
+        <p>Start Your Vacation On</p> <button class="hero-search"
           onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'});setTimeout(function(){var el=document.getElementById('propertySelect');if(el)el.focus();},600);"
           aria-label="Check availability">
           <div class="hero-search-fields"> <span class="hero-search-text">Check availability</span> <span
