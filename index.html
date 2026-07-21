@@ -4054,7 +4054,10 @@
                 class="guests-label">guest</span> <button type="button" class="guests-btn" id="guestsPlus"
                 aria-label="Add guest">&#43;</button> </div> <input type="hidden" id="guestsInput" name="guests"
               value="1">
-          </div> <button type="submit" class="form-submit" id="formSubmitBtn">Get 10% Off &#8594; Send Request</button>
+          </div>
+          <div class="form-group"> <label class="form-label" for="notesInput">Notes</label> <textarea class="form-input" id="notesInput"
+              name="notes" placeholder="Any special requests or additional information..." style="resize: vertical; min-height: 80px;"></textarea> </div>
+          <button type="submit" class="form-submit" id="formSubmitBtn">Get 10% Off &#8594; Send Request</button>
         </form>
       </div>
     </div>
@@ -4551,10 +4554,56 @@
     document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
     function submitForm(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
+      const form = e.target;
+      const requiredFields = form.querySelectorAll('[required]');
+      let allValid = true;
+      let firstInvalidField = null;
+      
+      requiredFields.forEach(field => {
+        const value = field.value.trim();
+        const isValid = value !== '';
+        const reqMark = form.querySelector(`.req-mark[data-for="${field.id}"]`);
+        
+        if (!isValid) {
+          allValid = false;
+          if (!firstInvalidField) firstInvalidField = field;
+          if (reqMark) reqMark.classList.add('show');
+        } else {
+          if (reqMark) reqMark.classList.remove('show');
+        }
+      });
+      
+      if (!allValid) {
+        if (firstInvalidField) {
+          firstInvalidField.focus();
+          firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+      
+      const btn = form.querySelector('.form-submit');
       btn.textContent = '✓ Request Received! We\'ll be in touch shortly';
       btn.style.background = '#1e3a5f';
-      setTimeout(() => { btn.textContent = 'Get 10% Off → Send Request'; btn.style.background = '' }, 5000);
+      btn.disabled = true;
+      
+      // שלח ל-Netlify
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form))
+      }).then(() => {
+        setTimeout(() => { 
+          btn.textContent = 'Get 10% Off → Send Request'; 
+          btn.style.background = ''; 
+          btn.disabled = false;
+          form.reset();
+        }, 5000);
+      }).catch(err => {
+        console.error('Error:', err);
+        btn.textContent = 'Get 10% Off → Send Request'; 
+        btn.style.background = ''; 
+        btn.disabled = false;
+      });
     }</script>
   <div id="calModal" class="cal-modal" role="dialog" aria-modal="true" aria-label="Select date">
     <div class="cal-backdrop" id="calBackdrop"></div>
@@ -4784,6 +4833,24 @@
 
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && calModal.classList.contains('open')) closeCal();
+      });
+      
+      var requiredFields = document.querySelectorAll('#bookingForm [required]');
+      requiredFields.forEach(function(field) {
+        var reqMark = document.querySelector(`.req-mark[data-for="${field.id}"]`);
+        if (!reqMark) return;
+        
+        function checkField() {
+          if (field.value.trim() === '') {
+            reqMark.classList.add('show');
+          } else {
+            reqMark.classList.remove('show');
+          }
+        }
+        
+        field.addEventListener('blur', checkField);
+        field.addEventListener('change', checkField);
+        field.addEventListener('input', checkField);
       });
     }());</script>
   <script>(function () {
