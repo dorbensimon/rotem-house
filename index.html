@@ -1252,15 +1252,14 @@
       padding: 0 8px;
       overflow-x: auto;
       overflow-y: hidden;
-      scroll-behavior: smooth;
       align-items: center;
       flex-wrap: nowrap;
       max-width: 100%;
-      -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       width: 100%;
-      touch-action: pan-y;
       max-width: calc((60px + 8px) * 6 - 8px);
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
 
     .prop-thumbnails::-webkit-scrollbar {
@@ -4743,10 +4742,10 @@
       const thumbsContainer = document.getElementById(thumbsId);
       if (!thumbsContainer) return;
       
-      // Prevent vertical scroll
-      thumbsContainer.style.touchAction = 'pan-y';
+      // תן לnative scrolling להיות חלק
+      thumbsContainer.style.webkitOverflowScrolling = 'touch';
       
-      // חצים
+      // חצים בדסקטופ בלבד
       const leftArrow = document.querySelector(`[data-for="${thumbsId}"].left`);
       const rightArrow = document.querySelector(`[data-for="${thumbsId}"].right`);
       
@@ -4761,26 +4760,6 @@
           thumbsContainer.scrollBy({ left: 300, behavior: 'smooth' });
         });
       }
-      
-      // Swipe לנייד - רק horizontal
-      let touchStartX = 0;
-      thumbsContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-      }, { passive: true });
-      
-      thumbsContainer.addEventListener('touchmove', (e) => {
-        const touchEndX = e.touches[0].clientX;
-        const diff = touchStartX - touchEndX;
-        
-        if (Math.abs(diff) > 10) {
-          if (diff > 0) {
-            thumbsContainer.scrollBy({ left: 50, behavior: 'smooth' });
-          } else {
-            thumbsContainer.scrollBy({ left: -50, behavior: 'smooth' });
-          }
-          touchStartX = touchEndX;
-        }
-      }, { passive: true });
     }
     ['slider-1', 'slider-2', 'slider-3'].forEach(setupSlider);
     ['slider-1', 'slider-2'].forEach(initThumbnails);
