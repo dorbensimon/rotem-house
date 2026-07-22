@@ -1243,6 +1243,7 @@
     .prop-thumbnails-wrapper {
       position: relative;
       margin-top: 16px;
+      touch-action: pan-y;
     }
 
     .prop-thumbnails {
@@ -1250,6 +1251,7 @@
       gap: 8px;
       padding: 0 8px;
       overflow-x: auto;
+      overflow-y: hidden;
       scroll-behavior: smooth;
       align-items: center;
       flex-wrap: nowrap;
@@ -1257,9 +1259,7 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       width: 100%;
-    }
-
-    .prop-thumbnails {
+      touch-action: pan-y;
       max-width: calc((60px + 8px) * 6 - 8px);
     }
 
@@ -4648,12 +4648,15 @@
       const slides = slider.querySelectorAll('.prop-slide');
       const dotsContainer = document.getElementById('dots-' + id.split('-')[1]);
       dotsContainer.innerHTML = '';
-      slides.forEach((_, i) => {
+      
+      // רק 6 dots מקסימום
+      const maxDots = Math.min(slides.length, 6);
+      for (let i = 0; i < maxDots; i++) {
         const d = document.createElement('div');
         d.className = 'prop-dot' + (i === 0 ? ' active' : '');
         d.onclick = () => goToSlide(id, i);
         dotsContainer.appendChild(d);
-      });
+      }
     }
     function slide(id, dir) {
       const slider = document.getElementById(id);
@@ -4662,9 +4665,17 @@
       if (!slides.length) return;
       const dots = document.getElementById('dots-' + id.split('-')[1]).children;
       let curr = Array.from(slides).findIndex(s => s.classList.contains('active'));
-      slides[curr].classList.remove('active'); dots[curr].classList.remove('active');
+      slides[curr].classList.remove('active');
+      
       curr = (curr + dir + slides.length) % slides.length;
-      slides[curr].classList.add('active'); dots[curr].classList.add('active');
+      slides[curr].classList.add('active');
+      
+      // עדכון dots - כל dot מייצג כמה תמונות
+      const numDots = dots.length;
+      const dotsPerSlide = Math.ceil(slides.length / numDots);
+      const activeDotIndex = Math.floor(curr / dotsPerSlide);
+      
+      Array.from(dots).forEach((d, i) => d.classList.toggle('active', i === activeDotIndex));
       updateThumbnailActive(id, curr);
     }
     function goToSlide(id, idx) {
@@ -4673,9 +4684,20 @@
       const slides = slider.querySelectorAll('.prop-slide');
       if (!slides.length) return;
       const dots = document.getElementById('dots-' + id.split('-')[1]).children;
+      
       slides.forEach(s => s.classList.remove('active'));
       Array.from(dots).forEach(d => d.classList.remove('active'));
-      slides[idx].classList.add('active'); dots[idx].classList.add('active');
+      
+      // קפוץ לתמונה idx ישירות
+      slides[idx].classList.add('active');
+      
+      // עדכן את הdot המתאים (כל dot מייצג כמה תמונות)
+      const numDots = dots.length;
+      const dotsPerSlide = Math.ceil(slides.length / numDots);
+      const activeDotIndex = Math.floor(idx / dotsPerSlide);
+      dots[activeDotIndex].classList.add('active');
+      
+      updateThumbnailActive(id, idx);
     }
     function initThumbnails(sliderId) {
       const slider = document.getElementById(sliderId);
@@ -4721,6 +4743,9 @@
       const thumbsContainer = document.getElementById(thumbsId);
       if (!thumbsContainer) return;
       
+      // Prevent vertical scroll
+      thumbsContainer.style.touchAction = 'pan-y';
+      
       // חצים
       const leftArrow = document.querySelector(`[data-for="${thumbsId}"].left`);
       const rightArrow = document.querySelector(`[data-for="${thumbsId}"].right`);
@@ -4737,7 +4762,7 @@
         });
       }
       
-      // Swipe לנייד
+      // Swipe לנייד - רק horizontal
       let touchStartX = 0;
       thumbsContainer.addEventListener('touchstart', (e) => {
         touchStartX = e.touches[0].clientX;
