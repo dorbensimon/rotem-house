@@ -65,7 +65,7 @@
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.97",
-          "reviewCount": "150",
+          "reviewCount": "29",
           "bestRating": "5",
           "worstRating": "1"
         },
@@ -623,6 +623,36 @@
       letter-spacing: .5px;
       text-shadow: 0 2px 12px rgba(15, 37, 64, .4);
       margin-bottom: 18px
+    }
+
+    .hero-choose-home {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: clamp(48px, 7vw, 120px);
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      letter-spacing: 3px;
+      text-align: center;
+      z-index: 10;
+      white-space: nowrap;
+      will-change: opacity;
+      animation: chooseFadeIn 0.8s ease 0.2s both;
+    }
+
+    @keyframes chooseFadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
     }
 
     .cinema-clouds-bottom {
@@ -1208,6 +1238,128 @@
     .prop-dot.active {
       background: #1a1a1a;
       width: 36px
+    }
+
+    .prop-thumbnails-wrapper {
+      position: relative;
+      margin-top: 16px;
+    }
+
+    .prop-thumbnails {
+      display: flex;
+      gap: 8px;
+      padding: 0 8px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      align-items: center;
+      flex-wrap: nowrap;
+      max-width: 100%;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      width: 100%;
+    }
+
+    .prop-thumbnails {
+      max-width: calc((60px + 8px) * 6 - 8px);
+    }
+
+    .prop-thumbnails::-webkit-scrollbar {
+      display: none;
+    }
+
+    .prop-thumbnail {
+      width: 60px;
+      height: 60px;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .prop-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .prop-thumbnail:hover {
+      border-color: #1a1a1a;
+      transform: scale(1.05);
+    }
+
+    .prop-thumbnail.active {
+      border-color: #1a1a1a;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .prop-thumb-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      z-index: 10;
+      transition: background 0.3s;
+    }
+
+    .prop-thumb-arrow:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .prop-thumb-arrow.left {
+      left: -16px;
+    }
+
+    .prop-thumb-arrow.right {
+      right: -16px;
+    }
+
+    @media (min-width: 769px) {
+      .prop-thumb-arrow {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .prop-thumbnails-wrapper {
+        margin-top: 12px;
+      }
+
+      .prop-thumbnail {
+        width: 50px;
+        height: 50px;
+      }
+
+      .prop-thumbnails {
+        gap: 6px;
+        padding: 0 4px;
+        max-width: calc((50px + 6px) * 6 - 6px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .prop-thumbnail {
+        width: 45px;
+        height: 45px;
+      }
+
+      .prop-thumbnails {
+        gap: 4px;
+        padding: 0 2px;
+        max-width: calc((45px + 4px) * 6 - 4px);
+      }
     }
 
     .prop-tag {
@@ -3562,20 +3714,45 @@
       <div class="property">
         <div class="prop-media">
           <div class="prop-slider" id="slider-1">
-            <div class="prop-slide active"><img src="/images/greenville-pool-aerial.jpg"
-                alt="Aerial view of private outdoor pool with lounge chairs at Greenville vacation home" loading="lazy"> </div>
-            <div class="prop-slide"><img src="/images/62-web-or-mls-DSC05316.jpg"
-                alt="Pool lounge chairs with towels and refreshments at Greenville vacation home with private pool" loading="lazy"> </div>
-            <div class="prop-slide"><img src="/images/greenville-master-bedroom.jpg"
-                alt="Master bedroom with king bed and wall-mounted TV at Greenville vacation home" loading="lazy"> </div>
-            <div class="prop-slide"><img src="/images/greenville-master-suite.jpg"
-                alt="Master suite with luxurious soaking tub at Greenville vacation home" loading="lazy"> </div>
-            <div class="prop-slide"><img src="/images/children's room.jpg"
-                alt="Children's room with twin beds at Greenville family vacation home" loading="lazy"> </div>
+            <div class="prop-slide active"><img src="/images/greenville-1-kitchen-dining.jpg"
+                alt="Stunning open-concept kitchen and dining area with marble countertops, black appliances, and modern ceiling lights in Greenville pool home" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-2-master-bedroom.jpg"
+                alt="Serene master bedroom with beige upholstered headboard, landscape artwork, and ambient lighting at Greenville retreat" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-3-master-bathroom-dual.jpg"
+                alt="Luxurious master bathroom with dual marble vanity, black fixtures, and large mirrors at Greenville vacation home" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-4-master-bed-lounge.jpg"
+                alt="Spacious master bedroom with queen bed, lounge chair, wooden nightstands, and sliding door to private balcony" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-5-kids-bedroom.jpg"
+                alt="Bright children's bedroom with twin beds, white linens, and natural light from windows at Greenville family home" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-6-guest-bathroom.jpg"
+                alt="Clean and modern guest bathroom with white subway tile shower, pedestal sink, and spa-like amenities" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-7-backyard-grill.jpg"
+                alt="Spacious backyard entertainment area with professional gas grill, foosball table, and fenced patio in Greenville" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-8-pool-lounge.jpg"
+                alt="Resort-style private pool with lounge chairs, white concrete deck, and lush landscaping at Greenville home" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-9-pool-deck.jpg"
+                alt="Inviting pool area with comfortable lounge seating, decorative cushions, and well-maintained landscaping" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-10-patio-umbrella.jpg"
+                alt="Charming patio seating area with thatched umbrella, striped chairs, and garden views at Greenville vacation retreat" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-11-home-exterior.jpg"
+                alt="Modern two-car garage home with crisp white exterior, black shutters, and manicured landscaping in Greenville neighborhood" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-12-hallway-foyer.jpg"
+                alt="Elegant hallway with dark wood accents, decorative shelving, and refined interior design at Greenville home" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-13-living-room.jpg"
+                alt="Modern living room with gray sectional sofa, wooden accents, sliding glass doors to patio, and contemporary furnishings" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-14-dining-kitchen.jpg"
+                alt="Contemporary dining and kitchen space with natural wood table, white cabinetry, and modern pendant lighting in Greenville" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/greenville-15-kitchen-modern.jpg"
+                alt="Chef-inspired kitchen with black stainless appliances, white cabinetry, granite counters, and open floor plan at Greenville home" loading="lazy"></div>
           </div>
           <div class="prop-arrows"> <button class="prop-arr" onclick="slide('slider-1',-1)">‹</button> <button
               class="prop-arr" onclick="slide('slider-1',1)">›</button> </div>
           <div class="prop-dots" id="dots-1"></div>
+          <div class="prop-thumbnails-wrapper">
+            <button class="prop-thumb-arrow left" data-for="thumbs-1">❮</button>
+            <div class="prop-thumbnails" id="thumbs-1"></div>
+            <button class="prop-thumb-arrow right" data-for="thumbs-1">❯</button>
+          </div>
           <div class="prop-tag">Greenville, SC</div>
           <div class="prop-side-label">Cozy &amp; Luxurious Home with Pool</div>
         </div>
@@ -3643,24 +3820,43 @@
       <div class="property">
         <div class="prop-media">
           <div class="prop-slider" id="slider-2">
-            <div class="prop-slide active"><img src="/images/badrome2.jpg"
-                alt="Bright open-plan living room with sectional sofa and ceiling fan at Pendleton vacation home" loading="lazy"></div>
-            <div class="prop-slide"><img src="/images/home.jpg"
-                alt="Clean white bathroom with curved glass shower and vanity at Pendleton vacation home" loading="lazy"></div>
-            <div class="prop-slide"><img src="/images/garden2.jpg"
-                alt="Backyard playground with slide and swing set at Pendleton vacation home near Clemson" loading="lazy"></div>
-            <div class="prop-slide"><img src="/images/diningrom2.jpg"
-                alt="Bright dining area with wooden table and white chairs at Pendleton vacation home" loading="lazy"></div>
-            <div class="prop-slide"><img src="/images/livingrom22.jpg"
-                alt="Cozy living room with fireplace and brick wall at Pendleton vacation home near Clemson University" loading="lazy"></div>
-            <div class="prop-slide"><img src="/images/outdor2.jpg"
-                alt="Front porch with rocking chairs at 104 Dogwood Cir Pendleton vacation home" loading="lazy"></div>
-            <div class="prop-slide"><img src="/images/pool2.jpeg"
-                alt="Private outdoor pool with lounge chairs at Pendleton vacation home near Clemson University" loading="lazy"></div>
+            <div class="prop-slide active"><img src="/images/pendleton-1-dining.jpg"
+                alt="Elegant formal dining room with wooden table, white chairs, and natural light from stairs at Clemson Pendleton vacation home" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-2-decor.jpg"
+                alt="Stylish entryway console with decorative lamp, books, and fresh flowers at Pendleton retreat" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-3-bedroom-balcony.jpg"
+                alt="Master bedroom with white linens, French doors opening to private balcony with forest views near Clemson" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-4-fireplace.jpg"
+                alt="Stunning brick fireplace with white mantel, floating shelves, and cozy decorative accents in living room" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-5-kids-room.jpg"
+                alt="Bright children's bedroom with twin beds, modern artwork, and contemporary furnishings at Pendleton Clemson getaway" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-6-home.jpg"
+                alt="Serene master bedroom with white quilted headboard, layered pillows, and minimalist bedside with decorative objects" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-7-living-room.jpg"
+                alt="Open-concept living room with brick fireplace, dark sofa, wooden coffee table, and abundant natural light near Clemson" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-8-master-suite.jpg"
+                alt="Luxurious master suite with queen bed, white linens, ceiling fan, dresser, and sliding glass door to private deck" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-9-porch.jpg"
+                alt="Welcoming front porch with wooden Adirondack chairs and scenic neighborhood views at Pendleton vacation home" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-10-pool.jpg"
+                alt="Resort-style rectangular swimming pool with lounge chairs and fenced backyard perfect for families near Clemson University" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-11-master-bathroom.jpg"
+                alt="Clean modern bathroom with curved glass shower enclosure, pedestal sink, and spa-like fixtures at Pendleton retreat" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-12-guest-bedroom.jpg"
+                alt="Comfortable guest bedroom with queen bed, white bedding, ceiling fan, and sliding glass doors to shared deck" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-13-dining.jpg"
+                alt="Bright dining area with wooden table, white chairs, wall clock, and access to living spaces at Clemson vacation home" loading="lazy"></div>
+            <div class="prop-slide"><img src="/images/pendleton-14-playground.jpg"
+                alt="Spacious backyard with wooden playset, slide, swings, and well-maintained lawn perfect for families and children" loading="lazy"></div>
           </div>
           <div class="prop-arrows"> <button class="prop-arr" onclick="slide('slider-2',-1)">‹</button> <button
               class="prop-arr" onclick="slide('slider-2',1)">›</button> </div>
           <div class="prop-dots" id="dots-2"></div>
+          <div class="prop-thumbnails-wrapper">
+            <button class="prop-thumb-arrow left" data-for="thumbs-2">❮</button>
+            <div class="prop-thumbnails" id="thumbs-2"></div>
+            <button class="prop-thumb-arrow right" data-for="thumbs-2">❯</button>
+          </div>
           <div class="prop-tag">Pendleton, SC</div>
           <div class="prop-side-label">Clemson Getaway Pool Retreat</div>
         </div>
@@ -3974,7 +4170,7 @@
             <div class="host-stat-label">Rating</div>
           </div>
           <div class="host-stat">
-            <div class="host-stat-num">150</div>
+            <div class="host-stat-num">29</div>
             <div class="host-stat-label">Reviews</div>
           </div>
           <div class="host-stat">
@@ -4000,7 +4196,8 @@
     <div class="booking-inner">
       <div class="booking-text">
         <h2>Book Direct,<br><em>Save 10%</em></h2>
-        <p>Book Direct Get 10% discount + priority support + personalized recommendations.</p>
+        <p>Skip the platform fees and get exclusive perks when you book directly with us. Plus, enjoy priority booking
+          and personalized recommendations.</p>
         <div class="booking-perks">
           <div class="perk">10% off any direct booking</div>
           <div class="perk">Free welcome basket on arrival</div>
@@ -4468,6 +4665,7 @@
       slides[curr].classList.remove('active'); dots[curr].classList.remove('active');
       curr = (curr + dir + slides.length) % slides.length;
       slides[curr].classList.add('active'); dots[curr].classList.add('active');
+      updateThumbnailActive(id, curr);
     }
     function goToSlide(id, idx) {
       const slider = document.getElementById(id);
@@ -4479,7 +4677,89 @@
       Array.from(dots).forEach(d => d.classList.remove('active'));
       slides[idx].classList.add('active'); dots[idx].classList.add('active');
     }
+    function initThumbnails(sliderId) {
+      const slider = document.getElementById(sliderId);
+      const thumbsContainer = document.getElementById('thumbs-' + sliderId.split('-')[1]);
+      if (!slider || !thumbsContainer) return;
+      
+      const slides = slider.querySelectorAll('.prop-slide');
+      thumbsContainer.innerHTML = '';
+      
+      slides.forEach((slide, idx) => {
+        const img = slide.querySelector('img');
+        if (!img || !img.src) return; // רק אם יש image
+        
+        const thumbDiv = document.createElement('div');
+        thumbDiv.className = 'prop-thumbnail' + (idx === 0 ? ' active' : '');
+        
+        const thumbImg = document.createElement('img');
+        thumbImg.src = img.src;
+        thumbImg.alt = img.alt || 'Photo ' + (idx + 1);
+        thumbImg.loading = 'lazy';
+        
+        thumbDiv.appendChild(thumbImg);
+        thumbDiv.addEventListener('click', () => {
+          goToSlide(sliderId, idx);
+          updateThumbnailActive(sliderId, idx);
+        });
+        
+        thumbsContainer.appendChild(thumbDiv);
+      });
+    }
+    function updateThumbnailActive(sliderId, activeIdx) {
+      const thumbsContainer = document.getElementById('thumbs-' + sliderId.split('-')[1]);
+      if (!thumbsContainer) return;
+      
+      const thumbnails = thumbsContainer.querySelectorAll('.prop-thumbnail');
+      thumbnails.forEach((thumb, idx) => {
+        thumb.classList.toggle('active', idx === activeIdx);
+      });
+    }
+    
+    function initThumbnailCarousel(sliderId) {
+      const thumbsId = 'thumbs-' + sliderId.split('-')[1];
+      const thumbsContainer = document.getElementById(thumbsId);
+      if (!thumbsContainer) return;
+      
+      // חצים
+      const leftArrow = document.querySelector(`[data-for="${thumbsId}"].left`);
+      const rightArrow = document.querySelector(`[data-for="${thumbsId}"].right`);
+      
+      if (leftArrow) {
+        leftArrow.addEventListener('click', () => {
+          thumbsContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+      }
+      
+      if (rightArrow) {
+        rightArrow.addEventListener('click', () => {
+          thumbsContainer.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+      }
+      
+      // Swipe לנייד
+      let touchStartX = 0;
+      thumbsContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      
+      thumbsContainer.addEventListener('touchmove', (e) => {
+        const touchEndX = e.touches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > 10) {
+          if (diff > 0) {
+            thumbsContainer.scrollBy({ left: 50, behavior: 'smooth' });
+          } else {
+            thumbsContainer.scrollBy({ left: -50, behavior: 'smooth' });
+          }
+          touchStartX = touchEndX;
+        }
+      }, { passive: true });
+    }
     ['slider-1', 'slider-2', 'slider-3'].forEach(setupSlider);
+    ['slider-1', 'slider-2'].forEach(initThumbnails);
+    ['slider-1', 'slider-2'].forEach(initThumbnailCarousel);
     function attachSwipe(id) {
       const slider = document.getElementById(id);
       if (!slider) return;
