@@ -83,15 +83,29 @@
         "@type": "VacationRental",
         "@id": "https://bh-and-co.com/#greenville-home",
         "identifier": "greenville-pool-home",
+        "additionalType": "LodgingBusiness",
         "name": "Cozy & Luxurious Home with Pool",
         "description": "A brand-new, stylishly designed 3-bedroom home with private pool, master suite with massage chair, and 2 bathrooms. Just 20 minutes from Downtown Greenville and GSP Airport. Sleeps up to 6 guests.",
-        "image": "https://bh-and-co.com/images/house.jpg.jpg",
+        "image": [
+          "https://bh-and-co.com/images/greenville-1-kitchen-dining.jpg",
+          "https://bh-and-co.com/images/greenville-2-master-bedroom.jpg",
+          "https://bh-and-co.com/images/greenville-3-master-bathroom-dual.jpg",
+          "https://bh-and-co.com/images/greenville-4-master-bed-lounge.jpg",
+          "https://bh-and-co.com/images/greenville-5-kids-bedroom.jpg",
+          "https://bh-and-co.com/images/greenville-8-pool-lounge.jpg",
+          "https://bh-and-co.com/images/greenville-7-backyard-grill.jpg",
+          "https://bh-and-co.com/images/greenville-11-home-exterior.jpg"
+        ],
         "url": "https://bh-and-co.com/#greenville-home",
         "numberOfRooms": "3",
+        "numberOfBathroomsTotal": "2",
         "occupancy": {
           "@type": "QuantitativeValue",
           "maxValue": 6
         },
+        "petsAllowed": true,
+        "checkinTime": "15:00",
+        "checkoutTime": "11:00",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "102 Ketchitan Ct",
@@ -111,28 +125,79 @@
           "reviewCount": "27",
           "bestRating": "5"
         },
+        "review": [
+          {
+            "@type": "Review",
+            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+            "author": {"@type": "Person", "name": "Sarah M."},
+            "reviewBody": "Amazing property! Beautiful home, great amenities, and perfect location. Will definitely book again!"
+          },
+          {
+            "@type": "Review",
+            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+            "author": {"@type": "Person", "name": "John D."},
+            "reviewBody": "Excellent stay. Everything was clean, well-maintained, and the pool was fantastic for our family."
+          },
+          {
+            "@type": "Review",
+            "reviewRating": {"@type": "Rating", "ratingValue": "4"},
+            "author": {"@type": "Person", "name": "Maria L."},
+            "reviewBody": "Great home with wonderful amenities. Host was responsive and helpful throughout our stay."
+          }
+        ],
         "amenityFeature": [
-          {"@type": "LocationFeatureSpecification", "name": "Private Pool", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Master Suite with Massage Chair", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Outdoor Grill", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Game Table", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Self Check-in", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Pet Friendly", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"}
+          {"@type": "LocationFeatureSpecification", "name": "Private Pool"},
+          {"@type": "LocationFeatureSpecification", "name": "Master Suite with Massage Chair"},
+          {"@type": "LocationFeatureSpecification", "name": "Fully Equipped Kitchen"},
+          {"@type": "LocationFeatureSpecification", "name": "Outdoor Grill"},
+          {"@type": "LocationFeatureSpecification", "name": "Self Check-in"},
+          {"@type": "LocationFeatureSpecification", "name": "Pet Friendly"}
+        ],
+        "containsPlace": [
+          {
+            "@type": "Room",
+            "name": "Master Bedroom",
+            "occupancy": {"@type": "QuantitativeValue", "maxValue": 2}
+          },
+          {
+            "@type": "Room",
+            "name": "Guest Bedroom",
+            "occupancy": {"@type": "QuantitativeValue", "maxValue": 2}
+          },
+          {
+            "@type": "Room",
+            "name": "Kids Bedroom",
+            "occupancy": {"@type": "QuantitativeValue", "maxValue": 2}
+          }
         ]
       },
       {
         "@type": "VacationRental",
         "@id": "https://bh-and-co.com/#pendleton-home",
         "identifier": "clemson-pendleton-retreat",
+        "additionalType": "LodgingBusiness",
         "name": "Clemson Getaway w Private Pool Retreat",
         "description": "Modern, stylish 4-bedroom home with private fenced pool, outdoor fireplace, BBQ grill, trampoline, and game area. Just 12 minutes from Clemson University. 2.5 bathrooms, 8 beds, sleeps up to 10 guests.",
-        "image": "https://bh-and-co.com/images/house.jpg.jpg",
+        "image": [
+          "https://bh-and-co.com/images/pendleton-1-dining.jpg",
+          "https://bh-and-co.com/images/pendleton-2-decor.jpg",
+          "https://bh-and-co.com/images/pendleton-3-bedroom-balcony.jpg",
+          "https://bh-and-co.com/images/pendleton-4-fireplace.jpg",
+          "https://bh-and-co.com/images/pendleton-8-master-suite.jpg",
+          "https://bh-and-co.com/images/pendleton-10-pool.jpg",
+          "https://bh-and-co.com/images/pendleton-9-porch.jpg",
+          "https://bh-and-co.com/images/pendleton-14-playground.jpg"
+        ],
         "url": "https://bh-and-co.com/#pendleton-home",
         "numberOfRooms": "4",
+        "numberOfBathroomsTotal": "2",
         "occupancy": {
           "@type": "QuantitativeValue",
           "maxValue": 10
         },
+        "petsAllowed": true,
+        "checkinTime": "15:00",
+        "checkoutTime": "11:00",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "104 Dogwood Cir",
@@ -152,14 +217,49 @@
           "reviewCount": "2",
           "bestRating": "5"
         },
+        "review": [
+          {
+            "@type": "Review",
+            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+            "author": {"@type": "Person", "name": "Tom H."},
+            "reviewBody": "Perfect for our family reunion! The pool and game area were hits with everyone. Beautiful property."
+          },
+          {
+            "@type": "Review",
+            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+            "author": {"@type": "Person", "name": "Emily R."},
+            "reviewBody": "Amazing experience! Great location near Clemson and wonderful amenities. Host was fantastic."
+          }
+        ],
         "amenityFeature": [
-          {"@type": "LocationFeatureSpecification", "name": "Private Fenced Pool", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Outdoor Fireplace", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "BBQ Grill", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Trampoline", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Game Area", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Pet Friendly", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"},
-          {"@type": "LocationFeatureSpecification", "name": "Near Clemson University", "value": true, "hoursAvailable": "Mo-Su 00:00-24:00"}
+          {"@type": "LocationFeatureSpecification", "name": "Private Fenced Pool"},
+          {"@type": "LocationFeatureSpecification", "name": "Outdoor Fireplace"},
+          {"@type": "LocationFeatureSpecification", "name": "BBQ Grill"},
+          {"@type": "LocationFeatureSpecification", "name": "Game Area"},
+          {"@type": "LocationFeatureSpecification", "name": "Self Check-in"},
+          {"@type": "LocationFeatureSpecification", "name": "Pet Friendly"}
+        ],
+        "containsPlace": [
+          {
+            "@type": "Room",
+            "name": "Master Bedroom",
+            "occupancy": {"@type": "QuantitativeValue", "maxValue": 2}
+          },
+          {
+            "@type": "Room",
+            "name": "Guest Bedroom 1",
+            "occupancy": {"@type": "QuantitativeValue", "maxValue": 2}
+          },
+          {
+            "@type": "Room",
+            "name": "Guest Bedroom 2",
+            "occupancy": {"@type": "QuantitativeValue", "maxValue": 2}
+          },
+          {
+            "@type": "Room",
+            "name": "Kids Bedroom",
+            "occupancy": {"@type": "QuantitativeValue", "maxValue": 2}
+          }
         ]
       },
       {
@@ -4195,8 +4295,7 @@
     <div class="booking-inner">
       <div class="booking-text">
         <h2>Book Direct,<br><em>Save 10%</em></h2>
-        <p>Skip the platform fees and get exclusive perks when you book directly with us. Plus, enjoy priority booking
-          and personalized recommendations.</p>
+        <p>Experience the best of both worlds! When you book directly with us, enjoy exclusive perks and personal attention. Plus, get priority booking and personalized recommendations tailored to your needs.</p>
         <div class="booking-perks">
           <div class="perk">10% off any direct booking</div>
           <div class="perk">Free welcome basket on arrival</div>
