@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "create-code-app": {
+      "source": "microsoft/power-platform-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/code-apps/skills/create-code-app/SKILL.md",
+      "computedHash": "f0c3db3233b5112d1c59e7cef1f7daa948760108f38bfc04badd5962d6cb1f8c"
+    }
+  }
+}
