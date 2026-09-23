@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#26372f">
   <title>BH &amp; CO LLC — Luxury Vacation Homes in South Carolina | Greenville &amp; Pendleton</title>
   <meta name="title" content="BH &amp; CO LLC — Luxury Vacation Homes in South Carolina | Greenville &amp; Pendleton">
   <meta name="description"
@@ -3860,14 +3861,31 @@
     .reveal-up { opacity: 0; transform: translateY(22px); transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out); }
     .reveal-up.is-visible { opacity: 1; transform: translateY(0); }
     @media (max-width: 768px) {
-      .cinema-sub-wrap { bottom: 36px; }
+      .cinema { min-height: 100svh; height: 100svh; }
+      .cinema-stage { height: 100%; }
+      .cinema-sub-wrap { top: auto; bottom: max(28px, calc(env(safe-area-inset-bottom, 0px) + 18px)); padding-inline: 20px; }
+      .hero-search { max-width: none; min-height: 58px; padding: 12px 18px; }
+      nav { padding-top: calc(14px + env(safe-area-inset-top, 0px)); }
+      html { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; }
+      button, a { touch-action: manipulation; -webkit-user-select: none; user-select: none; }
       .section-head { grid-template-columns: 1fr; }
-      .property, .property:nth-child(even) { grid-template-columns: 1fr; }
+      body { overflow-x: clip; }
+      .section { padding-inline: 20px; }
+      .properties { gap: 64px; }
+      .property, .property:nth-child(even) { grid-template-columns: minmax(0, 1fr); gap: 26px; }
       .property:nth-child(even) .prop-media, .property:nth-child(even) .prop-info { order: initial; }
-      .prop-info { padding: 8px 0; }
+      .prop-media { width: 100%; min-width: 0; }
+      .prop-slider { width: 100%; max-width: none; height: auto; aspect-ratio: 4 / 5; margin: 0; border-radius: 18px; }
+      .prop-thumbnails-wrapper { width: 100%; margin-top: 14px; }
+      .prop-thumbnails { width: 100%; max-width: none; padding-inline: 0; justify-content: flex-start; scroll-snap-type: x proximity; }
+      .prop-thumbnail { width: 52px; height: 52px; scroll-snap-align: start; }
+      .prop-tag { top: 12px; left: 12px; padding: 7px 12px; font-size: 9px; letter-spacing: .14em; }
+      .prop-info { padding: 10px 0 0; min-width: 0; }
+      .prop-location { margin-bottom: 10px; font-size: 10px; letter-spacing: .11em; }
       .prop-side-label { display: none; }
-      .prop-slider { height: min(120vw, 520px); }
       .prop-name { font-size: clamp(38px, 11vw, 52px); }
+      .wa-float { width: 52px; height: 52px; right: 16px; bottom: max(16px, calc(env(safe-area-inset-bottom, 0px) + 12px)); }
+      .wa-float svg { width: 26px; height: 26px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
