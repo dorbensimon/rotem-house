@@ -3739,6 +3739,146 @@
       border: none;
       border-top: 1px solid rgba(0, 0, 0, .08);
     }
+
+    /* 2026 refinement: calm, tactile Southern hospitality */
+    :root {
+      --ink: #1e2925;
+      --forest: #31443a;
+      --moss: #6f806d;
+      --sand: #f4f0e8;
+      --paper: #fbfaf7;
+      --brass: #a67b35;
+      --ease-out: cubic-bezier(.23, 1, .32, 1);
+      --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+    }
+
+    body { background: var(--paper); color: var(--ink); font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    ::selection { background: rgba(166, 123, 53, .24); color: var(--ink); }
+    :focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
+
+    .cinema { min-height: 100dvh; height: 100dvh; background: #26372f; }
+    .cinema-house-card::after { background: linear-gradient(180deg, rgba(12,20,16,.2), rgba(12,20,16,.06) 42%, rgba(12,20,16,.58)); }
+    .cinema-sub-wrap { top: auto; bottom: clamp(46px, 8vw, 104px); animation: hero-arrive 900ms var(--ease-out) 150ms both; }
+    .cinema-sub-wrap p { font-family: ui-sans-serif, -apple-system, sans-serif; font-size: clamp(14px, 1.3vw, 18px); letter-spacing: .04em; }
+    @keyframes hero-arrive { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-search { border-radius: 16px; transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), background-color 160ms ease; }
+    .hero-search:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,0,0,.24); }
+    .hero-search:active { transform: translateY(0) scale(.98); }
+
+    .marquee { background: var(--paper); border-color: rgba(49,68,58,.12); padding: 20px 0; }
+    .marquee-track { color: var(--forest); font-size: clamp(20px, 2vw, 27px); }
+    .marquee::before { background: linear-gradient(90deg, var(--paper), transparent); }
+    .marquee::after { background: linear-gradient(270deg, var(--paper), transparent); }
+    .section { background: var(--paper); padding: clamp(88px, 12vw, 160px) clamp(20px, 5vw, 72px); }
+    #properties { background: var(--paper); }
+    .reviews-section { background: var(--sand) !important; }
+    .section-head { gap: clamp(30px, 6vw, 90px); margin-bottom: clamp(52px, 7vw, 88px); }
+    .section-label { display: none; }
+    .section-title { color: var(--ink); font-size: clamp(48px, 5.5vw, 86px); letter-spacing: -.035em; }
+    .section-title em { color: var(--moss); }
+    .section-desc, .prop-desc { color: #58625d; max-width: 62ch; }
+    .property { gap: clamp(36px, 7vw, 96px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
+    .property:nth-child(even) .prop-info { order: 1; }
+    .prop-slider { width: min(100%, 490px); height: clamp(390px, 45vw, 610px); border-radius: 16px; box-shadow: 0 24px 55px rgba(33,43,37,.18); }
+    .prop-slide { transition: opacity 500ms var(--ease-out); }
+    .prop-slide img { transition: transform 700ms var(--ease-out); }
+    .prop-slide.active img { transform: scale(1.025); }
+    .prop-tag { top: 16px; left: 16px; transform: none; border-radius: 8px; color: var(--forest); font-size: 10px; letter-spacing: .14em; }
+    .prop-side-label { color: var(--brass); }
+    .prop-name { color: var(--ink); text-align: left; font-size: clamp(38px, 4vw, 58px); letter-spacing: -.03em; margin-top: 8px; }
+    .prop-name em { color: var(--moss); }
+    .prop-location { color: var(--brass); letter-spacing: .14em; }
+    .prop-stars { color: var(--brass); }
+    .prop-bottom { border-color: rgba(49,68,58,.14); }
+    .feature-icon-item { transition: transform 160ms ease, color 160ms ease; }
+    .feature-icon-item svg { color: var(--forest); }
+    @media (hover: hover) and (pointer: fine) { .feature-icon-item:hover { transform: translateY(-3px); } .prop-thumbnail:hover { transform: scale(1.04); border-color: var(--brass); } }
+    .prop-thumbnail { border-radius: 8px; transition: transform 160ms ease, border-color 160ms ease, opacity 160ms ease; }
+    .prop-thumbnail.active { border-color: var(--brass); box-shadow: none; }
+    .prop-dot.active { background: var(--forest); }
+    .btn-primary { background: var(--forest); border-color: var(--forest); border-radius: 14px; padding: 16px 24px; letter-spacing: .12em; transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), background-color 160ms ease; }
+    .btn-primary:hover { background: var(--brass); border-color: var(--brass); transform: translateY(-2px); box-shadow: 0 12px 24px rgba(72,56,27,.2); }
+    .btn-primary:active { transform: scale(.98); }
+    .wide-photo-section { height: min(70vh, 760px); }
+    .wide-photo-section::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(28,39,33,.18), transparent 55%); }
+    .wide-photo-section img { transition: transform 900ms var(--ease-out); }
+    .wide-photo-section:hover img { transform: scale(1.025); }
+    .greenville-scene { isolation: isolate; }
+    .greenville-marker {
+      position: absolute; z-index: 2; left: clamp(22px, 6vw, 84px); bottom: clamp(26px, 6vw, 70px);
+      display: flex; align-items: center; gap: 14px; color: #fff; font-size: 10px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; text-shadow: 0 1px 12px rgba(0,0,0,.35);
+      opacity: 0; transform: translateY(18px); transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+    }
+    .greenville-marker.is-visible { opacity: 1; transform: translateY(0); }
+    .greenville-marker i { display: block; width: clamp(48px, 8vw, 112px); height: 1px; background: rgba(255,255,255,.82); transform-origin: left center; transform: scaleX(0); transition: transform 900ms var(--ease-out) 130ms; }
+    .greenville-marker.is-visible i { transform: scaleX(1); }
+    /* Scroll story: arrival, a measured reveal, then a quiet sense of place. */
+    .property .prop-slider {
+      clip-path: inset(0 0 12% 0);
+      transform: translateY(26px);
+      transition: clip-path 900ms var(--ease-in-out), transform 700ms var(--ease-out), box-shadow 700ms var(--ease-out);
+    }
+    .property.visible .prop-slider { clip-path: inset(0 0 0 0); transform: translateY(0); }
+    .property .prop-info > * { opacity: 0; transform: translateY(14px); }
+    .property.visible .prop-info > * { animation: property-copy-in 620ms var(--ease-out) both; }
+    .property.visible .prop-info > :nth-child(1) { animation-delay: 70ms; }
+    .property.visible .prop-info > :nth-child(2) { animation-delay: 120ms; }
+    .property.visible .prop-info > :nth-child(3) { animation-delay: 170ms; }
+    .property.visible .prop-info > :nth-child(4) { animation-delay: 220ms; }
+    .property.visible .prop-info > :nth-child(5) { animation-delay: 270ms; }
+    .property.visible .prop-info > :nth-child(6) { animation-delay: 320ms; }
+    @keyframes property-copy-in { to { opacity: 1; transform: translateY(0); } }
+
+    .rating-breakdown .rating-cat-fill { transform: scaleX(0); transform-origin: left center; transition: transform 760ms var(--ease-out); }
+    .rating-breakdown.is-visible .rating-cat-fill { transform: scaleX(1); }
+    .rating-breakdown.is-visible .rating-cat:nth-child(2) .rating-cat-fill { transition-delay: 70ms; }
+    .rating-breakdown.is-visible .rating-cat:nth-child(3) .rating-cat-fill { transition-delay: 140ms; }
+    .rating-breakdown.is-visible .rating-cat:nth-child(4) .rating-cat-fill { transition-delay: 210ms; }
+    .rating-breakdown.is-visible .rating-cat:nth-child(5) .rating-cat-fill { transition-delay: 280ms; }
+    .rating-breakdown.is-visible .rating-cat:nth-child(6) .rating-cat-fill { transition-delay: 350ms; }
+
+    .host-card, .booking-inner, .faq-container { opacity: 0; transform: translateY(22px); transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out); }
+    .host-card.is-visible, .booking-inner.is-visible, .faq-container.is-visible { opacity: 1; transform: translateY(0); }
+    .host-card.is-visible .host-stat { animation: property-copy-in 520ms var(--ease-out) both; }
+    .host-card.is-visible .host-stat:nth-child(1) { animation-delay: 80ms; }
+    .host-card.is-visible .host-stat:nth-child(2) { animation-delay: 140ms; }
+    .host-card.is-visible .host-stat:nth-child(3) { animation-delay: 200ms; }
+    .host-card.is-visible .host-stat:nth-child(4) { animation-delay: 260ms; }
+
+    .greenville-scene::before { content: ''; position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(108deg, transparent 34%, rgba(247,241,218,.22) 49%, transparent 64%); mix-blend-mode: screen; opacity: .28; transform: translateX(-38%); }
+    @supports (animation-timeline: view()) {
+      .greenville-scene img { animation: greenville-drift linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+      .greenville-marker { animation: falls-park-arrival linear both; animation-timeline: view(); animation-range: entry 15% cover 50%; }
+      .greenville-scene::before { animation: falls-park-light linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+      @keyframes greenville-drift { from { transform: scale(1.04) translateY(-1.5%); } to { transform: scale(1.01) translateY(1.5%); } }
+      @keyframes falls-park-arrival { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes falls-park-light { from { opacity: 0; transform: translateX(-38%); } 42% { opacity: .32; } to { opacity: 0; transform: translateX(38%); } }
+    }
+    .rating-overall, .ts-card-inner { box-shadow: 0 16px 38px rgba(43,53,45,.1); }
+
+    .reveal-up { opacity: 0; transform: translateY(22px); transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out); }
+    .reveal-up.is-visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 768px) {
+      .cinema-sub-wrap { bottom: 36px; }
+      .section-head { grid-template-columns: 1fr; }
+      .property, .property:nth-child(even) { grid-template-columns: 1fr; }
+      .property:nth-child(even) .prop-media, .property:nth-child(even) .prop-info { order: initial; }
+      .prop-info { padding: 8px 0; }
+      .prop-side-label { display: none; }
+      .prop-slider { height: min(120vw, 520px); }
+      .prop-name { font-size: clamp(38px, 11vw, 52px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal-up { transform: none; }
+      .greenville-marker { opacity: 1; transform: none; }
+      .greenville-marker i { transform: scaleX(1); transition: none; }
+      .property .prop-slider, .property .prop-info > *, .host-card, .booking-inner, .faq-container { clip-path: none; opacity: 1; transform: none; transition: none; animation: none; }
+      .rating-breakdown .rating-cat-fill { transform: scaleX(1); transition: none; }
+      .greenville-scene::before { animation: none; opacity: 0; }
+    }
   </style>
 </head>
 
@@ -4041,7 +4181,8 @@
       </div>
     </div>
   </section>
-  <section class="wide-photo-section"><img src="/images/greenvile.jpg" alt="Exterior view of BH & CO Rentals Greenville vacation home with private pool in South Carolina" loading="lazy">
+  <section class="wide-photo-section greenville-scene"><img src="/images/greenvile.jpg" alt="Exterior view of BH & CO Rentals Greenville vacation home with private pool in South Carolina" loading="lazy">
+    <div class="greenville-marker" aria-hidden="true"><span>Falls Park</span><i></i><span>Greenville, SC</span></div>
   </section>
   <section class="section reviews-section" id="reviews">
     <div class="section-head">
@@ -4935,6 +5076,20 @@
       });
     }, { threshold: .1 });
     document.querySelectorAll('.stat,.property,.amen-item,.review').forEach(el => observer.observe(el));
+    // Reveal only the larger editorial beats; controls stay immediate and responsive.
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .16 });
+    document.querySelectorAll('.section-head, .rating-breakdown, .host-card, .booking-inner, .faq-container, .greenville-marker').forEach((el, index) => {
+      el.classList.add('reveal-up');
+      el.style.transitionDelay = Math.min(index * 45, 135) + 'ms';
+      revealObserver.observe(el);
+    });
     const cObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
